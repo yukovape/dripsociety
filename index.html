@@ -16,16 +16,20 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{background:var(--black);color:var(--white);font-family:var(--font-h);font-size:14px;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
-/* ── SPLASH SCREEN (CHARGEMENT) ── */
+/* ── SPLASH SCREEN ── */
 #splash {
   position: fixed; inset: 0; background: var(--black); z-index: 1000;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   transition: opacity 0.6s ease, visibility 0.6s;
 }
-#splash img { width: 180px; height: 180px; margin-bottom: 20px; animation: pulseLogo 2s infinite ease-in-out; border-radius: 50%; }
-.loader-bar { width: 120px; height: 2px; background: var(--border); position: relative; overflow: hidden; }
+#splash img { 
+  width: 160px; height: 160px; margin-bottom: 30px; 
+  animation: pulseLogo 2s infinite ease-in-out; border-radius: 50%;
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.2);
+}
+.loader-bar { width: 100px; height: 2px; background: var(--border); position: relative; overflow: hidden; }
 .loader-progress { position: absolute; height: 100%; width: 50%; background: var(--gold); animation: loadAnim 1.5s infinite linear; }
-@keyframes pulseLogo { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
+@keyframes pulseLogo { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.03); opacity: 1; } }
 @keyframes loadAnim { from { left: -50%; } to { left: 100%; } }
 .hidden-splash { opacity: 0; visibility: hidden; }
 
@@ -37,68 +41,62 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
 .ibtn{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);background:none;cursor:pointer;}
 #cbadge{position:absolute;top:-5px;right:-5px;background:var(--gold);color:var(--black);font-size:9px;font-weight:900;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;border:2px solid var(--black);}
 
-/* ── HERO ── */
+/* ── CATALOG ── */
 #hero{padding:40px 20px;border-bottom:1px solid var(--border);background: linear-gradient(to bottom, #050505, #000);}
 #hero h1{font-size:36px;font-weight:900;line-height:0.9;text-transform:uppercase;margin-bottom:10px;letter-spacing:-1px;}
 #hero h1 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:42px;font-weight:400;}
-#hero p{font-size:10px;color:var(--gray);text-transform:uppercase;letter-spacing:2px;opacity:0.8;}
-
-/* ── CATALOG ── */
 #catalog{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);padding-bottom:120px;}
 .card{background:var(--black);display:flex;flex-direction:column;position:relative;}
 .cimg{width:100%; aspect-ratio:1 / 1.2; background:var(--s2); overflow:hidden; position:relative;}
 .cimg img{width:100%; height:100%; object-fit:cover; object-position:center; display:block; transition: transform 0.5s ease;}
-.card:active .cimg img{transform:scale(1.05);}
 .cbody{padding:15px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
-.cname{font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;line-height:1.4;letter-spacing:0.5px;min-height:32px;}
+.cname{font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;line-height:1.4;letter-spacing:0.5px;}
 .cprice{color:var(--gold);font-weight:700;font-size:18px;margin-bottom:15px;font-family: 'Cormorant Garamond', serif;}
 
-/* ── TAILLES & BOUTONS ── */
+/* ── TAILLES ── */
 .sz-row{display:flex;gap:6px;margin-bottom:15px;flex-wrap:wrap;}
-.sz-btn{ border:1px solid var(--border);padding:8px;font-size:10px;font-weight:700; cursor:pointer;color:var(--gray);background:var(--s1);min-width:38px;text-align:center; transition: 0.2s;}
+.sz-btn{ border:1px solid var(--border);padding:8px;font-size:10px;font-weight:700; cursor:pointer;color:var(--gray);background:var(--s1);min-width:38px;text-align:center;}
 .sz-btn.active{border-color:var(--white);color:var(--white);background:var(--s2);}
-.add-btn{ width:100%;padding:14px;background:var(--white);color:var(--black); border:none;font-weight:900;font-size:10px;text-transform:uppercase; letter-spacing:2px;cursor:pointer;transition: 0.2s;}
+.add-btn{ width:100%;padding:14px;background:var(--white);color:var(--black); border:none;font-weight:900;font-size:10px;text-transform:uppercase; letter-spacing:2px;}
 .add-btn:disabled{background:var(--s1);color:var(--border);cursor:not-allowed;}
 
-/* ── PANIER BARRE BAS ── */
-#cart-bar{ position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.95); backdrop-filter: blur(10px); border-top:1px solid var(--border);padding:20px;z-index:90; transform:translateY(100%);transition:0.4s cubic-bezier(0.16, 1, 0.3, 1);}
+/* ── PANIER & DRAWERS (DESIGN AMELIORE) ── */
+#cart-bar{ position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.95); backdrop-filter: blur(10px); border-top:1px solid var(--border);padding:20px;z-index:90; transform:translateY(100%);transition:0.4s;}
 #cart-bar.show{transform:translateY(0);}
-#bar-btn{ width:100%;padding:16px;background:var(--gold);color:var(--black); font-weight:900;text-transform:uppercase;border:none;display:flex; justify-content:space-between;letter-spacing:1px;}
+#bar-btn{ width:100%;padding:16px;background:var(--gold);color:var(--black); font-weight:900;text-transform:uppercase;border:none;display:flex; justify-content:space-between;}
 
-/* ── NOUVEAU DESIGN PANIER (DRAWER) ── */
 .dw{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;display:none;backdrop-filter: blur(8px);}
-.dw.show{display:block; animation: fadeIn 0.3s ease;}
+.dw.show{display:block;}
 .dw-content { 
   position: absolute; bottom: 0; left: 0; right: 0; background: #050505; 
   border-top: 1px solid var(--gold); padding: 30px 20px; border-radius: 20px 20px 0 0;
-  max-height: 85vh; overflow-y: auto;
+  max-height: 90vh; overflow-y: auto;
 }
-.cart-item { 
+.cart-item, .admin-item { 
   display: flex; justify-content: space-between; align-items: center; 
   padding: 15px 0; border-bottom: 1px solid var(--border);
 }
-.item-info { display: flex; flex-direction: column; gap: 4px; }
-.item-name { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-.item-details { font-size: 10px; color: var(--gray); text-transform: uppercase; }
-.item-price { color: var(--gold); font-weight: 700; font-family: 'Cormorant Garamond', serif; font-size: 16px; }
 
-/* ── ADMIN & UTILS ── */
+/* ── ADMIN SPECIFIQUE ── */
+.admin-item img { width: 40px; height: 50px; object-fit: cover; border-radius: 4px; margin-right: 10px; }
+.admin-actions { display: flex; gap: 10px; }
+.btn-delete { background: var(--danger); color: white; border: none; padding: 8px 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; }
+.btn-edit { background: var(--gray); color: white; border: none; padding: 8px 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; }
+
 .fg{margin-bottom:20px;}
 .fg label{display:block;font-size:10px;text-transform:uppercase;margin-bottom:8px;color:var(--gray);letter-spacing:1px;}
-.fg input,.fg select{width:100%;padding:15px;background:var(--s1);border:1px solid var(--border);color:var(--white);outline:none;}
+.fg input{width:100%;padding:15px;background:var(--s1);border:1px solid var(--border);color:var(--white);outline:none;}
 .upload-box{border:1px dashed var(--gold);padding:30px;text-align:center;margin-bottom:15px;color:var(--gold);font-size:11px;font-weight:700;}
+
 #toast{position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);padding:12px 25px;font-weight:900;font-size:11px;z-index:1000;display:none;text-transform:uppercase;}
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 </style>
 </head>
 <body>
 
 <div id="splash">
-  <img src="https://i.ibb.co/XkyV7PzB/Gemini-Generated-Image-f1kqnhf1kqnhf1kq.jpg" alt="Drip Society Logo">
+  <img src="https://i.ibb.co/XkyV7PzB/Gemini-Generated-Image-f1kqnhf1kqnhf1kq.jpg" alt="Logo">
   <div class="loader-bar"><div class="loader-progress"></div></div>
 </div>
-
-<div id="toast"></div>
 
 <header id="header">
   <div class="logo">DRIP<span>·</span>SOCIETY</div>
@@ -113,7 +111,7 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
 
 <div id="hero">
   <h1>Qualité <em>Supérieure</em><br>Bas Prix</h1>
-  <p>Collection Streetwear — Sélection exclusive</p>
+  <p>Streetwear sélectionné — Drip Society</p>
 </div>
 
 <div id="catalog"></div>
@@ -125,41 +123,46 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
   </button>
 </div>
 
+<div id="toast"></div>
+
 <div id="cart-dw" class="dw">
   <div class="dw-content">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
+    <div style="display:flex; justify-content:space-between; margin-bottom:25px;">
         <h2 style="text-transform:uppercase;letter-spacing:3px;font-size:18px;">Mon Panier</h2>
-        <span onclick="closeAll()" style="color:var(--gray); font-size:11px; letter-spacing:1px; cursor:pointer;">FERMER</span>
+        <span onclick="closeAll()" style="color:var(--gray); font-size:11px; cursor:pointer;">FERMER</span>
     </div>
-    
     <div id="cart-items"></div>
-    
     <div style="margin-top:30px; border-top:1px solid var(--border); padding-top:20px;">
-      <div style="display:flex;justify-content:space-between;margin-bottom:25px;align-items:baseline;">
-          <span style="font-size:11px;color:var(--gray);letter-spacing:1px;">TOTAL ESTIMÉ</span>
-          <span id="cart-total-val" style="color:var(--gold);font-weight:900;font-size:24px;font-family:'Cormorant Garamond',serif;">0.00 €</span>
+      <div style="display:flex;justify-content:space-between;margin-bottom:25px;">
+          <span style="font-size:11px;color:var(--gray);">TOTAL</span>
+          <span id="cart-total-val" style="color:var(--gold);font-weight:900;font-size:24px;">0.00 €</span>
       </div>
-      <button onclick="sendOrder()" style="width:100%;padding:18px;background:var(--gold);border:none;font-weight:900;cursor:pointer;letter-spacing:2px;text-transform:uppercase;color:#000;">Finaliser sur Telegram</button>
-      <p style="text-align:center; font-size:9px; color:var(--gray); margin-top:15px; letter-spacing:1px;">LIVRAISON ET PAIEMENT À VOIR AVEC LE CONSEILLER</p>
+      <button onclick="sendOrder()" style="width:100%;padding:18px;background:var(--gold);border:none;font-weight:900;text-transform:uppercase;">Finaliser sur Telegram</button>
     </div>
   </div>
 </div>
 
 <div id="admin-dw" class="dw">
   <div class="dw-content">
-    <h2 style="text-transform:uppercase;margin-bottom:30px;letter-spacing:2px;font-size:18px;">Gestion</h2>
+    <div style="display:flex; justify-content:space-between; margin-bottom:25px;">
+        <h2 style="text-transform:uppercase;letter-spacing:2px;font-size:18px;">Gestion Boutique</h2>
+        <span onclick="closeAll()" style="color:var(--gray); font-size:11px; cursor:pointer;">FERMER</span>
+    </div>
+    
     <div class="fg">
-        <label>Photo</label>
+        <label>Photo de l'article</label>
         <div class="upload-box" onclick="document.getElementById('file-input').click()">
-            <span id="up-status">📸 UPLOADER IMAGE</span>
+            <span id="up-status">📸 AJOUTER UNE IMAGE</span>
             <input type="file" id="file-input" style="display:none;" onchange="handleUpload(this)">
         </div>
         <input type="hidden" id="a-img">
     </div>
-    <div class="fg"><label>Nom</label><input type="text" id="a-name"></div>
+    <div class="fg"><label>Nom de l'article</label><input type="text" id="a-name"></div>
     <div class="fg"><label>Prix (€)</label><input type="number" id="a-price" step="0.01"></div>
-    <button onclick="saveProduct()" style="width:100%;padding:18px;background:var(--white);color:var(--black);font-weight:900;border:none;text-transform:uppercase;letter-spacing:2px;">Ajouter</button>
-    <button onclick="closeAll()" style="width:100%;margin-top:15px;background:none;color:var(--gray);border:none;font-size:11px;letter-spacing:1px;">ANNULER</button>
+    <button onclick="saveProduct()" style="width:100%;padding:18px;background:var(--white);color:var(--black);font-weight:900;text-transform:uppercase;">Publier l'article</button>
+    
+    <h3 style="text-transform:uppercase; font-size:12px; letter-spacing:2px; margin: 40px 0 20px 0; color:var(--gold);">Inventaire actuel</h3>
+    <div id="admin-list"></div>
   </div>
 </div>
 
@@ -176,11 +179,8 @@ let products = [];
 let cart = [];
 let selectedSizes = {};
 
-// SPLASH SCREEN DELAY
 window.onload = () => {
-    setTimeout(() => {
-        document.getElementById('splash').classList.add('hidden-splash');
-    }, 2000);
+    setTimeout(() => document.getElementById('splash').classList.add('hidden-splash'), 2500);
     load();
 };
 
@@ -190,6 +190,7 @@ async function load() {
     });
     products = await res.json();
     render();
+    renderAdminList();
 }
 
 function render() {
@@ -229,6 +230,48 @@ function updateUI() {
     document.getElementById("cart-total-val").textContent = `${total.toFixed(2)} €`;
 }
 
+// ADMIN LIST & DELETE
+function renderAdminList() {
+    const el = document.getElementById("admin-list");
+    el.innerHTML = products.map(p => `
+        <div class="admin-item">
+            <div style="display:flex; align-items:center;">
+                <img src="${p.image_url}">
+                <div>
+                    <div style="font-size:10px; font-weight:700; text-transform:uppercase;">${p.name}</div>
+                    <div style="color:var(--gold); font-size:12px;">${p.price.toFixed(2)}€</div>
+                </div>
+            </div>
+            <div class="admin-actions">
+                <button class="btn-edit" onclick="editPrice('${p.id}', ${p.price})">Prix</button>
+                <button class="btn-delete" onclick="deleteProduct('${p.id}')">Suppr.</button>
+            </div>
+        </div>
+    `).join("");
+}
+
+async function deleteProduct(id) {
+    if(!confirm("Supprimer définitivement cet article ?")) return;
+    await fetch(`${SUPA}/rest/v1/products?id=eq.${id}`, {
+        method: "DELETE",
+        headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}` }
+    });
+    showToast("ARTICLE SUPPRIMÉ");
+    load();
+}
+
+async function editPrice(id, currentPrice) {
+    const newPrice = prompt("Nouveau prix :", currentPrice);
+    if(!newPrice || isNaN(newPrice)) return;
+    await fetch(`${SUPA}/rest/v1/products?id=eq.${id}`, {
+        method: "PATCH",
+        headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ price: parseFloat(newPrice) })
+    });
+    showToast("PRIX MIS À JOUR");
+    load();
+}
+
 async function handleUpload(input) {
     const file = input.files[0]; if(!file) return;
     document.getElementById("up-status").textContent = "CHARGEMENT...";
@@ -237,7 +280,7 @@ async function handleUpload(input) {
     const data = await res.json();
     if(data.success) {
         document.getElementById("a-img").value = data.data.url;
-        document.getElementById("up-status").textContent = "OK ✓";
+        document.getElementById("up-status").textContent = "PHOTO PRÊTE ✓";
     }
 }
 
@@ -245,7 +288,7 @@ async function saveProduct() {
     const name = document.getElementById("a-name").value;
     const price = document.getElementById("a-price").value;
     const img = document.getElementById("a-img").value;
-    if(!name || !price || !img) return alert("Remplis tout !");
+    if(!name || !price || !img) return alert("Complète tous les champs !");
     await fetch(`${SUPA}/rest/v1/products`, {
         method: "POST",
         headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}`, "Content-Type": "application/json", "Prefer": "return=minimal" },
@@ -272,11 +315,8 @@ function closeAll() { document.querySelectorAll(".dw").forEach(d => d.classList.
 function renderCartItems() {
     document.getElementById("cart-items").innerHTML = cart.map(i => `
         <div class="cart-item">
-            <div class="item-info">
-                <span class="item-name">${i.name}</span>
-                <span class="item-details">Taille: ${i.size}</span>
-            </div>
-            <span class="item-price">${i.price.toFixed(2)}€</span>
+            <span style="font-size:11px; font-weight:700; text-transform:uppercase;">${i.name} (${i.size})</span>
+            <span style="color:var(--gold); font-weight:700;">${i.price.toFixed(2)}€</span>
         </div>
     `).join("");
 }
@@ -284,7 +324,7 @@ function renderCartItems() {
 function showToast(m) {
     const t = document.getElementById("toast");
     t.textContent = m; t.style.display = "block";
-    setTimeout(() => t.style.display = "none", 2000);
+    setTimeout(() => t.style.display = "none", 2500);
 }
 </script>
 </body>
