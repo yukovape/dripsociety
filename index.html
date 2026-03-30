@@ -20,9 +20,13 @@
 html,body{background:var(--black);color:var(--white);font-family:var(--font-h);font-size:14px;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 ::-webkit-scrollbar{width:0;height:0;}
 input,select,textarea,button{font-family:var(--font-h);}
+
+/* TOPBAR */
 #topbar{background:var(--white);color:var(--black);font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:6px 0;overflow:hidden;white-space:nowrap;}
 #topbar-inner{display:inline-block;animation:mq 22s linear infinite;}
 @keyframes mq{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
+
+/* HEADER */
 #header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:52px;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:60;}
 .logo{font-size:15px;font-weight:900;letter-spacing:4px;text-transform:uppercase;}
 .logo em{font-style:normal;color:var(--gray);}
@@ -34,8 +38,8 @@ input,select,textarea,button{font-family:var(--font-h);}
 @keyframes pop{0%{transform:scale(0)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
 #abtn{display:none;font-size:16px;}
 #abtn.on{display:flex;}
-#debug-bar{background:#1a1a00;border:1px solid var(--gold);padding:8px 14px;font-size:10px;color:var(--gold);letter-spacing:.5px;line-height:1.6;display:none;}
-#debug-bar strong{font-weight:800;}
+
+/* HERO */
 #hero{padding:28px 16px 24px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
 #hero::before{content:'DS';position:absolute;right:-8px;top:-12px;font-size:130px;font-weight:900;color:rgba(255,255,255,0.025);pointer-events:none;user-select:none;letter-spacing:-4px;line-height:1;}
 .hero-eye{font-size:9px;font-weight:700;letter-spacing:4px;color:var(--gray);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
@@ -44,14 +48,22 @@ input,select,textarea,button{font-family:var(--font-h);}
 #hero h1 em{font-family:var(--font-s);font-style:italic;font-weight:400;color:var(--gold);font-size:36px;}
 .hero-sub{font-size:10px;color:var(--gray);letter-spacing:1.5px;text-transform:uppercase;}
 #hero-welcome{margin-top:14px;font-size:11px;color:var(--light);letter-spacing:.5px;display:none;}
+
+/* FILTER BAR */
 #fbar{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;background:var(--black);position:sticky;top:52px;z-index:50;}
 #fbar::-webkit-scrollbar{display:none;}
 .fb{flex-shrink:0;padding:11px 14px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .2s;white-space:nowrap;}
 .fb.on{color:var(--white);border-bottom-color:var(--gold);}
+
+/* SECTION BAR */
 .secbar{display:flex;align-items:baseline;justify-content:space-between;padding:14px 16px 8px;}
 .secbar h2{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;}
 .secbar span{font-size:9px;color:var(--gray);letter-spacing:1px;}
+
+/* CATALOG */
 #catalog{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);padding-bottom:130px;}
+
+/* CARD */
 .card{background:var(--black);display:flex;flex-direction:column;position:relative;}
 .card.oos{opacity:.5;}
 .cimg{position:relative;aspect-ratio:2/3;background:var(--s2);overflow:hidden;}
@@ -68,14 +80,18 @@ input,select,textarea,button{font-family:var(--font-h);}
 .sz-row{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:9px;}
 .sz{font-size:9px;font-weight:700;padding:6px 8px;min-width:32px;border:1px solid var(--border);background:var(--s1);color:var(--gray);cursor:pointer;transition:all .15s;text-transform:uppercase;letter-spacing:1px;-webkit-tap-highlight-color:transparent;user-select:none;}
 .sz.on{border-color:var(--white);background:var(--white);color:var(--black);}
-.badd{width:100%;padding:12px 0;background:var(--white);color:var(--black);font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;position:relative;z-index:1;transition:opacity .15s,background .15s;}
+.badd{width:100%;padding:12px 0;background:var(--white);color:var(--black);font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;position:relative;z-index:1;transition:opacity .15s;}
 .badd:active,.badd:focus{opacity:.75;outline:none;}
 .badd:disabled{background:transparent;color:var(--gray);border:1px solid var(--border);cursor:not-allowed;opacity:1;}
+
+/* LOADER */
 #loader{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;gap:18px;}
 .spin{width:26px;height:26px;border:1px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:rot .7s linear infinite;}
 @keyframes rot{to{transform:rotate(360deg);}}
 #loader p{font-size:8px;letter-spacing:3px;color:var(--gray);text-transform:uppercase;}
 #ecat{display:none;text-align:center;padding:60px 20px;font-size:9px;letter-spacing:3px;color:var(--gray);text-transform:uppercase;}
+
+/* CART BAR */
 #cartbar{position:fixed;bottom:0;left:0;right:0;z-index:55;background:var(--black);border-top:1px solid var(--border);padding:10px 16px;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);}
 #cartbar.up{transform:translateY(0);}
 #cartbar-btn{width:100%;padding:13px 18px;background:var(--gold);color:var(--black);font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;-webkit-tap-highlight-color:transparent;}
@@ -83,6 +99,8 @@ input,select,textarea,button{font-family:var(--font-h);}
 .cb-n{background:var(--black);color:var(--gold);font-size:9px;font-weight:800;width:22px;height:22px;display:flex;align-items:center;justify-content:center;}
 @keyframes pulse-gold{0%{box-shadow:0 0 0 0 rgba(201,168,76,.6)}70%{box-shadow:0 0 0 14px rgba(201,168,76,0)}100%{box-shadow:0 0 0 0 rgba(201,168,76,0)}}
 .pulse{animation:pulse-gold .55s ease !important;}
+
+/* DRAWERS */
 .dw{position:fixed;inset:0;z-index:100;display:none;}
 .dw.open{display:block;}
 .dw-bg{position:absolute;inset:0;background:rgba(0,0,0,.85);}
@@ -93,6 +111,8 @@ input,select,textarea,button{font-family:var(--font-h);}
 .dtitle{font-size:10px;font-weight:800;letter-spacing:4px;text-transform:uppercase;}
 .dclose{width:32px;height:32px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;color:var(--gray);}
 .dclose:active{border-color:var(--white);}
+
+/* CART */
 #cart-items{flex:1;overflow-y:auto;padding:0 16px;}
 .ci-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 0;gap:10px;}
 .ci-empty p{font-size:9px;letter-spacing:3px;color:var(--gray);text-transform:uppercase;}
@@ -115,6 +135,8 @@ input,select,textarea,button{font-family:var(--font-h);}
 #btn-order{width:100%;padding:15px;background:var(--gold);color:var(--black);font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;transition:opacity .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
 #btn-order:active{opacity:.8;}
 #btn-order:disabled{background:var(--border);color:var(--gray);cursor:not-allowed;}
+
+/* ADMIN */
 #admin-dw{z-index:200;}
 #admin-dw .dw-panel{max-height:92vh;}
 .abody{flex:1;overflow-y:auto;padding:0 16px 32px;}
@@ -129,7 +151,6 @@ input,select,textarea,button{font-family:var(--font-h);}
 .tip-box{background:var(--s2);border:1px solid var(--border);border-left:2px solid var(--gold);padding:10px 12px;margin-bottom:10px;}
 .tip-box p{font-size:10px;color:var(--gray);line-height:1.6;}
 .tip-box strong{color:var(--gold);font-size:10px;}
-.tip-box a{color:var(--light);}
 .tw{display:flex;align-items:center;justify-content:space-between;background:var(--s1);border:1px solid var(--border);padding:11px 14px;}
 .tw label{font-size:11px;color:var(--white);}
 .sw{position:relative;width:40px;height:22px;}
@@ -156,6 +177,70 @@ input,select,textarea,button{font-family:var(--font-h);}
 .btn-st:active{border-color:var(--white);color:var(--white);}
 .btn-dl{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 8px;border:1px solid rgba(229,57,53,.3);background:none;color:var(--danger);cursor:pointer;}
 .btn-dl:active{background:rgba(229,57,53,.15);}
+
+/* ══════════════════════════════
+   MOT DE PASSE ADMIN — MODAL
+══════════════════════════════ */
+#pwd-modal{
+  position:fixed;inset:0;z-index:300;
+  display:none;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.92);
+  padding:24px;
+}
+#pwd-modal.open{display:flex;}
+#pwd-box{
+  width:100%;max-width:320px;
+  background:var(--s1);
+  border:1px solid var(--border);
+  padding:28px 24px;
+}
+#pwd-box h2{
+  font-size:11px;font-weight:800;letter-spacing:4px;
+  text-transform:uppercase;margin-bottom:6px;
+  color:var(--white);
+}
+#pwd-box p{
+  font-size:9px;color:var(--gray);
+  letter-spacing:1px;margin-bottom:20px;
+  line-height:1.6;
+}
+.pwd-logo{
+  font-family:var(--font-h);font-size:13px;font-weight:900;
+  letter-spacing:4px;color:var(--white);margin-bottom:20px;
+  display:block;
+}
+.pwd-logo em{font-style:normal;color:var(--gray);}
+#pwd-input{
+  width:100%;background:var(--s2);border:1px solid var(--border);
+  padding:13px 14px;color:var(--white);font-size:14px;
+  letter-spacing:2px;outline:none;margin-bottom:10px;
+  border-radius:0;-webkit-appearance:none;
+  transition:border-color .2s;
+}
+#pwd-input:focus{border-color:var(--gold);}
+#pwd-input.shake{animation:shake .35s ease;}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+#pwd-err{
+  font-size:9px;color:var(--danger);letter-spacing:1px;
+  margin-bottom:12px;display:none;text-transform:uppercase;
+}
+#pwd-submit{
+  width:100%;padding:13px;
+  background:var(--gold);color:var(--black);
+  font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  border:none;cursor:pointer;transition:opacity .2s;
+  margin-bottom:10px;
+}
+#pwd-submit:active{opacity:.8;}
+#pwd-cancel{
+  width:100%;padding:10px;
+  background:none;color:var(--gray);
+  font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  border:1px solid var(--border);cursor:pointer;
+}
+#pwd-cancel:active{border-color:var(--white);color:var(--white);}
+
+/* TOAST */
 #toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--white);color:var(--black);font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:9px 18px;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;z-index:999;white-space:nowrap;}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
 #toast.err{background:var(--danger);color:var(--white);}
@@ -164,12 +249,11 @@ input,select,textarea,button{font-family:var(--font-h);}
 <body>
 
 <div id="topbar"><span id="topbar-inner">✦ LIVRAISON OFFERTE · QUALITÉ SUPÉRIEURE À BAS PRIX ✦ DRIP SOCIETY — PIÈCES LIMITÉES ✦ LIVRAISON OFFERTE ✦</span></div>
-<div id="debug-bar"></div>
 
 <header id="header">
   <div class="logo">DRIP<em>·</em>SOCIETY</div>
   <div class="hr">
-    <div class="ibtn" id="abtn" onclick="openAdmin()">⚙️</div>
+    <div class="ibtn" id="abtn" onclick="tryAdmin()">⚙️</div>
     <div class="ibtn" onclick="openCart()">
       <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
       <div id="cbadge"></div>
@@ -202,6 +286,7 @@ input,select,textarea,button{font-family:var(--font-h);}
 <div id="ecat">Aucun article dans cette catégorie</div>
 <div id="catalog" style="display:none;"></div>
 
+<!-- CART BAR -->
 <div id="cartbar">
   <button id="cartbar-btn" onclick="openCart()">
     <div class="cb-l"><span class="cb-n" id="cb-n">0</span><span>Voir mon panier</span></div>
@@ -209,6 +294,7 @@ input,select,textarea,button{font-family:var(--font-h);}
   </button>
 </div>
 
+<!-- CART DRAWER -->
 <div class="dw" id="cart-dw">
   <div class="dw-bg" onclick="closeCart()"></div>
   <div class="dw-panel">
@@ -230,6 +316,7 @@ input,select,textarea,button{font-family:var(--font-h);}
   </div>
 </div>
 
+<!-- ADMIN DRAWER -->
 <div class="dw" id="admin-dw">
   <div class="dw-bg" onclick="closeAdmin()"></div>
   <div class="dw-panel" style="max-height:92vh;">
@@ -246,7 +333,7 @@ input,select,textarea,button{font-family:var(--font-h);}
         <div class="fg">
           <label>URL de l'image</label>
           <div class="tip-box">
-            <p><strong>💡 Obtenir un lien image gratuit (ImgBB)</strong><br>
+            <p><strong>💡 Lien image gratuit via ImgBB</strong><br>
             1. Va sur <strong>imgbb.com</strong> → "Start uploading"<br>
             2. Sélectionne ta photo → upload<br>
             3. Clique sur l'image → copie le <strong>"Direct link"</strong> (.jpg/.png)<br>
@@ -290,21 +377,47 @@ input,select,textarea,button{font-family:var(--font-h);}
   </div>
 </div>
 
+<!-- MOT DE PASSE MODAL -->
+<div id="pwd-modal">
+  <div id="pwd-box">
+    <span class="pwd-logo">DRIP<em>·</em>SOCIETY</span>
+    <h2>Espace Admin</h2>
+    <p>Accès réservé. Entrez le mot de passe pour continuer.</p>
+    <input type="password" id="pwd-input" placeholder="••••••••••••" autocomplete="off"
+           onkeydown="if(event.key==='Enter')checkPwd()"/>
+    <div id="pwd-err">Mot de passe incorrect</div>
+    <button id="pwd-submit" onclick="checkPwd()">Accéder →</button>
+    <button id="pwd-cancel" onclick="closePwdModal()">Annuler</button>
+  </div>
+</div>
+
 <div id="toast"></div>
 
 <script>
+/* ══════════════════════════════
+   CONFIG
+══════════════════════════════ */
 const SUPA = "https://juescdtmfmiqyfqfrwnd.supabase.co";
 const KEY  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp1ZXNjZHRtZm1pcXlmcWZyd25kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2OTQ0OTQsImV4cCI6MjA5MDI3MDQ5NH0.E1SIYG7bEjnBoZhb72QMC-B94e6pl-sGvqsvYgJu3eY";
 const BOT  = "fredpixou";
 
-/* ─────────────────────────────────────────────
-   ADMINS — 3 IDs autorisés à voir le ⚙️
-   • 8649556290  → Toi (propriétaire)
+/* ─────────────────────────────────────────────────
+   ADMINS — accès direct via ID Telegram (sans mdp)
+   • 8649556290  → Propriétaire
    • 1072084263  → Admin 2
-   • 8704291005  → Admin 3  ← NOUVEAU
-───────────────────────────────────────────── */
+   • 8704291005  → Admin 3
+─────────────────────────────────────────────────── */
 const ADMINS = ["8649556290", "1072084263", "8704291005"];
 
+/* ─────────────────────────────────────────────────
+   MOT DE PASSE — secours si l'ID n'est pas reconnu
+   Change-le ici quand tu veux.
+─────────────────────────────────────────────────── */
+const ADMIN_PWD = "dripsociety999";
+
+/* ══════════════════════════════
+   TELEGRAM INIT
+══════════════════════════════ */
 const tg   = window.Telegram?.WebApp;
 const user = tg?.initDataUnsafe?.user;
 if (tg) { tg.ready(); tg.expand(); }
@@ -312,15 +425,8 @@ if (tg) { tg.ready(); tg.expand(); }
 const userId  = String(user?.id || "");
 const isAdmin = ADMINS.includes(userId);
 
-const debugBar = document.getElementById("debug-bar");
-if (isAdmin) {
-  document.getElementById("abtn").classList.add("on");
-} else {
-  debugBar.style.display = "block";
-  debugBar.innerHTML = userId
-    ? `⚙️ <strong>Admin non reconnu.</strong> ID détecté : <strong>${userId}</strong> — si c'est le bon, ajoute-le dans ADMINS et remets en ligne.`
-    : `⚙️ <strong>ID non détecté.</strong> Ouvre l'app depuis le bot Telegram (pas depuis un navigateur seul).`;
-}
+// Si l'ID est dans la liste → bouton ⚙️ visible direct, pas besoin de mdp
+if (isAdmin) document.getElementById("abtn").classList.add("on");
 
 if (user?.first_name) {
   const w = document.getElementById("hero-welcome");
@@ -328,15 +434,76 @@ if (user?.first_name) {
   w.style.display = "block";
 }
 
+/* ══════════════════════════════
+   LOGIQUE ACCÈS ADMIN
+   • ID reconnu  → ouvre directement
+   • ID inconnu  → affiche le modal mdp
+══════════════════════════════ */
+function tryAdmin() {
+  if (isAdmin) {
+    openAdmin();
+  } else {
+    openPwdModal();
+  }
+}
+
+/* ── MODAL MOT DE PASSE ── */
+function openPwdModal() {
+  document.getElementById("pwd-modal").classList.add("open");
+  document.getElementById("pwd-input").value = "";
+  document.getElementById("pwd-err").style.display = "none";
+  document.body.style.overflow = "hidden";
+  setTimeout(() => document.getElementById("pwd-input").focus(), 300);
+}
+
+function closePwdModal() {
+  document.getElementById("pwd-modal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function checkPwd() {
+  const val = document.getElementById("pwd-input").value.trim();
+  if (val === ADMIN_PWD) {
+    closePwdModal();
+    openAdmin();
+    showToast("Accès admin accordé ✓");
+    tg?.HapticFeedback?.notificationOccurred("success");
+  } else {
+    const inp = document.getElementById("pwd-input");
+    const err = document.getElementById("pwd-err");
+    err.style.display = "block";
+    inp.value = "";
+    // Animation shake
+    inp.classList.remove("shake");
+    void inp.offsetWidth;
+    inp.classList.add("shake");
+    tg?.HapticFeedback?.notificationOccurred("error");
+    setTimeout(() => inp.classList.remove("shake"), 400);
+  }
+}
+
+/* ══════════════════════════════
+   SUPABASE
+══════════════════════════════ */
 const api = (path, o={}) => fetch(`${SUPA}/rest/v1/${path}`, {
-  headers:{"apikey":KEY,"Authorization":`Bearer ${KEY}`,"Content-Type":"application/json","Prefer":"return=representation",...(o.headers||{})}, ...o
+  headers:{
+    "apikey":KEY,"Authorization":`Bearer ${KEY}`,
+    "Content-Type":"application/json","Prefer":"return=representation",
+    ...(o.headers||{})
+  }, ...o
 });
 
+/* ══════════════════════════════
+   STATE
+══════════════════════════════ */
 let products = [];
 let filter   = "Tous";
 const cart   = {};
 const selSz  = {};
 
+/* ══════════════════════════════
+   LOAD
+══════════════════════════════ */
 async function load() {
   try {
     const r = await api("products?select=*&order=created_at.desc");
@@ -351,6 +518,9 @@ async function load() {
   }
 }
 
+/* ══════════════════════════════
+   FILTER
+══════════════════════════════ */
 function setF(cat, btn) {
   filter = cat;
   document.querySelectorAll(".fb").forEach(b => b.classList.remove("on"));
@@ -360,6 +530,9 @@ function setF(cat, btn) {
 }
 const filtered = () => filter === "Tous" ? products : products.filter(p => p.category === filter);
 
+/* ══════════════════════════════
+   RENDER CATALOG
+══════════════════════════════ */
 function renderCatalog() {
   const grid = document.getElementById("catalog");
   const list = filtered();
@@ -381,7 +554,7 @@ function renderCatalog() {
       `<div class="sz${sel===s?" on":""}" data-pid="${p.id}" data-sz="${s}">${s}</div>`
     ).join("");
 
-    let ctaHtml = !inStock
+    const ctaHtml = !inStock
       ? `<button class="badd" disabled>Rupture de stock</button>`
       : !sel
         ? `<button class="badd" disabled>Choisir une taille</button>`
@@ -389,7 +562,8 @@ function renderCatalog() {
 
     el.innerHTML = `
       <div class="cimg">
-        <img src="${p.image_url||`https://picsum.photos/seed/${p.id}/400/600`}" alt="${p.name}" loading="lazy" onerror="this.src='https://picsum.photos/300/450?grayscale'"/>
+        <img src="${p.image_url||`https://picsum.photos/seed/${p.id}/400/600`}" alt="${p.name}" loading="lazy"
+             onerror="this.src='https://picsum.photos/300/450?grayscale'"/>
         ${!inStock?`<div class="b-oos"><span>Rupture de stock</span></div>`:""}
         <div class="b-cat">${p.category||"Autres"}</div>
         <div class="b-qty${pQty>0?" on":""}" id="bq-${p.id}">${pQty||""}</div>
@@ -406,13 +580,19 @@ function renderCatalog() {
   grid.addEventListener("click", handleGridClick, { passive: false });
 }
 
+/* ══════════════════════════════
+   GESTION CLICS (délégation)
+══════════════════════════════ */
 function handleGridClick(e) {
   const szEl = e.target.closest(".sz");
   if (szEl) { pickSz(szEl.dataset.pid, szEl.dataset.sz, szEl); return; }
   const addEl = e.target.closest(".badd:not(:disabled)");
-  if (addEl && addEl.dataset.pid) { addCart(addEl.dataset.pid); }
+  if (addEl && addEl.dataset.pid) addCart(addEl.dataset.pid);
 }
 
+/* ══════════════════════════════
+   TAILLE
+══════════════════════════════ */
 function pickSz(pid, sz, btn) {
   const row = document.getElementById(`szr-${pid}`);
   if (row) row.querySelectorAll(".sz").forEach(b => b.classList.remove("on"));
@@ -421,10 +601,13 @@ function pickSz(pid, sz, btn) {
   tg?.HapticFeedback?.selectionChanged?.();
   const card = document.getElementById(`card-${pid}`);
   if (!card) return;
-  const addBtn = card.querySelector(".badd");
-  if (addBtn) { addBtn.disabled=false; addBtn.dataset.pid=pid; addBtn.textContent="Ajouter au panier"; }
+  const ab = card.querySelector(".badd");
+  if (ab) { ab.disabled=false; ab.dataset.pid=pid; ab.textContent="Ajouter au panier"; }
 }
 
+/* ══════════════════════════════
+   PANIER
+══════════════════════════════ */
 function addCart(pid) {
   const sz = selSz[pid]; if (!sz) { showToast("Choisis une taille","err"); return; }
   const p  = products.find(x => x.id===pid); if (!p) return;
@@ -491,8 +674,7 @@ function renderCartItems() {
 }
 
 function chgQty(key,d) {
-  if (!cart[key]) return;
-  cart[key].qty+=d; tg?.HapticFeedback?.selectionChanged?.();
+  if (!cart[key]) return; cart[key].qty+=d; tg?.HapticFeedback?.selectionChanged?.();
   if (cart[key].qty<=0) delete cart[key];
   const pid=key.split("_")[0]; const pQty=getPQty(pid);
   const bq=document.getElementById(`bq-${pid}`);
@@ -501,14 +683,16 @@ function chgQty(key,d) {
 }
 
 function rmItem(key) {
-  const pid=key.split("_")[0]; delete cart[key];
-  tg?.HapticFeedback?.impactOccurred("medium");
+  const pid=key.split("_")[0]; delete cart[key]; tg?.HapticFeedback?.impactOccurred("medium");
   const pQty=getPQty(pid);
   const bq=document.getElementById(`bq-${pid}`);
   if (bq) { bq.textContent=pQty; bq.className=`b-qty${pQty>0?" on":""}`; }
   updateUI(); renderCartItems();
 }
 
+/* ══════════════════════════════
+   COMMANDE
+══════════════════════════════ */
 function sendOrder() {
   const items=Object.values(cart); if(!items.length) return;
   const total=items.reduce((s,i)=>s+i.qty*i.product.price,0);
@@ -520,6 +704,9 @@ function sendOrder() {
   closeCart(); showToast("Redirection vers @"+BOT+" ✓");
 }
 
+/* ══════════════════════════════
+   ADMIN
+══════════════════════════════ */
 function openAdmin()  { renderAdminList(); openD("admin-dw"); }
 function closeAdmin() { closeD("admin-dw"); }
 
@@ -602,6 +789,9 @@ async function delProd(id) {
   } catch(e) { showToast("Erreur suppression","err"); }
 }
 
+/* ══════════════════════════════
+   HELPERS
+══════════════════════════════ */
 function openD(id)  { document.getElementById(id).classList.add("open"); document.body.style.overflow="hidden"; }
 function closeD(id) { document.getElementById(id).classList.remove("open"); document.body.style.overflow=""; }
 
