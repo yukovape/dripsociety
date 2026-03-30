@@ -16,6 +16,19 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{background:var(--black);color:var(--white);font-family:var(--font-h);font-size:14px;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
+/* ── SPLASH SCREEN (CHARGEMENT) ── */
+#splash {
+  position: fixed; inset: 0; background: var(--black); z-index: 1000;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s;
+}
+#splash img { width: 180px; height: 180px; margin-bottom: 20px; animation: pulseLogo 2s infinite ease-in-out; border-radius: 50%; }
+.loader-bar { width: 120px; height: 2px; background: var(--border); position: relative; overflow: hidden; }
+.loader-progress { position: absolute; height: 100%; width: 50%; background: var(--gold); animation: loadAnim 1.5s infinite linear; }
+@keyframes pulseLogo { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.05); opacity: 1; } }
+@keyframes loadAnim { from { left: -50%; } to { left: 100%; } }
+.hidden-splash { opacity: 0; visibility: hidden; }
+
 /* ── HEADER ── */
 #header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:60px;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
 .logo{font-size:16px;font-weight:900;letter-spacing:4px;text-transform:uppercase;}
@@ -33,74 +46,57 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
 /* ── CATALOG ── */
 #catalog{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);padding-bottom:120px;}
 .card{background:var(--black);display:flex;flex-direction:column;position:relative;}
-
-/* ── FIX IMAGE : Cadrage parfait ── */
-.cimg{
-  width:100%;
-  aspect-ratio:1 / 1.2; /* Format portrait élégant */
-  background:var(--s2);
-  overflow:hidden;
-  position:relative;
-}
-.cimg img{
-  width:100%;
-  height:100%;
-  object-fit:cover; /* Recadre et centre l'image automatiquement */
-  object-position:center;
-  display:block;
-  transition: transform 0.5s ease;
-}
+.cimg{width:100%; aspect-ratio:1 / 1.2; background:var(--s2); overflow:hidden; position:relative;}
+.cimg img{width:100%; height:100%; object-fit:cover; object-position:center; display:block; transition: transform 0.5s ease;}
 .card:active .cimg img{transform:scale(1.05);}
-
 .cbody{padding:15px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
 .cname{font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;line-height:1.4;letter-spacing:0.5px;min-height:32px;}
 .cprice{color:var(--gold);font-weight:700;font-size:18px;margin-bottom:15px;font-family: 'Cormorant Garamond', serif;}
 
 /* ── TAILLES & BOUTONS ── */
 .sz-row{display:flex;gap:6px;margin-bottom:15px;flex-wrap:wrap;}
-.sz-btn{
-  border:1px solid var(--border);padding:8px;font-size:10px;font-weight:700;
-  cursor:pointer;color:var(--gray);background:var(--s1);min-width:38px;text-align:center;
-  transition: 0.2s;
-}
+.sz-btn{ border:1px solid var(--border);padding:8px;font-size:10px;font-weight:700; cursor:pointer;color:var(--gray);background:var(--s1);min-width:38px;text-align:center; transition: 0.2s;}
 .sz-btn.active{border-color:var(--white);color:var(--white);background:var(--s2);}
-
-.add-btn{
-  width:100%;padding:14px;background:var(--white);color:var(--black);
-  border:none;font-weight:900;font-size:10px;text-transform:uppercase;
-  letter-spacing:2px;cursor:pointer;transition: 0.2s;
-}
+.add-btn{ width:100%;padding:14px;background:var(--white);color:var(--black); border:none;font-weight:900;font-size:10px;text-transform:uppercase; letter-spacing:2px;cursor:pointer;transition: 0.2s;}
 .add-btn:disabled{background:var(--s1);color:var(--border);cursor:not-allowed;}
-.add-btn:active:not(:disabled){transform:scale(0.96);background:var(--gold);}
 
 /* ── PANIER BARRE BAS ── */
-#cart-bar{
-  position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.95);
-  backdrop-filter: blur(10px);
-  border-top:1px solid var(--border);padding:20px;z-index:90;
-  transform:translateY(100%);transition:0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
+#cart-bar{ position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.95); backdrop-filter: blur(10px); border-top:1px solid var(--border);padding:20px;z-index:90; transform:translateY(100%);transition:0.4s cubic-bezier(0.16, 1, 0.3, 1);}
 #cart-bar.show{transform:translateY(0);}
-#bar-btn{
-  width:100%;padding:16px;background:var(--gold);color:var(--black);
-  font-weight:900;text-transform:uppercase;border:none;display:flex;
-  justify-content:space-between;letter-spacing:1px;
+#bar-btn{ width:100%;padding:16px;background:var(--gold);color:var(--black); font-weight:900;text-transform:uppercase;border:none;display:flex; justify-content:space-between;letter-spacing:1px;}
+
+/* ── NOUVEAU DESIGN PANIER (DRAWER) ── */
+.dw{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;display:none;backdrop-filter: blur(8px);}
+.dw.show{display:block; animation: fadeIn 0.3s ease;}
+.dw-content { 
+  position: absolute; bottom: 0; left: 0; right: 0; background: #050505; 
+  border-top: 1px solid var(--gold); padding: 30px 20px; border-radius: 20px 20px 0 0;
+  max-height: 85vh; overflow-y: auto;
 }
+.cart-item { 
+  display: flex; justify-content: space-between; align-items: center; 
+  padding: 15px 0; border-bottom: 1px solid var(--border);
+}
+.item-info { display: flex; flex-direction: column; gap: 4px; }
+.item-name { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.item-details { font-size: 10px; color: var(--gray); text-transform: uppercase; }
+.item-price { color: var(--gold); font-weight: 700; font-family: 'Cormorant Garamond', serif; font-size: 16px; }
 
-/* ── DRAWERS ── */
-.dw{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:200;display:none;padding:25px;}
-.dw.show{display:block;overflow-y:auto;animation: fadeIn 0.3s ease;}
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
+/* ── ADMIN & UTILS ── */
 .fg{margin-bottom:20px;}
 .fg label{display:block;font-size:10px;text-transform:uppercase;margin-bottom:8px;color:var(--gray);letter-spacing:1px;}
-.fg input,.fg select{width:100%;padding:15px;background:var(--s1);border:1px solid var(--border);color:var(--white);outline:none;border-radius:0;}
+.fg input,.fg select{width:100%;padding:15px;background:var(--s1);border:1px solid var(--border);color:var(--white);outline:none;}
 .upload-box{border:1px dashed var(--gold);padding:30px;text-align:center;margin-bottom:15px;color:var(--gold);font-size:11px;font-weight:700;}
-
-#toast{position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);padding:12px 25px;font-weight:900;font-size:11px;z-index:1000;display:none;text-transform:uppercase;letter-spacing:1px;box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
+#toast{position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);padding:12px 25px;font-weight:900;font-size:11px;z-index:1000;display:none;text-transform:uppercase;}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 </style>
 </head>
 <body>
+
+<div id="splash">
+  <img src="https://i.ibb.co/XkyV7PzB/Gemini-Generated-Image-f1kqnhf1kqnhf1kq.jpg" alt="Drip Society Logo">
+  <div class="loader-bar"><div class="loader-progress"></div></div>
+</div>
 
 <div id="toast"></div>
 
@@ -130,42 +126,41 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
 </div>
 
 <div id="cart-dw" class="dw">
-  <h2 style="text-transform:uppercase;letter-spacing:3px;margin-bottom:30px;font-size:24px;">Panier</h2>
-  <div id="cart-items" style="margin-bottom:30px;"></div>
-  <div style="border-top:1px solid var(--border);padding-top:20px;">
-    <div style="display:flex;justify-content:space-between;margin-bottom:30px;align-items:baseline;">
-        <span style="font-size:12px;color:var(--gray);">TOTAL</span>
-        <span id="cart-total-val" style="color:var(--gold);font-weight:900;font-size:28px;font-family:'Cormorant Garamond',serif;">0.00 €</span>
+  <div class="dw-content">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
+        <h2 style="text-transform:uppercase;letter-spacing:3px;font-size:18px;">Mon Panier</h2>
+        <span onclick="closeAll()" style="color:var(--gray); font-size:11px; letter-spacing:1px; cursor:pointer;">FERMER</span>
     </div>
-    <button onclick="sendOrder()" style="width:100%;padding:18px;background:var(--gold);border:none;font-weight:900;cursor:pointer;letter-spacing:2px;text-transform:uppercase;">Valider la commande</button>
-    <button onclick="closeAll()" style="width:100%;margin-top:20px;background:none;color:var(--gray);border:none;cursor:pointer;font-size:11px;text-transform:uppercase;letter-spacing:2px;">Continuer les achats</button>
+    
+    <div id="cart-items"></div>
+    
+    <div style="margin-top:30px; border-top:1px solid var(--border); padding-top:20px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:25px;align-items:baseline;">
+          <span style="font-size:11px;color:var(--gray);letter-spacing:1px;">TOTAL ESTIMÉ</span>
+          <span id="cart-total-val" style="color:var(--gold);font-weight:900;font-size:24px;font-family:'Cormorant Garamond',serif;">0.00 €</span>
+      </div>
+      <button onclick="sendOrder()" style="width:100%;padding:18px;background:var(--gold);border:none;font-weight:900;cursor:pointer;letter-spacing:2px;text-transform:uppercase;color:#000;">Finaliser sur Telegram</button>
+      <p style="text-align:center; font-size:9px; color:var(--gray); margin-top:15px; letter-spacing:1px;">LIVRAISON ET PAIEMENT À VOIR AVEC LE CONSEILLER</p>
+    </div>
   </div>
 </div>
 
 <div id="admin-dw" class="dw">
-  <h2 style="text-transform:uppercase;margin-bottom:30px;letter-spacing:2px;">Ajouter un article</h2>
-  <div class="fg">
-    <label>Visuel du produit</label>
-    <div class="upload-box" onclick="document.getElementById('file-input').click()">
-        <span id="up-status">📸 PRENDRE OU CHOISIR UNE PHOTO</span>
-        <input type="file" id="file-input" style="display:none;" onchange="handleUpload(this)">
+  <div class="dw-content">
+    <h2 style="text-transform:uppercase;margin-bottom:30px;letter-spacing:2px;font-size:18px;">Gestion</h2>
+    <div class="fg">
+        <label>Photo</label>
+        <div class="upload-box" onclick="document.getElementById('file-input').click()">
+            <span id="up-status">📸 UPLOADER IMAGE</span>
+            <input type="file" id="file-input" style="display:none;" onchange="handleUpload(this)">
+        </div>
+        <input type="hidden" id="a-img">
     </div>
-    <input type="hidden" id="a-img">
+    <div class="fg"><label>Nom</label><input type="text" id="a-name"></div>
+    <div class="fg"><label>Prix (€)</label><input type="number" id="a-price" step="0.01"></div>
+    <button onclick="saveProduct()" style="width:100%;padding:18px;background:var(--white);color:var(--black);font-weight:900;border:none;text-transform:uppercase;letter-spacing:2px;">Ajouter</button>
+    <button onclick="closeAll()" style="width:100%;margin-top:15px;background:none;color:var(--gray);border:none;font-size:11px;letter-spacing:1px;">ANNULER</button>
   </div>
-  <div class="fg"><label>Nom de l'article</label><input type="text" id="a-name" placeholder="Ex: Nike Zoom Vomero..."></div>
-  <div class="fg"><label>Prix de vente (€)</label><input type="number" id="a-price" step="0.01" placeholder="49.00"></div>
-  <div class="fg">
-    <label>Catégorie</label>
-    <select id="a-cat">
-        <option value="Chaussures">Chaussures</option>
-        <option value="T-shirts">T-shirts</option>
-        <option value="Sweats">Sweats</option>
-        <option value="Pantalons">Pantalons</option>
-        <option value="Accessoires">Accessoires</option>
-    </select>
-  </div>
-  <button onclick="saveProduct()" style="width:100%;padding:18px;background:var(--white);color:var(--black);font-weight:900;border:none;text-transform:uppercase;letter-spacing:2px;">Publier sur le shop</button>
-  <button onclick="closeAll()" style="width:100%;margin-top:20px;background:none;color:var(--gray);border:none;font-size:11px;letter-spacing:1px;">ANNULER</button>
 </div>
 
 <script>
@@ -180,6 +175,14 @@ tg.expand();
 let products = [];
 let cart = [];
 let selectedSizes = {};
+
+// SPLASH SCREEN DELAY
+window.onload = () => {
+    setTimeout(() => {
+        document.getElementById('splash').classList.add('hidden-splash');
+    }, 2000);
+    load();
+};
 
 async function load() {
     const res = await fetch(`${SUPA}/rest/v1/products?select=*&order=created_at.desc`, {
@@ -199,31 +202,20 @@ function render() {
             <div class="cbody">
                 <div class="cname">${p.name}</div>
                 <div class="cprice">${p.price.toFixed(2)} €</div>
-                <div class="sz-row">
-                    ${['S','M','L','XL'].map(s => `
-                        <div class="sz-btn ${size === s ? 'active' : ''}" onclick="selectSize('${p.id}', '${s}')">${s}</div>
-                    `).join('')}
-                </div>
-                <button class="add-btn" ${!size ? 'disabled' : ''} onclick="addToCart('${p.id}')">
-                    ${size ? 'Ajouter au panier' : 'Choisir taille'}
-                </button>
+                <div class="sz-row">${['S','M','L','XL'].map(s => `<div class="sz-btn ${size === s ? 'active' : ''}" onclick="selectSize('${p.id}', '${s}')">${s}</div>`).join('')}</div>
+                <button class="add-btn" ${!size ? 'disabled' : ''} onclick="addToCart('${p.id}')">${size ? 'Ajouter' : 'Taille'}</button>
             </div>
         </div>`;
     }).join("");
 }
 
-function selectSize(pid, size) {
-    selectedSizes[pid] = size;
-    render();
-    tg.HapticFeedback.selectionChanged();
-}
+function selectSize(pid, size) { selectedSizes[pid] = size; render(); tg.HapticFeedback.selectionChanged(); }
 
 function addToCart(pid) {
     const p = products.find(x => x.id == pid);
-    const size = selectedSizes[pid];
-    cart.push({ ...p, size });
+    cart.push({ ...p, size: selectedSizes[pid] });
     updateUI();
-    showToast(`🛍️ ${p.name} (${size}) ajouté`);
+    showToast(`AJOUTÉ ✓`);
     tg.HapticFeedback.notificationOccurred('success');
 }
 
@@ -238,20 +230,14 @@ function updateUI() {
 }
 
 async function handleUpload(input) {
-    const file = input.files[0];
-    if(!file) return;
-    document.getElementById("up-status").textContent = "CHARGEMENT EN COURS...";
-    
-    const fd = new FormData();
-    fd.append("image", file);
-    
+    const file = input.files[0]; if(!file) return;
+    document.getElementById("up-status").textContent = "CHARGEMENT...";
+    const fd = new FormData(); fd.append("image", file);
     const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, { method: "POST", body: fd });
     const data = await res.json();
-    
     if(data.success) {
         document.getElementById("a-img").value = data.data.url;
-        document.getElementById("up-status").textContent = "PHOTO OK ✓";
-        tg.HapticFeedback.notificationOccurred('success');
+        document.getElementById("up-status").textContent = "OK ✓";
     }
 }
 
@@ -259,47 +245,38 @@ async function saveProduct() {
     const name = document.getElementById("a-name").value;
     const price = document.getElementById("a-price").value;
     const img = document.getElementById("a-img").value;
-    const cat = document.getElementById("a-cat").value;
-
-    if(!name || !price || !img) return alert("Veuillez remplir tous les champs et la photo !");
-
+    if(!name || !price || !img) return alert("Remplis tout !");
     await fetch(`${SUPA}/rest/v1/products`, {
         method: "POST",
-        headers: { 
-            "apikey": SUPA_KEY, 
-            "Authorization": `Bearer ${SUPA_KEY}`,
-            "Content-Type": "application/json",
-            "Prefer": "return=minimal"
-        },
-        body: JSON.stringify({ name, price: parseFloat(price), image_url: img, category: cat })
+        headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}`, "Content-Type": "application/json", "Prefer": "return=minimal" },
+        body: JSON.stringify({ name, price: parseFloat(price), image_url: img, category: 'General' })
     });
-
-    showToast("ARTICLE PUBLIÉ ✓");
-    setTimeout(() => location.reload(), 1000);
+    location.reload();
 }
 
 function sendOrder() {
-    const lines = cart.map(i => `• ${i.name} (${i.size}) - ${i.price}€`).join("\n");
+    const lines = cart.map(i => `• ${i.name} (${i.size}) - ${i.price.toFixed(2)}€`).join("\n");
     const total = cart.reduce((acc, item) => acc + item.price, 0);
-    const msg = `🛒 NOUVELLE COMMANDE - DRIP SOCIETY\n-------------------------\n${lines}\n-------------------------\nTOTAL : ${total.toFixed(2)}€`;
+    const msg = `🛒 NOUVELLE COMMANDE\n-------------------------\n${lines}\n-------------------------\nTOTAL : ${total.toFixed(2)}€`;
     tg.openTelegramLink(`https://t.me/fredpixou?text=${encodeURIComponent(msg)}`);
 }
 
 function tryAdmin() {
     const id = tg.initDataUnsafe?.user?.id;
-    if(ADMINS.includes(String(id)) || prompt("CODE ADMIN ?") === "dripsociety999") {
-        document.getElementById("admin-dw").classList.add("show");
-    }
+    if(ADMINS.includes(String(id)) || prompt("CODE ?") === "dripsociety999") document.getElementById("admin-dw").classList.add("show");
 }
 
 function openCart() { document.getElementById("cart-dw").classList.add("show"); renderCartItems(); }
 function closeAll() { document.querySelectorAll(".dw").forEach(d => d.classList.remove("show")); }
 
 function renderCartItems() {
-    document.getElementById("cart-items").innerHTML = cart.map((i, index) => `
-        <div style="display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--border);align-items:center;">
-            <div style="font-size:12px;text-transform:uppercase;font-weight:700;">${i.name} <br><span style="color:var(--gray);font-weight:400;font-size:10px;">Taille: ${i.size}</span></div>
-            <div style="color:var(--gold);font-weight:900;">${i.price.toFixed(2)}€</div>
+    document.getElementById("cart-items").innerHTML = cart.map(i => `
+        <div class="cart-item">
+            <div class="item-info">
+                <span class="item-name">${i.name}</span>
+                <span class="item-details">Taille: ${i.size}</span>
+            </div>
+            <span class="item-price">${i.price.toFixed(2)}€</span>
         </div>
     `).join("");
 }
@@ -307,10 +284,8 @@ function renderCartItems() {
 function showToast(m) {
     const t = document.getElementById("toast");
     t.textContent = m; t.style.display = "block";
-    setTimeout(() => t.style.display = "none", 2500);
+    setTimeout(() => t.style.display = "none", 2000);
 }
-
-load();
 </script>
 </body>
 </html>
