@@ -6,326 +6,289 @@
 <title>Drip Society</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,600;1,400&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --black:#000;--white:#fff;
-  --gray:#888;--light:#ccc;--border:#222;
-  --s1:#0d0d0d;--s2:#161616;
-  --gold:#c9a84c;--danger:#e53935;
+  --black:#000;--white:#fff;--gray:#888;--border:#222;
+  --s1:#0d0d0d;--s2:#161616;--gold:#c9a84c;--danger:#ff3b30;
   --font-h:'Montserrat',sans-serif;
-  --font-s:'Cormorant Garamond',serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{background:var(--black);color:var(--white);font-family:var(--font-h);font-size:14px;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-::-webkit-scrollbar{width:0;height:0;}
-input,select,textarea,button{font-family:var(--font-h);}
-
-/* ── TOPBAR ── */
-#topbar{background:var(--white);color:var(--black);font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:6px 0;overflow:hidden;white-space:nowrap;}
-#topbar-inner{display:inline-block;animation:mq 22s linear infinite;}
-@keyframes mq{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
 
 /* ── HEADER ── */
-#header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:52px;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:60;}
-.logo{font-size:15px;font-weight:900;letter-spacing:4px;text-transform:uppercase;}
-.logo em{font-style:normal;color:var(--gray);}
-.hr{display:flex;gap:8px;}
-.ibtn{position:relative;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);background:none;cursor:pointer;transition:border-color .2s;flex-shrink:0;-webkit-tap-highlight-color:transparent;}
-.ibtn:active{border-color:var(--white);}
-.ibtn svg{width:18px;height:18px;fill:none;stroke:var(--white);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
-#cbadge{position:absolute;top:-5px;right:-5px;background:var(--gold);color:var(--black);font-size:9px;font-weight:800;min-width:17px;height:17px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 3px;}
-@keyframes pop{0%{transform:scale(0)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
+#header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:55px;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.logo{font-size:15px;font-weight:900;letter-spacing:3px;text-transform:uppercase;}
+.logo span{color:var(--gold);}
+.hr{display:flex;gap:10px;}
+.ibtn{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);background:none;cursor:pointer;}
+#cbadge{position:absolute;top:-5px;right:-5px;background:var(--gold);color:var(--black);font-size:9px;font-weight:900;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;}
 
 /* ── HERO ── */
-#hero{padding:28px 16px 24px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
-#hero::before{content:'DS';position:absolute;right:-8px;top:-12px;font-size:130px;font-weight:900;color:rgba(255,255,255,0.025);pointer-events:none;user-select:none;letter-spacing:-4px;line-height:1;}
-.hero-eye{font-size:9px;font-weight:700;letter-spacing:4px;color:var(--gray);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
-.hero-eye::after{content:'';flex:1;height:1px;background:var(--border);}
-#hero h1{font-size:32px;font-weight:900;line-height:.93;letter-spacing:-1px;text-transform:uppercase;margin-bottom:12px;}
-#hero h1 em{font-family:var(--font-s);font-style:italic;font-weight:400;color:var(--gold);font-size:36px;}
-.hero-sub{font-size:10px;color:var(--gray);letter-spacing:1.5px;text-transform:uppercase;}
-#hero-welcome{margin-top:14px;font-size:11px;color:var(--light);letter-spacing:.5px;display:none;}
-
-/* ── FILTER BAR ── */
-#fbar{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;background:var(--black);position:sticky;top:52px;z-index:50;}
-#fbar::-webkit-scrollbar{display:none;}
-.fb{flex-shrink:0;padding:11px 14px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .2s;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
-.fb.on{color:var(--white);border-bottom-color:var(--gold);}
+#hero{padding:30px 16px;border-bottom:1px solid var(--border);text-align:left;}
+#hero h1{font-size:32px;font-weight:900;line-height:0.95;text-transform:uppercase;margin-bottom:10px;}
+#hero h1 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:36px;}
+#hero p{font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:1px;}
 
 /* ── CATALOG ── */
-#catalog{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);padding-bottom:130px;}
-.card{background:var(--black);display:flex;flex-direction:column;position:relative;}
-.card.oos{opacity:.5;}
-.cimg{position:relative;aspect-ratio:2/3;background:var(--s2);overflow:hidden;}
-.cimg img{width:100%;height:100%;object-fit:cover;display:block;}
-.b-oos{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;}
-.b-oos span{border:1px solid var(--white);padding:5px 14px;font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;}
-.b-qty{position:absolute;top:8px;right:8px;background:var(--gold);color:var(--black);font-size:9px;font-weight:800;width:20px;height:20px;border-radius:50%;display:none;align-items:center;justify-content:center;}
-.b-qty.on{display:flex;animation:pop .25s ease;}
-.cbody{padding:10px 12px 14px;flex:1;display:flex;flex-direction:column;}
-.cname{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;line-height:1.3;margin-bottom:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.cprice{font-family:var(--font-s);font-size:17px;color:var(--gold);margin-bottom:8px;}
-.sz-row{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:9px;}
-.sz{font-size:9px;font-weight:700;padding:7px 9px;min-width:34px;border:1px solid var(--border);background:var(--s1);color:var(--gray);text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;}
-.sz.on{border-color:var(--white);background:var(--white);color:var(--black);}
-.badd{width:100%;padding:13px 0;background:var(--white);color:var(--black);font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;display:block;}
-.badd:disabled{background:var(--s2);color:var(--gray);border:1px solid var(--border);cursor:default;}
+#catalog{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);padding-bottom:120px;}
+.card{background:var(--black);display:flex;flex-direction:column;padding-bottom:15px;}
+.cimg{aspect-ratio:2/3;background:var(--s2);overflow:hidden;}
+.cimg img{width:100%;height:100%;object-fit:cover;}
+.cbody{padding:12px;flex:1;}
+.cname{font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:5px;height:30px;overflow:hidden;}
+.cprice{color:var(--gold);font-weight:700;font-size:16px;margin-bottom:10px;}
 
-/* ── UPLOAD ZONE ── */
-.upload-area{
-  border:1px dashed var(--gold);background:var(--s1);
-  margin-bottom:12px;position:relative;text-align:center;
-  cursor:pointer;min-height:120px;display:flex;
-  flex-direction:column;align-items:center;justify-content:center;
+/* ── BOUTONS TAILLES ── */
+.sz-row{display:flex;gap:5px;margin-bottom:12px;flex-wrap:wrap;}
+.sz-btn{
+  border:1px solid var(--border);padding:6px 8px;font-size:10px;font-weight:700;
+  cursor:pointer;color:var(--gray);background:var(--s1);min-width:35px;text-align:center;
+  touch-action:manipulation;
 }
-.upload-area input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;z-index:5;}
-.upload-area img{width:100%;max-height:200px;object-fit:contain;display:none;padding:10px;}
-.upload-txt{padding:20px;}
-.upload-txt i{font-size:24px;display:block;margin-bottom:5px;font-style:normal;}
-.upload-txt p{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
-#up-status{font-size:9px;letter-spacing:1px;color:var(--gold);margin-top:5px;display:none;text-transform:uppercase;}
-.progress-container{width:100%;height:2px;background:var(--border);margin-top:10px;display:none;}
-.progress-bar{height:100%;background:var(--gold);width:0%;transition:width .3s;}
+.sz-btn.active{border-color:var(--white);color:var(--white);background:var(--s2);}
 
-/* ── REST OF STYLES (AS PROVIDED) ── */
-#cartbar{position:fixed;bottom:0;left:0;right:0;z-index:55;background:var(--black);border-top:1px solid var(--border);padding:10px 16px;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);}
-#cartbar.up{transform:translateY(0);}
-#cartbar-btn{width:100%;padding:13px 18px;background:var(--gold);color:var(--black);font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;}
-.dw{position:fixed;inset:0;z-index:100;display:none;}
-.dw.open{display:block;}
-.dw-bg{position:absolute;inset:0;background:rgba(0,0,0,.85);}
-.dw-panel{position:absolute;bottom:0;left:0;right:0;background:var(--black);border-top:1px solid var(--border);max-height:88vh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .38s cubic-bezier(.16,1,.3,1);}
-.dw.open .dw-panel{transform:translateY(0);}
-.fg{margin-bottom:10px;}
-.fg label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:5px;}
-.fg input,.fg select,.fg textarea{width:100%;background:var(--s1);border:1px solid var(--border);padding:11px 12px;color:var(--white);font-size:13px;outline:none;border-radius:0;}
-#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:var(--white);color:var(--black);font-size:9px;font-weight:800;padding:9px 18px;opacity:0;transition:.3s;z-index:999;}
-#toast.on{opacity:1;}
+/* ── BOUTON AJOUTER ── */
+.add-btn{
+  width:100%;padding:12px;background:var(--white);color:var(--black);
+  border:none;font-weight:900;font-size:10px;text-transform:uppercase;
+  letter-spacing:1px;cursor:pointer;touch-action:manipulation;
+}
+.add-btn:disabled{background:var(--border);color:var(--gray);cursor:not-allowed;}
+
+/* ── PANIER BARRE BAS ── */
+#cart-bar{
+  position:fixed;bottom:0;left:0;right:0;background:var(--black);
+  border-top:1px solid var(--border);padding:15px;z-index:90;
+  transform:translateY(100%);transition:0.3s;
+}
+#cart-bar.show{transform:translateY(0);}
+#bar-btn{
+  width:100%;padding:14px;background:var(--gold);color:var(--black);
+  font-weight:900;text-transform:uppercase;border:none;display:flex;
+  justify-content:space-between;cursor:pointer;
+}
+
+/* ── ADMIN ── */
+.dw{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:200;display:none;padding:20px;}
+.dw.show{display:block;overflow-y:auto;}
+.fg{margin-bottom:15px;}
+.fg label{display:block;font-size:10px;text-transform:uppercase;margin-bottom:5px;color:var(--gray);}
+.fg input,.fg select{width:100%;padding:12px;background:var(--s1);border:1px solid var(--border);color:var(--white);outline:none;}
+.upload-box{border:1px dashed var(--gold);padding:20px;text-align:center;margin-bottom:10px;cursor:pointer;}
+
+#toast{position:fixed;top:70px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);padding:10px 20px;font-weight:900;font-size:11px;z-index:1000;display:none;text-transform:uppercase;}
 </style>
 </head>
 <body>
 
-<div id="topbar"><span id="topbar-inner">✦ LIVRAISON OFFERTE · QUALITÉ SUPÉRIEURE À BAS PRIX ✦ DRIP SOCIETY — PIÈCES LIMITÉES ✦</span></div>
+<div id="toast"></div>
 
 <header id="header">
-  <div class="logo">DRIP<em>·</em>SOCIETY</div>
+  <div class="logo">DRIP<span>·</span>SOCIETY</div>
   <div class="hr">
     <div class="ibtn" onclick="tryAdmin()">⚙️</div>
-    <div class="ibtn" id="cart-btn">
-      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
-      <div id="cbadge"></div>
+    <div class="ibtn" onclick="openCart()" style="position:relative;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+        <div id="cbadge">0</div>
     </div>
   </div>
 </header>
 
 <div id="hero">
-  <div class="hero-eye">New collection</div>
-  <h1>Des vêtements de <em>qualité</em> supérieure à bas prix</h1>
-  <p id="hero-welcome"></p>
+  <h1>Qualité <em>Supérieure</em><br>Bas Prix</h1>
+  <p>Streetwear sélectionné — Drip Society</p>
 </div>
 
-<div id="fbar">
-  <button class="fb on" data-cat="Tous">Tous</button>
-  <button class="fb" data-cat="T-shirts">T-shirts</button>
-  <button class="fb" data-cat="Sweats">Sweats</button>
-  <button class="fb" data-cat="Accessoires">Accessoires</button>
-</div>
+<div id="catalog"></div>
 
-<div id="loader"><div class="spin"></div><p>Chargement…</p></div>
-<div id="catalog" style="display:none;"></div>
-
-<div id="cartbar">
-  <button id="cartbar-btn">
-    <div class="cb-l"><span class="cb-n" id="cb-n">0</span><span>Voir mon panier</span></div>
-    <span id="cb-total">0,00 €</span>
+<div id="cart-bar">
+  <button id="bar-btn" onclick="openCart()">
+    <span id="bar-qty">0 ARTICLES</span>
+    <span id="bar-total">0.00 €</span>
   </button>
 </div>
 
-<div class="dw" id="admin-dw">
-  <div class="dw-bg" onclick="closeD('admin-dw')"></div>
-  <div class="dw-panel">
-    <div class="dhead"><div class="dtitle">Gestion catalogue</div><div class="dclose" onclick="closeD('admin-dw')">✕</div></div>
-    <div class="abody" style="padding:20px; overflow-y:auto;">
-      
-      <div class="fg">
-        <label>📸 Photo du produit</label>
-        <div class="upload-area">
-          <input type="file" id="img-file" accept="image/*">
-          <img id="prev-img">
-          <div class="upload-txt" id="up-ui">
-            <i>📷</i>
-            <p>Prendre / Choisir photo</p>
-          </div>
-        </div>
-        <div class="progress-container" id="p-cont"><div class="progress-bar" id="p-bar"></div></div>
-        <div id="up-status"></div>
-        <input type="hidden" id="a-img-url">
-      </div>
-
-      <div class="fg"><label>Nom *</label><input type="text" id="a-name"></div>
-      <div class="fg"><label>Prix (€) *</label><input type="number" id="a-price" step="0.01"></div>
-      <div class="fg">
-        <label>Catégorie</label>
-        <select id="a-cat">
-          <option value="T-shirts">T-shirts</option>
-          <option value="Sweats">Sweats</option>
-          <option value="Accessoires">Accessoires</option>
-        </select>
-      </div>
-      <button class="badd" id="btn-save" style="background:var(--gold)" onclick="addProduct()">Ajouter au catalogue</button>
-      <hr style="margin:20px 0; border-color:var(--border);">
-      <div id="alist"></div>
+<div id="cart-dw" class="dw">
+  <h2 style="text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;">Mon Panier</h2>
+  <div id="cart-items" style="margin-bottom:20px;"></div>
+  <div style="border-top:1px solid var(--border);padding-top:15px;">
+    <div style="display:flex;justify-content:space-between;margin-bottom:20px;">
+        <span>TOTAL</span>
+        <span id="cart-total-val" style="color:var(--gold);font-weight:900;">0.00 €</span>
     </div>
+    <button onclick="sendOrder()" style="width:100%;padding:15px;background:var(--gold);border:none;font-weight:900;cursor:pointer;">COMMANDER SUR TELEGRAM</button>
+    <button onclick="closeAll()" style="width:100%;margin-top:10px;background:none;color:var(--gray);border:none;cursor:pointer;">RETOUR</button>
   </div>
 </div>
 
-<div class="dw" id="cart-dw">
-  <div class="dw-bg" onclick="closeD('cart-dw')"></div>
-  <div class="dw-panel">
-    <div class="dhead"><div class="dtitle">Mon panier</div><div class="dclose" onclick="closeD('cart-dw')">✕</div></div>
-    <div id="cart-items" style="padding:16px; flex:1; overflow-y:auto;"></div>
-    <div style="padding:16px; border-top:1px solid var(--border);">
-       <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
-         <span style="text-transform:uppercase; font-size:10px; color:var(--gray);">Total</span>
-         <span id="ctotal" style="font-family:var(--font-s); font-size:20px;">0,00 €</span>
-       </div>
-       <button id="btn-order" class="badd" style="background:var(--gold)" onclick="sendOrder()">Finaliser sur Telegram</button>
+<div id="admin-dw" class="dw">
+  <h2 style="text-transform:uppercase;margin-bottom:20px;">Ajouter Produit</h2>
+  <div class="fg">
+    <label>Photo du produit</label>
+    <div class="upload-box" onclick="document.getElementById('file-input').click()">
+        <span id="up-status">CLIQUE ICI POUR LA PHOTO</span>
+        <input type="file" id="file-input" style="display:none;" onchange="handleUpload(this)">
     </div>
+    <input type="hidden" id="a-img">
   </div>
+  <div class="fg"><label>Nom</label><input type="text" id="a-name"></div>
+  <div class="fg"><label>Prix (€)</label><input type="number" id="a-price" step="0.01"></div>
+  <div class="fg">
+    <label>Catégorie</label>
+    <select id="a-cat">
+        <option value="T-shirts">T-shirts</option>
+        <option value="Sweats">Sweats</option>
+        <option value="Accessoires">Accessoires</option>
+    </select>
+  </div>
+  <button onclick="saveProduct()" style="width:100%;padding:15px;background:var(--white);color:var(--black);font-weight:900;border:none;">PUBLIER L'ARTICLE</button>
+  <button onclick="closeAll()" style="width:100%;margin-top:10px;background:none;color:var(--gray);border:none;">ANNULER</button>
 </div>
-
-<div id="toast"></div>
 
 <script>
 const SUPA = "https://juescdtmfmiqyfqfrwnd.supabase.co";
 const SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp1ZXNjZHRtZm1pcXlmcWZyd25kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2OTQ0OTQsImV4cCI6MjA5MDI3MDQ5NH0.E1SIYG7bEjnBoZhb72QMC-B94e6pl-sGvqsvYgJu3eY";
 const IMGBB_KEY = "aa8867d9251f5b7d143686e13436c72d";
-const BOT = "fredpixou";
-const ADMINS = ["8649556290","1072084263","8704291005"];
+const ADMINS = ["8649556290", "1072084263", "8704291005"];
 
-const tg = window.Telegram?.WebApp;
-const user = tg?.initDataUnsafe?.user;
-if(tg) { tg.ready(); tg.expand(); }
+const tg = window.Telegram.WebApp;
+tg.expand();
 
 let products = [];
-let cart = {};
-let selSz = {};
+let cart = [];
+let selectedSizes = {};
 
-// API HELPER
-const api = (path, o={}) => fetch(`${SUPA}/rest/v1/${path}`, {
-  headers:{"apikey":SUPA_KEY,"Authorization":`Bearer ${SUPA_KEY}`,"Content-Type":"application/json","Prefer":"return=representation",...(o.headers||{})}, ...o
-});
-
-// LOAD
+// CHARGEMENT
 async function load() {
-  const r = await api("products?select=*&order=created_at.desc");
-  products = await r.json();
-  document.getElementById("loader").style.display="none";
-  renderCatalog();
+    const res = await fetch(`${SUPA}/rest/v1/products?select=*&order=created_at.desc`, {
+        headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}` }
+    });
+    products = await res.json();
+    render();
 }
 
-// RENDER
-function renderCatalog() {
-  const grid = document.getElementById("catalog");
-  grid.style.display="grid";
-  grid.innerHTML = products.map(p => {
-    const sel = selSz[p.id];
-    return `
-    <div class="card">
-      <div class="cimg"><img src="${p.image_url||''}"></div>
-      <div class="cbody">
-        <div class="cname">${p.name}</div>
-        <div class="cprice">${fmt(p.price)}</div>
-        <div class="sz-row">${['S','M','L','XL'].map(s=>`<div class="sz${sel===s?' on':''}" onclick="pick('${p.id}','${s}')">${s}</div>`).join('')}</div>
-        <button class="badd" onclick="add('${p.id}')" ${!sel?'disabled':''}>${sel?'Ajouter':'Choisir taille'}</button>
-      </div>
-    </div>`;
-  }).join("");
+// AFFICHAGE CATALOGUE
+function render() {
+    const grid = document.getElementById("catalog");
+    grid.innerHTML = products.map(p => {
+        const size = selectedSizes[p.id] || "";
+        return `
+        <div class="card">
+            <div class="cimg"><img src="${p.image_url}"></div>
+            <div class="cbody">
+                <div class="cname">${p.name}</div>
+                <div class="cprice">${p.price.toFixed(2)} €</div>
+                <div class="sz-row">
+                    ${['S','M','L','XL'].map(s => `
+                        <div class="sz-btn ${size === s ? 'active' : ''}" onclick="selectSize('${p.id}', '${s}')">${s}</div>
+                    `).join('')}
+                </div>
+                <button class="add-btn" ${!size ? 'disabled' : ''} onclick="addToCart('${p.id}')">
+                    ${size ? 'Ajouter au panier' : 'Choisir taille'}
+                </button>
+            </div>
+        </div>`;
+    }).join("");
 }
 
-function pick(pid, sz) { selSz[pid]=sz; renderCatalog(); }
+function selectSize(pid, size) {
+    selectedSizes[pid] = size;
+    render();
+}
 
-function add(pid) {
-  const p = products.find(x=>x.id===pid);
-  const k = `${pid}_${selSz[pid]}`;
-  cart[k] = cart[k] ? { ...cart[k], qty:cart[k].qty+1 } : { product:p, qty:1, size:selSz[pid] };
-  updateUI();
-  toast("Ajouté au panier ✓");
+function addToCart(pid) {
+    const p = products.find(x => x.id == pid);
+    const size = selectedSizes[pid];
+    cart.push({ ...p, size });
+    updateUI();
+    showToast(`AJOUTÉ : ${p.name} (${size})`);
+    tg.HapticFeedback.impactOccurred('medium');
 }
 
 function updateUI() {
-  const items = Object.values(cart);
-  const count = items.reduce((s,i)=>s+i.qty,0);
-  const total = items.reduce((s,i)=>s+i.qty*i.product.price,0);
-  document.getElementById("cb-n").textContent = count;
-  document.getElementById("cb-total").textContent = fmt(total);
-  document.getElementById("ctotal").textContent = fmt(total);
-  document.getElementById("cartbar").classList.toggle("up", count > 0);
+    const total = cart.reduce((acc, item) => acc + item.price, 0);
+    document.getElementById("cbadge").textContent = cart.length;
+    document.getElementById("cbadge").style.display = cart.length > 0 ? "flex" : "none";
+    document.getElementById("bar-qty").textContent = `${cart.length} ARTICLES`;
+    document.getElementById("bar-total").textContent = `${total.toFixed(2)} €`;
+    document.getElementById("cart-bar").classList.toggle("show", cart.length > 0);
+    document.getElementById("cart-total-val").textContent = `${total.toFixed(2)} €`;
 }
 
-// IMGBB UPLOAD
-document.getElementById("img-file").addEventListener("change", async function() {
-  const file = this.files[0];
-  if(!file) return;
-
-  const ui = document.getElementById("up-ui");
-  const prev = document.getElementById("prev-img");
-  const pBar = document.getElementById("p-bar");
-  const pCont = document.getElementById("p-cont");
-  const status = document.getElementById("up-status");
-
-  ui.style.display="none";
-  prev.src = URL.createObjectURL(file);
-  prev.style.display="block";
-  pCont.style.display="block";
-  status.style.display="block";
-  status.textContent = "Upload en cours...";
-  pBar.style.width="30%";
-
-  const fd = new FormData();
-  fd.append("image", file);
-
-  try {
-    const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, { method:"POST", body:fd });
+// UPLOAD PHOTO IMGBB
+async function handleUpload(input) {
+    const file = input.files[0];
+    if(!file) return;
+    document.getElementById("up-status").textContent = "CHARGEMENT...";
+    
+    const fd = new FormData();
+    fd.append("image", file);
+    
+    const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, { method: "POST", body: fd });
     const data = await res.json();
+    
     if(data.success) {
-      document.getElementById("a-img-url").value = data.data.url;
-      pBar.style.width="100%";
-      status.textContent = "✓ Photo prête";
-      toast("Photo uploadée !");
+        document.getElementById("a-img").value = data.data.url;
+        document.getElementById("up-status").textContent = "PHOTO OK ✓";
     }
-  } catch(e) { 
-    status.textContent = "Erreur upload";
-    ui.style.display="block";
-  }
-});
-
-async function addProduct() {
-  const name = document.getElementById("a-name").value;
-  const price = document.getElementById("a-price").value;
-  const img = document.getElementById("a-img-url").value;
-  const cat = document.getElementById("a-cat").value;
-  if(!name || !price || !img) return alert("Complète tout !");
-
-  await api("products", { method:"POST", body:JSON.stringify({name, price, image_url:img, category:cat}) });
-  location.reload();
 }
 
+// SAUVEGARDE PRODUIT
+async function saveProduct() {
+    const name = document.getElementById("a-name").value;
+    const price = document.getElementById("a-price").value;
+    const img = document.getElementById("a-img").value;
+    const cat = document.getElementById("a-cat").value;
+
+    if(!name || !price || !img) return alert("Remplis tout !");
+
+    await fetch(`${SUPA}/rest/v1/products`, {
+        method: "POST",
+        headers: { 
+            "apikey": SUPA_KEY, 
+            "Authorization": `Bearer ${SUPA_KEY}`,
+            "Content-Type": "application/json",
+            "Prefer": "return=minimal"
+        },
+        body: JSON.stringify({ name, price: parseFloat(price), image_url: img, category: cat })
+    });
+
+    location.reload();
+}
+
+// COMMANDE
 function sendOrder() {
-  const lines = Object.values(cart).map(i=>`• ${i.product.name} (${i.size}) x${i.qty}`).join("\n");
-  tg.openTelegramLink(`https://t.me/${BOT}?text=${encodeURIComponent("🛒 COMMANDE\n"+lines)}`);
+    const lines = cart.map(i => `• ${i.name} (${i.size}) - ${i.price}€`).join("\n");
+    const total = cart.reduce((acc, item) => acc + item.price, 0);
+    const msg = `🛒 NOUVELLE COMMANDE\n\n${lines}\n\nTOTAL : ${total.toFixed(2)}€`;
+    tg.openTelegramLink(`https://t.me/fredpixou?text=${encodeURIComponent(msg)}`);
 }
 
-function tryAdmin() { 
-  if(ADMINS.includes(String(user?.id))) openD('admin-dw'); 
-  else { let p = prompt("MDP ?"); if(p==="dripsociety999") openD('admin-dw'); }
+function tryAdmin() {
+    const id = tg.initDataUnsafe?.user?.id;
+    if(ADMINS.includes(String(id)) || prompt("CODE ADMIN ?") === "dripsociety999") {
+        document.getElementById("admin-dw").classList.add("show");
+    }
 }
 
-function openD(id) { document.getElementById(id).classList.add("open"); }
-function closeD(id) { document.getElementById(id).classList.remove("open"); }
-function toast(m) { const e=document.getElementById("toast"); e.textContent=m; e.className="on"; setTimeout(()=>e.className="",2000); }
-function fmt(n) { return new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR'}).format(n); }
+function openCart() { document.getElementById("cart-dw").classList.add("show"); renderCartItems(); }
+function closeAll() { document.querySelectorAll(".dw").forEach(d => d.classList.remove("show")); }
+
+function renderCartItems() {
+    document.getElementById("cart-items").innerHTML = cart.map((i, index) => `
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">
+            <span>${i.name} (${i.size})</span>
+            <span style="color:var(--gold);">${i.price}€</span>
+        </div>
+    `).join("");
+}
+
+function showToast(m) {
+    const t = document.getElementById("toast");
+    t.textContent = m; t.style.display = "block";
+    setTimeout(() => t.style.display = "none", 2000);
+}
 
 load();
 </script>
