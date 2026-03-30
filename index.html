@@ -16,72 +16,104 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{background:var(--black);color:var(--white);font-family:var(--font-h);font-size:14px;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
-/* ── SPLASH SCREEN ── */
+/* ── SPLASH SCREEN (LOGO FIXÉ) ── */
 #splash {
   position: fixed; inset: 0; background: var(--black); z-index: 1000;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.6s ease, visibility 0.6s;
 }
-#splash img { width: 160px; height: 160px; margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 20px rgba(201,168,76,0.2); }
-.hidden-splash { opacity: 0; pointer-events: none; }
+#splash img { 
+  width: 160px; height: 160px; margin-bottom: 30px; 
+  animation: pulseLogo 2s infinite ease-in-out; border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
+}
+.loader-bar { width: 100px; height: 2px; background: var(--border); position: relative; overflow: hidden; }
+.loader-progress { position: absolute; height: 100%; width: 50%; background: var(--gold); animation: loadAnim 1.5s infinite linear; }
+@keyframes pulseLogo { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.03); opacity: 1; } }
+@keyframes loadAnim { from { left: -50%; } to { left: 100%; } }
+.hidden-splash { opacity: 0; visibility: hidden; }
 
 /* ── HEADER ── */
 #header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:60px;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
 .logo{font-size:16px;font-weight:900;letter-spacing:4px;text-transform:uppercase;}
+.logo span{color:var(--gold);}
 .hr{display:flex;gap:12px;}
 .ibtn{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);background:none;cursor:pointer;}
-#cbadge{position:absolute;top:-5px;right:-5px;background:var(--gold);color:var(--black);font-size:9px;font-weight:900;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;}
+#cbadge{position:absolute;top:-5px;right:-5px;background:var(--gold);color:var(--black);font-size:9px;font-weight:900;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;border:2px solid var(--black);}
 
 /* ── CATALOG ── */
+#hero{padding:40px 20px;border-bottom:1px solid var(--border);background: linear-gradient(to bottom, #050505, #000);}
+#hero h1{font-size:36px;font-weight:900;line-height:0.9;text-transform:uppercase;margin-bottom:10px;letter-spacing:-1px;}
+#hero h1 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:42px;font-weight:400;}
 #catalog{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);padding-bottom:120px;}
 .card{background:var(--black);display:flex;flex-direction:column;position:relative;}
-.cimg{width:100%; aspect-ratio:1 / 1.2; background:var(--s2); overflow:hidden;}
-.cimg img{width:100%; height:100%; object-fit:cover; display:block;}
-.cbody{padding:12px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
-.cname{font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;min-height:30px;}
-.cprice{color:var(--gold);font-weight:700;font-size:17px;font-family:'Cormorant Garamond',serif;}
+.cimg{width:100%; aspect-ratio:1 / 1.2; background:var(--s2); overflow:hidden; position:relative;}
+.cimg img{width:100%; height:100%; object-fit:cover; object-position:center; display:block; transition: transform 0.5s ease;}
+.cbody{padding:15px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+.cname{font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;line-height:1.4;letter-spacing:0.5px;}
+.cprice{color:var(--gold);font-weight:700;font-size:18px;margin-bottom:15px;font-family: 'Cormorant Garamond', serif;}
 
 /* ── TAILLES ── */
-.sz-row{display:flex;gap:5px;margin-top:10px;flex-wrap:wrap;}
-.sz-btn{ border:1px solid var(--border);padding:6px;font-size:10px;font-weight:700; cursor:pointer;color:var(--gray);background:var(--s1);min-width:35px;text-align:center;touch-action:manipulation;}
+.sz-row{display:flex;gap:6px;margin-bottom:15px;flex-wrap:wrap;}
+.sz-btn{ border:1px solid var(--border);padding:8px;font-size:10px;font-weight:700; cursor:pointer;color:var(--gray);background:var(--s1);min-width:38px;text-align:center;}
 .sz-btn.active{border-color:var(--white);color:var(--white);background:var(--s2);}
-.add-btn{ width:100%;padding:12px;margin-top:10px;background:var(--white);color:var(--black); border:none;font-weight:900;font-size:10px;text-transform:uppercase;touch-action:manipulation;}
-.add-btn:disabled{background:var(--s1);color:var(--border);opacity:0.5;}
+.add-btn{ width:100%;padding:14px;background:var(--white);color:var(--black); border:none;font-weight:900;font-size:10px;text-transform:uppercase; letter-spacing:2px;}
+.add-btn:disabled{background:var(--s1);color:var(--border);cursor:not-allowed;}
 
-/* ── PANIER BARRE BAS ── */
-#cart-bar{position:fixed;bottom:0;left:0;right:0;background:var(--black);border-top:1px solid var(--border);padding:15px;z-index:90;transform:translateY(100%);transition:0.3s;}
+/* ── PANIER (DRAWER LUXE) ── */
+#cart-bar{ position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.95); backdrop-filter: blur(10px); border-top:1px solid var(--border);padding:20px;z-index:90; transform:translateY(100%);transition:0.4s;}
 #cart-bar.show{transform:translateY(0);}
-#bar-btn{width:100%;padding:14px;background:var(--gold);color:var(--black);font-weight:900;border:none;display:flex;justify-content:space-between;cursor:pointer;}
+#bar-btn{ width:100%;padding:16px;background:var(--gold);color:var(--black); font-weight:900;text-transform:uppercase;border:none;display:flex; justify-content:space-between;}
 
-/* ── DRAWERS ── */
-.dw{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:200;display:none;padding:20px;overflow-y:auto;}
+.dw{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;display:none;backdrop-filter: blur(8px);}
 .dw.show{display:block;}
-.admin-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);}
-.fg{margin-bottom:15px;}
-.fg input{width:100%;padding:12px;background:var(--s1);border:1px solid var(--border);color:var(--white);outline:none;}
-.upload-box{border:1px dashed var(--gold);padding:20px;text-align:center;margin-bottom:10px;cursor:pointer;font-size:11px;font-weight:700;}
-#toast{position:fixed;top:70px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);padding:10px 20px;font-weight:900;font-size:11px;z-index:1000;display:none;}
+.dw-content { 
+  position: absolute; bottom: 0; left: 0; right: 0; background: #050505; 
+  border-top: 1px solid var(--gold); padding: 30px 20px; border-radius: 20px 20px 0 0;
+  max-height: 90vh; overflow-y: auto;
+}
+.cart-item, .admin-item { 
+  display: flex; justify-content: space-between; align-items: center; 
+  padding: 15px 0; border-bottom: 1px solid var(--border);
+}
+.btn-rm-cart { color: var(--danger); font-size: 10px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
+
+/* ── ADMIN ── */
+.admin-item img { width: 40px; height: 50px; object-fit: cover; border-radius: 4px; margin-right: 10px; }
+.btn-delete { background: var(--danger); color: white; border: none; padding: 8px 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; }
+.btn-edit { background: var(--gray); color: white; border: none; padding: 8px 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; }
+
+.fg{margin-bottom:20px;}
+.fg label{display:block;font-size:10px;text-transform:uppercase;margin-bottom:8px;color:var(--gray);letter-spacing:1px;}
+.fg input{width:100%;padding:15px;background:var(--s1);border:1px solid var(--border);color:var(--white);outline:none;}
+.upload-box{border:1px dashed var(--gold);padding:30px;text-align:center;margin-bottom:15px;color:var(--gold);font-size:11px;font-weight:700;}
+
+#toast{position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);padding:12px 25px;font-weight:900;font-size:11px;z-index:1000;display:none;text-transform:uppercase;}
 </style>
 </head>
 <body>
 
 <div id="splash">
-  <img src="https://i.ibb.co/XkyV7PzB/Gemini-Generated-Image-f1kqnhf1kqnhf1kq.jpg" alt="Logo">
-  <p style="font-size:10px; letter-spacing:3px; color:var(--gray);">CHARGEMENT...</p>
+  <img src="https://i.ibb.co/XkyV7PzB/Gemini-Generated-Image-f1kqnhf1kqnhf1kq.jpg" alt="Drip Society Logo">
+  <div class="loader-bar"><div class="loader-progress"></div></div>
 </div>
-
-<div id="toast"></div>
 
 <header id="header">
   <div class="logo">DRIP<span>·</span>SOCIETY</div>
   <div class="hr">
     <div class="ibtn" onclick="tryAdmin()">⚙️</div>
     <div class="ibtn" onclick="openCart()" style="position:relative;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
         <div id="cbadge">0</div>
     </div>
   </div>
 </header>
+
+<div id="hero">
+  <h1>Qualité <em>Supérieure</em><br>Bas Prix</h1>
+  <p>Streetwear sélectionné — Drip Society</p>
+</div>
 
 <div id="catalog"></div>
 
@@ -92,31 +124,47 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
   </button>
 </div>
 
+<div id="toast"></div>
+
 <div id="cart-dw" class="dw">
-  <h2 style="text-transform:uppercase;margin-bottom:20px;">Mon Panier</h2>
-  <div id="cart-items"></div>
-  <div style="border-top:1px solid var(--border);padding-top:15px;margin-top:20px;">
-    <p id="total-cart-val" style="font-size:20px;font-weight:900;color:var(--gold);margin-bottom:15px;">0.00 €</p>
-    <button onclick="sendOrder()" style="width:100%;padding:15px;background:var(--gold);border:none;font-weight:900;">COMMANDER SUR TELEGRAM</button>
-    <button onclick="closeAll()" style="width:100%;margin-top:10px;background:none;color:var(--gray);border:none;">RETOUR</button>
+  <div class="dw-content">
+    <div style="display:flex; justify-content:space-between; margin-bottom:25px;">
+        <h2 style="text-transform:uppercase;letter-spacing:3px;font-size:18px;">Mon Panier</h2>
+        <span onclick="closeAll()" style="color:var(--gray); font-size:11px; cursor:pointer; letter-spacing: 1px;">FERMER</span>
+    </div>
+    <div id="cart-items"></div>
+    <div style="margin-top:30px; border-top:1px solid var(--border); padding-top:20px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:25px;">
+          <span style="font-size:11px;color:var(--gray); letter-spacing: 1px;">TOTAL ESTIMÉ</span>
+          <span id="cart-total-val" style="color:var(--gold);font-weight:900;font-size:24px; font-family:'Cormorant Garamond', serif;">0.00 €</span>
+      </div>
+      <button onclick="sendOrder()" style="width:100%;padding:18px;background:var(--gold);border:none;font-weight:900;text-transform:uppercase; letter-spacing: 1px;">Commander sur Telegram</button>
+    </div>
   </div>
 </div>
 
 <div id="admin-dw" class="dw">
-  <h2 style="text-transform:uppercase;margin-bottom:20px;">Gestion</h2>
-  <div class="fg">
-    <div class="upload-box" onclick="document.getElementById('file-input').click()">
-        <span id="up-status">📸 CLIQUE ICI POUR LA PHOTO</span>
-        <input type="file" id="file-input" style="display:none;" onchange="handleUpload(this)">
+  <div class="dw-content">
+    <div style="display:flex; justify-content:space-between; margin-bottom:25px;">
+        <h2 style="text-transform:uppercase;letter-spacing:2px;font-size:18px;">Gestion Boutique</h2>
+        <span onclick="closeAll()" style="color:var(--gray); font-size:11px; cursor:pointer;">FERMER</span>
     </div>
-    <input type="hidden" id="a-img">
+    
+    <div class="fg">
+        <label>Photo de l'article</label>
+        <div class="upload-box" onclick="document.getElementById('file-input').click()">
+            <span id="up-status">📸 AJOUTER UNE IMAGE</span>
+            <input type="file" id="file-input" style="display:none;" onchange="handleUpload(this)">
+        </div>
+        <input type="hidden" id="a-img">
+    </div>
+    <div class="fg"><label>Nom de l'article</label><input type="text" id="a-name"></div>
+    <div class="fg"><label>Prix (€)</label><input type="number" id="a-price" step="0.01"></div>
+    <button onclick="saveProduct()" style="width:100%;padding:18px;background:var(--white);color:var(--black);font-weight:900;text-transform:uppercase; letter-spacing: 1px;">Publier l'article</button>
+    
+    <h3 style="text-transform:uppercase; font-size:12px; letter-spacing:2px; margin: 40px 0 20px 0; color:var(--gold);">Inventaire</h3>
+    <div id="admin-list"></div>
   </div>
-  <div class="fg"><input type="text" id="a-name" placeholder="Nom"></div>
-  <div class="fg"><input type="number" id="a-price" placeholder="Prix (€)"></div>
-  <button onclick="saveProduct()" style="width:100%;padding:15px;background:var(--white);color:var(--black);font-weight:900;border:none;">PUBLIER</button>
-  <hr style="margin:20px 0; border-color:var(--border);">
-  <div id="admin-list"></div>
-  <button onclick="closeAll()" style="width:100%;margin-top:10px;background:none;color:var(--gray);border:none;">ANNULER</button>
 </div>
 
 <script>
@@ -132,8 +180,11 @@ let products = [];
 let cart = [];
 let selectedSizes = {};
 
+// GESTION DU CHARGEMENT
 window.onload = () => {
-    setTimeout(() => document.getElementById('splash').classList.add('hidden-splash'), 2500);
+    setTimeout(() => {
+        document.getElementById('splash').classList.add('hidden-splash');
+    }, 2800);
     load();
 };
 
@@ -155,33 +206,80 @@ function render() {
             <div class="cimg"><img src="${p.image_url}"></div>
             <div class="cbody">
                 <div class="cname">${p.name}</div>
-                <div class="cprice">${parseFloat(p.price).toFixed(2)} €</div>
-                <div class="sz-row">
-                    ${['S','M','L','XL'].map(s => `<div class="sz-btn ${size===s?'active':''}" onclick="selectSize('${p.id}','${s}')">${s}</div>`).join('')}
-                </div>
-                <button class="add-btn" ${!size?'disabled':''} onclick="addToCart('${p.id}')">${size?'Ajouter':'Taille'}</button>
+                <div class="cprice">${p.price.toFixed(2)} €</div>
+                <div class="sz-row">${['S','M','L','XL'].map(s => `<div class="sz-btn ${size === s ? 'active' : ''}" onclick="selectSize('${p.id}', '${s}')">${s}</div>`).join('')}</div>
+                <button class="add-btn" ${!size ? 'disabled' : ''} onclick="addToCart('${p.id}')">${size ? 'Ajouter' : 'Taille'}</button>
             </div>
         </div>`;
     }).join("");
 }
 
-function selectSize(pid, size) { selectedSizes[pid] = size; render(); }
+function selectSize(pid, size) { selectedSizes[pid] = size; render(); tg.HapticFeedback.selectionChanged(); }
 
 function addToCart(pid) {
     const p = products.find(x => x.id == pid);
-    cart.push({ ...p, size: selectedSizes[pid], cartId: Date.now() });
+    cart.push({ ...p, cartId: Date.now(), size: selectedSizes[pid] });
     updateUI();
-    showToast("AJOUTÉ ✓");
+    showToast(`AJOUTÉ ✓`);
+    tg.HapticFeedback.notificationOccurred('success');
+}
+
+function removeFromCart(cartId) {
+    cart = cart.filter(item => item.cartId !== cartId);
+    updateUI();
+    renderCartItems();
+    tg.HapticFeedback.impactOccurred('medium');
 }
 
 function updateUI() {
-    const total = cart.reduce((acc, item) => acc + parseFloat(item.price), 0);
+    const total = cart.reduce((acc, item) => acc + item.price, 0);
     document.getElementById("cbadge").textContent = cart.length;
     document.getElementById("cbadge").style.display = cart.length > 0 ? "flex" : "none";
-    document.getElementById("bar-qty").textContent = `${cart.length} ARTICLES`;
+    document.getElementById("bar-qty").textContent = `${cart.length} ARTICLE${cart.length > 1 ? 'S' : ''}`;
     document.getElementById("bar-total").textContent = `${total.toFixed(2)} €`;
     document.getElementById("cart-bar").classList.toggle("show", cart.length > 0);
-    document.getElementById("total-cart-val").textContent = `${total.toFixed(2)} €`;
+    document.getElementById("cart-total-val").textContent = `${total.toFixed(2)} €`;
+}
+
+function renderAdminList() {
+    const el = document.getElementById("admin-list");
+    el.innerHTML = products.map(p => `
+        <div class="admin-item">
+            <div style="display:flex; align-items:center;">
+                <img src="${p.image_url}">
+                <div>
+                    <div style="font-size:10px; font-weight:700; text-transform:uppercase;">${p.name}</div>
+                    <div style="color:var(--gold); font-size:12px;">${p.price.toFixed(2)}€</div>
+                </div>
+            </div>
+            <div class="admin-actions">
+                <button class="btn-edit" onclick="editPrice('${p.id}', ${p.price})">Prix</button>
+                <button class="btn-delete" onclick="deleteProduct('${p.id}')">Suppr.</button>
+            </div>
+        </div>
+    `).join("");
+}
+
+async function deleteProduct(id) {
+    if(!confirm("Supprimer cet article ?")) return;
+    await fetch(`${SUPA}/rest/v1/products?id=eq.${id}`, {
+        method: "DELETE",
+        headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}` }
+    });
+    showToast("ARTICLE SUPPRIMÉ");
+    load();
+}
+
+async function editPrice(id, currentPrice) {
+    const newPrice = prompt("Nouveau prix :", currentPrice);
+    if(!newPrice || isNaN(newPrice)) return;
+    await fetch(`${SUPA}/rest/v1/products?id=eq.${id}`, {
+        method: "PATCH",
+        headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ price: parseFloat(newPrice) })
+    });
+    showToast("PRIX MIS À JOUR");
+    load();
 }
 
 async function handleUpload(input) {
@@ -192,7 +290,7 @@ async function handleUpload(input) {
     const data = await res.json();
     if(data.success) {
         document.getElementById("a-img").value = data.data.url;
-        document.getElementById("up-status").textContent = "PHOTO OK ✓";
+        document.getElementById("up-status").textContent = "PHOTO PRÊTE ✓";
     }
 }
 
@@ -200,60 +298,46 @@ async function saveProduct() {
     const name = document.getElementById("a-name").value;
     const price = document.getElementById("a-price").value;
     const img = document.getElementById("a-img").value;
-    if(!name || !price || !img) return alert("Remplis tout !");
+    if(!name || !price || !img) return alert("Complète tout !");
     await fetch(`${SUPA}/rest/v1/products`, {
         method: "POST",
-        headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ name, price: parseFloat(price), image_url: img })
+        headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}`, "Content-Type": "application/json", "Prefer": "return=minimal" },
+        body: JSON.stringify({ name, price: parseFloat(price), image_url: img, category: 'General' })
     });
     location.reload();
 }
 
-async function deleteProduct(id) {
-    if(!confirm("Supprimer l'article ?")) return;
-    await fetch(`${SUPA}/rest/v1/products?id=eq.${id}`, {
-        method: "DELETE",
-        headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}` }
-    });
-    load();
-}
-
-function renderAdminList() {
-    document.getElementById("admin-list").innerHTML = products.map(p => `
-        <div class="admin-item">
-            <span>${p.name}</span>
-            <button onclick="deleteProduct('${p.id}')" style="color:var(--danger);background:none;border:none;font-weight:900;">SUPPR.</button>
-        </div>`).join("");
-}
-
 function sendOrder() {
-    const lines = cart.map(i => `• ${i.name} (${i.size}) - ${i.price}€`).join("\n");
-    const total = cart.reduce((acc, item) => acc + parseFloat(item.price), 0);
-    const msg = `🛒 NOUVELLE COMMANDE\n\n${lines}\n\nTOTAL : ${total.toFixed(2)}€`;
+    const lines = cart.map(i => `• ${i.name} (${i.size}) - ${i.price.toFixed(2)}€`).join("\n");
+    const total = cart.reduce((acc, item) => acc + item.price, 0);
+    const msg = `🛒 NOUVELLE COMMANDE\n-------------------------\n${lines}\n-------------------------\nTOTAL : ${total.toFixed(2)}€`;
     tg.openTelegramLink(`https://t.me/fredpixou?text=${encodeURIComponent(msg)}`);
 }
 
 function tryAdmin() {
-    if(ADMINS.includes(String(tg.initDataUnsafe?.user?.id)) || prompt("CODE ?") === "dripsociety999") {
-        document.getElementById("admin-dw").classList.add("show");
-    }
+    const id = tg.initDataUnsafe?.user?.id;
+    if(ADMINS.includes(String(id)) || prompt("CODE ?") === "dripsociety999") document.getElementById("admin-dw").classList.add("show");
 }
 
 function openCart() { document.getElementById("cart-dw").classList.add("show"); renderCartItems(); }
 function closeAll() { document.querySelectorAll(".dw").forEach(d => d.classList.remove("show")); }
 
 function renderCartItems() {
-    document.getElementById("cart-items").innerHTML = cart.map((i) => `
-        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">
-            <span>${i.name} (${i.size})</span>
-            <span>${parseFloat(i.price).toFixed(2)}€</span>
-        </div>`).join("");
+    document.getElementById("cart-items").innerHTML = cart.map(i => `
+        <div class="cart-item">
+            <div style="display:flex; flex-direction:column;">
+                <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px;">${i.name} (${i.size})</span>
+                <span onclick="removeFromCart(${i.cartId})" class="btn-rm-cart">✕ Supprimer</span>
+            </div>
+            <span style="color:var(--gold); font-weight:700; font-family:'Cormorant Garamond', serif; font-size:16px;">${i.price.toFixed(2)}€</span>
+        </div>
+    `).join("");
 }
 
 function showToast(m) {
     const t = document.getElementById("toast");
     t.textContent = m; t.style.display = "block";
-    setTimeout(() => t.style.display = "none", 2000);
+    setTimeout(() => t.style.display = "none", 2500);
 }
 </script>
 </body>
