@@ -9,75 +9,95 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,600;1,400&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --black:#000;--white:#fff;--gray:#888;--border:#222;
-  --s1:#0d0d0d;--s2:#161616;--gold:#c9a84c;--danger:#ff3b30;
+  --black:#000;--white:#fff;--gray:#888;--border:#1a1a1a;
+  --s1:#0d0d0d;--s2:#111;--gold:#c9a84c;--danger:#ff3b30;
   --font-h:'Montserrat',sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{background:var(--black);color:var(--white);font-family:var(--font-h);font-size:14px;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
 /* ── HEADER ── */
-#header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:55px;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
-.logo{font-size:15px;font-weight:900;letter-spacing:3px;text-transform:uppercase;}
+#header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:60px;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.logo{font-size:16px;font-weight:900;letter-spacing:4px;text-transform:uppercase;}
 .logo span{color:var(--gold);}
-.hr{display:flex;gap:10px;}
+.hr{display:flex;gap:12px;}
 .ibtn{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);background:none;cursor:pointer;}
-#cbadge{position:absolute;top:-5px;right:-5px;background:var(--gold);color:var(--black);font-size:9px;font-weight:900;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;}
+#cbadge{position:absolute;top:-5px;right:-5px;background:var(--gold);color:var(--black);font-size:9px;font-weight:900;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;border:2px solid var(--black);}
 
 /* ── HERO ── */
-#hero{padding:30px 16px;border-bottom:1px solid var(--border);text-align:left;}
-#hero h1{font-size:32px;font-weight:900;line-height:0.95;text-transform:uppercase;margin-bottom:10px;}
-#hero h1 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:36px;}
-#hero p{font-size:11px;color:var(--gray);text-transform:uppercase;letter-spacing:1px;}
+#hero{padding:40px 20px;border-bottom:1px solid var(--border);background: linear-gradient(to bottom, #050505, #000);}
+#hero h1{font-size:36px;font-weight:900;line-height:0.9;text-transform:uppercase;margin-bottom:10px;letter-spacing:-1px;}
+#hero h1 em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:42px;font-weight:400;}
+#hero p{font-size:10px;color:var(--gray);text-transform:uppercase;letter-spacing:2px;opacity:0.8;}
 
 /* ── CATALOG ── */
 #catalog{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);padding-bottom:120px;}
-.card{background:var(--black);display:flex;flex-direction:column;padding-bottom:15px;}
-.cimg{aspect-ratio:2/3;background:var(--s2);overflow:hidden;}
-.cimg img{width:100%;height:100%;object-fit:cover;}
-.cbody{padding:12px;flex:1;}
-.cname{font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:5px;height:30px;overflow:hidden;}
-.cprice{color:var(--gold);font-weight:700;font-size:16px;margin-bottom:10px;}
+.card{background:var(--black);display:flex;flex-direction:column;position:relative;}
 
-/* ── BOUTONS TAILLES ── */
-.sz-row{display:flex;gap:5px;margin-bottom:12px;flex-wrap:wrap;}
+/* ── FIX IMAGE : Cadrage parfait ── */
+.cimg{
+  width:100%;
+  aspect-ratio:1 / 1.2; /* Format portrait élégant */
+  background:var(--s2);
+  overflow:hidden;
+  position:relative;
+}
+.cimg img{
+  width:100%;
+  height:100%;
+  object-fit:cover; /* Recadre et centre l'image automatiquement */
+  object-position:center;
+  display:block;
+  transition: transform 0.5s ease;
+}
+.card:active .cimg img{transform:scale(1.05);}
+
+.cbody{padding:15px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+.cname{font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;line-height:1.4;letter-spacing:0.5px;min-height:32px;}
+.cprice{color:var(--gold);font-weight:700;font-size:18px;margin-bottom:15px;font-family: 'Cormorant Garamond', serif;}
+
+/* ── TAILLES & BOUTONS ── */
+.sz-row{display:flex;gap:6px;margin-bottom:15px;flex-wrap:wrap;}
 .sz-btn{
-  border:1px solid var(--border);padding:6px 8px;font-size:10px;font-weight:700;
-  cursor:pointer;color:var(--gray);background:var(--s1);min-width:35px;text-align:center;
-  touch-action:manipulation;
+  border:1px solid var(--border);padding:8px;font-size:10px;font-weight:700;
+  cursor:pointer;color:var(--gray);background:var(--s1);min-width:38px;text-align:center;
+  transition: 0.2s;
 }
 .sz-btn.active{border-color:var(--white);color:var(--white);background:var(--s2);}
 
-/* ── BOUTON AJOUTER ── */
 .add-btn{
-  width:100%;padding:12px;background:var(--white);color:var(--black);
+  width:100%;padding:14px;background:var(--white);color:var(--black);
   border:none;font-weight:900;font-size:10px;text-transform:uppercase;
-  letter-spacing:1px;cursor:pointer;touch-action:manipulation;
+  letter-spacing:2px;cursor:pointer;transition: 0.2s;
 }
-.add-btn:disabled{background:var(--border);color:var(--gray);cursor:not-allowed;}
+.add-btn:disabled{background:var(--s1);color:var(--border);cursor:not-allowed;}
+.add-btn:active:not(:disabled){transform:scale(0.96);background:var(--gold);}
 
 /* ── PANIER BARRE BAS ── */
 #cart-bar{
-  position:fixed;bottom:0;left:0;right:0;background:var(--black);
-  border-top:1px solid var(--border);padding:15px;z-index:90;
-  transform:translateY(100%);transition:0.3s;
+  position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.95);
+  backdrop-filter: blur(10px);
+  border-top:1px solid var(--border);padding:20px;z-index:90;
+  transform:translateY(100%);transition:0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 #cart-bar.show{transform:translateY(0);}
 #bar-btn{
-  width:100%;padding:14px;background:var(--gold);color:var(--black);
+  width:100%;padding:16px;background:var(--gold);color:var(--black);
   font-weight:900;text-transform:uppercase;border:none;display:flex;
-  justify-content:space-between;cursor:pointer;
+  justify-content:space-between;letter-spacing:1px;
 }
 
-/* ── ADMIN ── */
-.dw{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:200;display:none;padding:20px;}
-.dw.show{display:block;overflow-y:auto;}
-.fg{margin-bottom:15px;}
-.fg label{display:block;font-size:10px;text-transform:uppercase;margin-bottom:5px;color:var(--gray);}
-.fg input,.fg select{width:100%;padding:12px;background:var(--s1);border:1px solid var(--border);color:var(--white);outline:none;}
-.upload-box{border:1px dashed var(--gold);padding:20px;text-align:center;margin-bottom:10px;cursor:pointer;}
+/* ── DRAWERS ── */
+.dw{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:200;display:none;padding:25px;}
+.dw.show{display:block;overflow-y:auto;animation: fadeIn 0.3s ease;}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-#toast{position:fixed;top:70px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);padding:10px 20px;font-weight:900;font-size:11px;z-index:1000;display:none;text-transform:uppercase;}
+.fg{margin-bottom:20px;}
+.fg label{display:block;font-size:10px;text-transform:uppercase;margin-bottom:8px;color:var(--gray);letter-spacing:1px;}
+.fg input,.fg select{width:100%;padding:15px;background:var(--s1);border:1px solid var(--border);color:var(--white);outline:none;border-radius:0;}
+.upload-box{border:1px dashed var(--gold);padding:30px;text-align:center;margin-bottom:15px;color:var(--gold);font-size:11px;font-weight:700;}
+
+#toast{position:fixed;top:80px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);padding:12px 25px;font-weight:900;font-size:11px;z-index:1000;display:none;text-transform:uppercase;letter-spacing:1px;box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
 </style>
 </head>
 <body>
@@ -89,7 +109,7 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
   <div class="hr">
     <div class="ibtn" onclick="tryAdmin()">⚙️</div>
     <div class="ibtn" onclick="openCart()" style="position:relative;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
         <div id="cbadge">0</div>
     </div>
   </div>
@@ -97,7 +117,7 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
 
 <div id="hero">
   <h1>Qualité <em>Supérieure</em><br>Bas Prix</h1>
-  <p>Streetwear sélectionné — Drip Society</p>
+  <p>Collection Streetwear — Sélection exclusive</p>
 </div>
 
 <div id="catalog"></div>
@@ -110,40 +130,42 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
 </div>
 
 <div id="cart-dw" class="dw">
-  <h2 style="text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;">Mon Panier</h2>
-  <div id="cart-items" style="margin-bottom:20px;"></div>
-  <div style="border-top:1px solid var(--border);padding-top:15px;">
-    <div style="display:flex;justify-content:space-between;margin-bottom:20px;">
-        <span>TOTAL</span>
-        <span id="cart-total-val" style="color:var(--gold);font-weight:900;">0.00 €</span>
+  <h2 style="text-transform:uppercase;letter-spacing:3px;margin-bottom:30px;font-size:24px;">Panier</h2>
+  <div id="cart-items" style="margin-bottom:30px;"></div>
+  <div style="border-top:1px solid var(--border);padding-top:20px;">
+    <div style="display:flex;justify-content:space-between;margin-bottom:30px;align-items:baseline;">
+        <span style="font-size:12px;color:var(--gray);">TOTAL</span>
+        <span id="cart-total-val" style="color:var(--gold);font-weight:900;font-size:28px;font-family:'Cormorant Garamond',serif;">0.00 €</span>
     </div>
-    <button onclick="sendOrder()" style="width:100%;padding:15px;background:var(--gold);border:none;font-weight:900;cursor:pointer;">COMMANDER SUR TELEGRAM</button>
-    <button onclick="closeAll()" style="width:100%;margin-top:10px;background:none;color:var(--gray);border:none;cursor:pointer;">RETOUR</button>
+    <button onclick="sendOrder()" style="width:100%;padding:18px;background:var(--gold);border:none;font-weight:900;cursor:pointer;letter-spacing:2px;text-transform:uppercase;">Valider la commande</button>
+    <button onclick="closeAll()" style="width:100%;margin-top:20px;background:none;color:var(--gray);border:none;cursor:pointer;font-size:11px;text-transform:uppercase;letter-spacing:2px;">Continuer les achats</button>
   </div>
 </div>
 
 <div id="admin-dw" class="dw">
-  <h2 style="text-transform:uppercase;margin-bottom:20px;">Ajouter Produit</h2>
+  <h2 style="text-transform:uppercase;margin-bottom:30px;letter-spacing:2px;">Ajouter un article</h2>
   <div class="fg">
-    <label>Photo du produit</label>
+    <label>Visuel du produit</label>
     <div class="upload-box" onclick="document.getElementById('file-input').click()">
-        <span id="up-status">CLIQUE ICI POUR LA PHOTO</span>
+        <span id="up-status">📸 PRENDRE OU CHOISIR UNE PHOTO</span>
         <input type="file" id="file-input" style="display:none;" onchange="handleUpload(this)">
     </div>
     <input type="hidden" id="a-img">
   </div>
-  <div class="fg"><label>Nom</label><input type="text" id="a-name"></div>
-  <div class="fg"><label>Prix (€)</label><input type="number" id="a-price" step="0.01"></div>
+  <div class="fg"><label>Nom de l'article</label><input type="text" id="a-name" placeholder="Ex: Nike Zoom Vomero..."></div>
+  <div class="fg"><label>Prix de vente (€)</label><input type="number" id="a-price" step="0.01" placeholder="49.00"></div>
   <div class="fg">
     <label>Catégorie</label>
     <select id="a-cat">
+        <option value="Chaussures">Chaussures</option>
         <option value="T-shirts">T-shirts</option>
         <option value="Sweats">Sweats</option>
+        <option value="Pantalons">Pantalons</option>
         <option value="Accessoires">Accessoires</option>
     </select>
   </div>
-  <button onclick="saveProduct()" style="width:100%;padding:15px;background:var(--white);color:var(--black);font-weight:900;border:none;">PUBLIER L'ARTICLE</button>
-  <button onclick="closeAll()" style="width:100%;margin-top:10px;background:none;color:var(--gray);border:none;">ANNULER</button>
+  <button onclick="saveProduct()" style="width:100%;padding:18px;background:var(--white);color:var(--black);font-weight:900;border:none;text-transform:uppercase;letter-spacing:2px;">Publier sur le shop</button>
+  <button onclick="closeAll()" style="width:100%;margin-top:20px;background:none;color:var(--gray);border:none;font-size:11px;letter-spacing:1px;">ANNULER</button>
 </div>
 
 <script>
@@ -159,7 +181,6 @@ let products = [];
 let cart = [];
 let selectedSizes = {};
 
-// CHARGEMENT
 async function load() {
     const res = await fetch(`${SUPA}/rest/v1/products?select=*&order=created_at.desc`, {
         headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}` }
@@ -168,7 +189,6 @@ async function load() {
     render();
 }
 
-// AFFICHAGE CATALOGUE
 function render() {
     const grid = document.getElementById("catalog");
     grid.innerHTML = products.map(p => {
@@ -195,6 +215,7 @@ function render() {
 function selectSize(pid, size) {
     selectedSizes[pid] = size;
     render();
+    tg.HapticFeedback.selectionChanged();
 }
 
 function addToCart(pid) {
@@ -202,25 +223,24 @@ function addToCart(pid) {
     const size = selectedSizes[pid];
     cart.push({ ...p, size });
     updateUI();
-    showToast(`AJOUTÉ : ${p.name} (${size})`);
-    tg.HapticFeedback.impactOccurred('medium');
+    showToast(`🛍️ ${p.name} (${size}) ajouté`);
+    tg.HapticFeedback.notificationOccurred('success');
 }
 
 function updateUI() {
     const total = cart.reduce((acc, item) => acc + item.price, 0);
     document.getElementById("cbadge").textContent = cart.length;
     document.getElementById("cbadge").style.display = cart.length > 0 ? "flex" : "none";
-    document.getElementById("bar-qty").textContent = `${cart.length} ARTICLES`;
+    document.getElementById("bar-qty").textContent = `${cart.length} ARTICLE${cart.length > 1 ? 'S' : ''}`;
     document.getElementById("bar-total").textContent = `${total.toFixed(2)} €`;
     document.getElementById("cart-bar").classList.toggle("show", cart.length > 0);
     document.getElementById("cart-total-val").textContent = `${total.toFixed(2)} €`;
 }
 
-// UPLOAD PHOTO IMGBB
 async function handleUpload(input) {
     const file = input.files[0];
     if(!file) return;
-    document.getElementById("up-status").textContent = "CHARGEMENT...";
+    document.getElementById("up-status").textContent = "CHARGEMENT EN COURS...";
     
     const fd = new FormData();
     fd.append("image", file);
@@ -231,17 +251,17 @@ async function handleUpload(input) {
     if(data.success) {
         document.getElementById("a-img").value = data.data.url;
         document.getElementById("up-status").textContent = "PHOTO OK ✓";
+        tg.HapticFeedback.notificationOccurred('success');
     }
 }
 
-// SAUVEGARDE PRODUIT
 async function saveProduct() {
     const name = document.getElementById("a-name").value;
     const price = document.getElementById("a-price").value;
     const img = document.getElementById("a-img").value;
     const cat = document.getElementById("a-cat").value;
 
-    if(!name || !price || !img) return alert("Remplis tout !");
+    if(!name || !price || !img) return alert("Veuillez remplir tous les champs et la photo !");
 
     await fetch(`${SUPA}/rest/v1/products`, {
         method: "POST",
@@ -254,14 +274,14 @@ async function saveProduct() {
         body: JSON.stringify({ name, price: parseFloat(price), image_url: img, category: cat })
     });
 
-    location.reload();
+    showToast("ARTICLE PUBLIÉ ✓");
+    setTimeout(() => location.reload(), 1000);
 }
 
-// COMMANDE
 function sendOrder() {
     const lines = cart.map(i => `• ${i.name} (${i.size}) - ${i.price}€`).join("\n");
     const total = cart.reduce((acc, item) => acc + item.price, 0);
-    const msg = `🛒 NOUVELLE COMMANDE\n\n${lines}\n\nTOTAL : ${total.toFixed(2)}€`;
+    const msg = `🛒 NOUVELLE COMMANDE - DRIP SOCIETY\n-------------------------\n${lines}\n-------------------------\nTOTAL : ${total.toFixed(2)}€`;
     tg.openTelegramLink(`https://t.me/fredpixou?text=${encodeURIComponent(msg)}`);
 }
 
@@ -277,9 +297,9 @@ function closeAll() { document.querySelectorAll(".dw").forEach(d => d.classList.
 
 function renderCartItems() {
     document.getElementById("cart-items").innerHTML = cart.map((i, index) => `
-        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">
-            <span>${i.name} (${i.size})</span>
-            <span style="color:var(--gold);">${i.price}€</span>
+        <div style="display:flex;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--border);align-items:center;">
+            <div style="font-size:12px;text-transform:uppercase;font-weight:700;">${i.name} <br><span style="color:var(--gray);font-weight:400;font-size:10px;">Taille: ${i.size}</span></div>
+            <div style="color:var(--gold);font-weight:900;">${i.price.toFixed(2)}€</div>
         </div>
     `).join("");
 }
@@ -287,7 +307,7 @@ function renderCartItems() {
 function showToast(m) {
     const t = document.getElementById("toast");
     t.textContent = m; t.style.display = "block";
-    setTimeout(() => t.style.display = "none", 2000);
+    setTimeout(() => t.style.display = "none", 2500);
 }
 
 load();
