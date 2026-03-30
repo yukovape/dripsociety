@@ -3,104 +3,71 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>Drip Society Luxe</title>
+<title>Drip Society</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,600;1,400&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --black: #000; --white: #fff; --gray: #888; --border: #1a1a1a;
-  --s1: #0d0d0d; --s2: #111; --gold: #c9a84c; --danger: #ff3b30;
-  --font-h: 'Montserrat', sans-serif;
+:root{
+  --black:#000;--white:#fff;--gray:#888;--border:#1a1a1a;
+  --s1:#0d0d0d;--s2:#111;--gold:#c9a84c;--danger:#ff3b30;
+  --font-h:'Montserrat',sans-serif;
 }
-*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { background: var(--black); color: var(--white); font-family: var(--font-h); font-size: 14px; min-height: 100vh; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{background:var(--black);color:var(--white);font-family:var(--font-h);font-size:14px;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
 /* ── SPLASH SCREEN ── */
 #splash {
   position: fixed; inset: 0; background: var(--black); z-index: 1000;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  transition: opacity 0.6s ease, visibility 0.6s;
+  transition: opacity 0.5s ease;
 }
-#splash img { width: 160px; height: 160px; margin-bottom: 30px; animation: pulseLogo 2s infinite ease-in-out; border-radius: 50%; box-shadow: 0 0 30px rgba(201, 168, 76, 0.2); }
-.loader-bar { width: 100px; height: 2px; background: var(--border); position: relative; overflow: hidden; }
-.loader-progress { position: absolute; height: 100%; width: 50%; background: var(--gold); animation: loadAnim 1.5s infinite linear; }
-@keyframes pulseLogo { 0%, 100% { transform: scale(1); opacity: 0.9; } 50% { transform: scale(1.03); opacity: 1; } }
-@keyframes loadAnim { from { left: -50%; } to { left: 100%; } }
-.hidden-splash { opacity: 0; visibility: hidden; }
+#splash img { width: 160px; height: 160px; margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 20px rgba(201,168,76,0.2); }
+.hidden-splash { opacity: 0; pointer-events: none; }
 
-/* ── HEADER & NAVIGATION ── */
-#header { display: flex; align-items: center; justify-content: space-between; padding: 0 16px; height: 65px; background: var(--black); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-.logo { font-size: 16px; font-weight: 900; letter-spacing: 4px; text-transform: uppercase; }
-.logo span { color: var(--gold); }
-.ibtn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); background: none; cursor: pointer; position: relative; }
-#cbadge { position: absolute; top: -5px; right: -5px; background: var(--gold); color: var(--black); font-size: 9px; font-weight: 900; width: 18px; height: 18px; border-radius: 50%; display: none; align-items: center; justify-content: center; border: 2px solid var(--black); }
-
-#tabs { display: flex; background: var(--black); border-bottom: 1px solid var(--border); position: sticky; top: 65px; z-index: 99; }
-.tab { flex: 1; padding: 15px; text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); cursor: pointer; transition: 0.3s; }
-.tab.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+/* ── HEADER ── */
+#header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:60px;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;}
+.logo{font-size:16px;font-weight:900;letter-spacing:4px;text-transform:uppercase;}
+.hr{display:flex;gap:12px;}
+.ibtn{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);background:none;cursor:pointer;}
+#cbadge{position:absolute;top:-5px;right:-5px;background:var(--gold);color:var(--black);font-size:9px;font-weight:900;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;}
 
 /* ── CATALOG ── */
-#catalog { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); padding-bottom: 120px; }
-.card { background: var(--black); display: flex; flex-direction: column; position: relative; transition: 0.3s; }
-.card.oos { opacity: 0.5; }
-.oos-badge { position: absolute; top: 10px; left: 10px; background: var(--danger); color: white; padding: 4px 8px; font-size: 8px; font-weight: 900; z-index: 10; }
-.cimg { width: 100%; aspect-ratio: 1 / 1.2; background: var(--s2); overflow: hidden; }
-.cimg img { width: 100%; height: 100%; object-fit: cover; }
-.cbody { padding: 15px; flex: 1; display: flex; flex-direction: column; }
-.cname { font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.5px; }
-.cdesc { font-size: 9px; color: var(--gray); margin-bottom: 8px; line-height: 1.2; }
-.cprice { color: var(--gold); font-weight: 700; font-size: 16px; margin-top: auto; font-family: 'Cormorant Garamond', serif; }
+#catalog{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);padding-bottom:120px;}
+.card{background:var(--black);display:flex;flex-direction:column;position:relative;}
+.cimg{width:100%; aspect-ratio:1 / 1.2; background:var(--s2); overflow:hidden;}
+.cimg img{width:100%; height:100%; object-fit:cover; display:block;}
+.cbody{padding:12px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+.cname{font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;min-height:30px;}
+.cprice{color:var(--gold);font-weight:700;font-size:17px;font-family:'Cormorant Garamond',serif;}
 
-/* ── VARIANTES ── */
-.v-row { display: flex; gap: 4px; margin: 10px 0; flex-wrap: wrap; }
-.v-btn { border: 1px solid var(--border); padding: 6px; font-size: 9px; font-weight: 700; cursor: pointer; color: var(--gray); min-width: 32px; text-align: center; }
-.v-btn.active { border-color: var(--white); color: var(--white); background: #1a1a1a; }
+/* ── TAILLES ── */
+.sz-row{display:flex;gap:5px;margin-top:10px;flex-wrap:wrap;}
+.sz-btn{ border:1px solid var(--border);padding:6px;font-size:10px;font-weight:700; cursor:pointer;color:var(--gray);background:var(--s1);min-width:35px;text-align:center;touch-action:manipulation;}
+.sz-btn.active{border-color:var(--white);color:var(--white);background:var(--s2);}
+.add-btn{ width:100%;padding:12px;margin-top:10px;background:var(--white);color:var(--black); border:none;font-weight:900;font-size:10px;text-transform:uppercase;touch-action:manipulation;}
+.add-btn:disabled{background:var(--s1);color:var(--border);opacity:0.5;}
 
-/* ── PANIER LUXE (DRAWER) ── */
-.dw { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; display: none; backdrop-filter: blur(10px); }
-.dw.show { display: block; }
-.dw-content { position: absolute; bottom: 0; left: 0; right: 0; background: #080808; border-top: 1px solid var(--gold); padding: 30px 24px; border-radius: 25px 25px 0 0; max-height: 85vh; overflow-y: auto; }
-.cart-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-style: italic; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-.cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid var(--border); }
-.item-main { display: flex; flex-direction: column; }
-.item-n { font-size: 11px; font-weight: 700; text-transform: uppercase; }
-.item-v { font-size: 9px; color: var(--gold); margin-top: 2px; }
-.item-p { font-family: 'Cormorant Garamond', serif; font-size: 16px; margin-top: 5px; }
-.btn-del { color: var(--danger); font-size: 16px; cursor: pointer; padding: 10px; }
+/* ── PANIER BARRE BAS ── */
+#cart-bar{position:fixed;bottom:0;left:0;right:0;background:var(--black);border-top:1px solid var(--border);padding:15px;z-index:90;transform:translateY(100%);transition:0.3s;}
+#cart-bar.show{transform:translateY(0);}
+#bar-btn{width:100%;padding:14px;background:var(--gold);color:var(--black);font-weight:900;border:none;display:flex;justify-content:space-between;cursor:pointer;}
 
-/* ── BOUTON COMMANDER PREMIUM ── */
-#btn-order {
-  width: 100%; padding: 20px; margin-top: 20px; background: linear-gradient(135deg, #c9a84c 0%, #ffebad 50%, #c9a84c 100%);
-  color: #000; font-weight: 900; text-transform: uppercase; border: none; cursor: pointer;
-  letter-spacing: 2px; font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 10px;
-  box-shadow: 0 4px 15px rgba(201, 168, 76, 0.4); transition: 0.3s;
-}
-#btn-order:active { transform: scale(0.98); }
-
-/* ── ADMIN ── */
-.admin-item { display: flex; align-items: center; padding: 10px; border-bottom: 1px solid var(--border); gap: 10px; }
-.admin-item img { width: 40px; height: 40px; object-fit: cover; }
-.admin-info { flex: 1; font-size: 10px; }
-.switch { position: relative; display: inline-block; width: 40px; height: 20px; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; inset: 0; background-color: #333; transition: .4s; border-radius: 20px; }
-.slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-input:checked + .slider { background-color: var(--gold); }
-input:checked + .slider:before { transform: translateX(20px); }
-
-#toast { position: fixed; top: 80px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #000; padding: 12px 25px; font-weight: 900; font-size: 11px; z-index: 1000; display: none; text-transform: uppercase; }
-
-/* ── BARRE PANIER ── */
-#cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.9); border-top: 1px solid var(--border); padding: 15px 20px; z-index: 90; transform: translateY(100%); transition: 0.4s; }
-#cart-bar.show { transform: translateY(0); }
+/* ── DRAWERS ── */
+.dw{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:200;display:none;padding:20px;overflow-y:auto;}
+.dw.show{display:block;}
+.admin-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);}
+.fg{margin-bottom:15px;}
+.fg input{width:100%;padding:12px;background:var(--s1);border:1px solid var(--border);color:var(--white);outline:none;}
+.upload-box{border:1px dashed var(--gold);padding:20px;text-align:center;margin-bottom:10px;cursor:pointer;font-size:11px;font-weight:700;}
+#toast{position:fixed;top:70px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);padding:10px 20px;font-weight:900;font-size:11px;z-index:1000;display:none;}
 </style>
 </head>
 <body>
 
 <div id="splash">
   <img src="https://i.ibb.co/XkyV7PzB/Gemini-Generated-Image-f1kqnhf1kqnhf1kq.jpg" alt="Logo">
-  <div class="loader-bar"><div class="loader-progress"></div></div>
+  <p style="font-size:10px; letter-spacing:3px; color:var(--gray);">CHARGEMENT...</p>
 </div>
 
 <div id="toast"></div>
@@ -109,78 +76,53 @@ input:checked + .slider:before { transform: translateX(20px); }
   <div class="logo">DRIP<span>·</span>SOCIETY</div>
   <div class="hr">
     <div class="ibtn" onclick="tryAdmin()">⚙️</div>
-    <div class="ibtn" onclick="openCart()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+    <div class="ibtn" onclick="openCart()" style="position:relative;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
         <div id="cbadge">0</div>
     </div>
   </div>
 </header>
 
-<div id="tabs">
-  <div class="tab active" onclick="setCategory('Humains')">Humains</div>
-  <div class="tab" onclick="setCategory('Animaux')">Animaux</div>
-</div>
-
 <div id="catalog"></div>
 
 <div id="cart-bar">
-  <button onclick="openCart()" style="width:100%; padding:14px; background:var(--gold); border:none; font-weight:900; display:flex; justify-content:space-between; color:#000;">
+  <button id="bar-btn" onclick="openCart()">
     <span id="bar-qty">0 ARTICLES</span>
     <span id="bar-total">0.00 €</span>
   </button>
 </div>
 
 <div id="cart-dw" class="dw">
-  <div class="dw-content">
-    <div class="cart-title">Votre Sélection</div>
-    <div id="cart-items"></div>
-    <div style="margin-top:30px;">
-        <div style="display:flex; justify-content:space-between; margin-bottom:20px; font-size:12px; color:var(--gray);">
-            <span>TOTAL</span>
-            <span id="cart-total-val" style="color:var(--gold); font-size:22px; font-family:'Cormorant Garamond', serif;">0.00 €</span>
-        </div>
-        <button id="btn-order" onclick="sendOrder()">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.001.26.41a.5.5 0 0 0 .886-.083l6-15Zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471-.47 1.178Z"/></svg>
-            Finaliser sur Telegram
-        </button>
-        <button onclick="closeAll()" style="width:100%; margin-top:20px; background:none; border:none; color:var(--gray); font-size:10px; letter-spacing:1px; text-transform:uppercase;">Retour</button>
-    </div>
+  <h2 style="text-transform:uppercase;margin-bottom:20px;">Mon Panier</h2>
+  <div id="cart-items"></div>
+  <div style="border-top:1px solid var(--border);padding-top:15px;margin-top:20px;">
+    <p id="total-cart-val" style="font-size:20px;font-weight:900;color:var(--gold);margin-bottom:15px;">0.00 €</p>
+    <button onclick="sendOrder()" style="width:100%;padding:15px;background:var(--gold);border:none;font-weight:900;">COMMANDER SUR TELEGRAM</button>
+    <button onclick="closeAll()" style="width:100%;margin-top:10px;background:none;color:var(--gray);border:none;">RETOUR</button>
   </div>
 </div>
 
 <div id="admin-dw" class="dw">
-  <div class="dw-content">
-    <h2 style="text-transform:uppercase; font-size:16px; margin-bottom:20px;">Gestion Catalogue</h2>
-    
-    <div style="background:#111; padding:15px; border:1px solid var(--border); margin-bottom:20px;">
-        <div style="border:1px dashed var(--gold); padding:20px; text-align:center; margin-bottom:15px; cursor:pointer;" onclick="document.getElementById('file-input').click()">
-            <span id="up-status" style="font-size:10px; font-weight:900;">📸 AJOUTER UNE PHOTO</span>
-            <input type="file" id="file-input" style="display:none;" onchange="handleUpload(this)">
-        </div>
-        <input type="hidden" id="a-img">
-        <div class="fg"><label>Nom</label><input type="text" id="a-name"></div>
-        <div class="fg"><label>Description Courte</label><input type="text" id="a-desc"></div>
-        <div class="fg"><label>Prix (€)</label><input type="number" id="a-price" step="0.01"></div>
-        <div class="fg"><label>Catégorie</label>
-            <select id="a-cat" style="width:100%; padding:12px; background:#000; color:#fff; border:1px solid var(--border);">
-                <option value="Humains">Humains</option>
-                <option value="Animaux">Animaux</option>
-            </select>
-        </div>
-        <div class="fg"><label>Variantes (ex: S,M,L ou Bleu,Rouge)</label><input type="text" id="a-vars" placeholder="Laisser vide si unique"></div>
-        <button onclick="saveProduct()" style="width:100%; padding:15px; background:var(--white); color:#000; font-weight:900; border:none; text-transform:uppercase;">Publier</button>
+  <h2 style="text-transform:uppercase;margin-bottom:20px;">Gestion</h2>
+  <div class="fg">
+    <div class="upload-box" onclick="document.getElementById('file-input').click()">
+        <span id="up-status">📸 CLIQUE ICI POUR LA PHOTO</span>
+        <input type="file" id="file-input" style="display:none;" onchange="handleUpload(this)">
     </div>
-
-    <h3 style="font-size:11px; color:var(--gold); text-transform:uppercase; margin-bottom:15px;">Inventaire</h3>
-    <div id="admin-list"></div>
+    <input type="hidden" id="a-img">
   </div>
+  <div class="fg"><input type="text" id="a-name" placeholder="Nom"></div>
+  <div class="fg"><input type="number" id="a-price" placeholder="Prix (€)"></div>
+  <button onclick="saveProduct()" style="width:100%;padding:15px;background:var(--white);color:var(--black);font-weight:900;border:none;">PUBLIER</button>
+  <hr style="margin:20px 0; border-color:var(--border);">
+  <div id="admin-list"></div>
+  <button onclick="closeAll()" style="width:100%;margin-top:10px;background:none;color:var(--gray);border:none;">ANNULER</button>
 </div>
 
 <script>
 const SUPA = "https://juescdtmfmiqyfqfrwnd.supabase.co";
 const SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp1ZXNjZHRtZm1pcXlmcWZyd25kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2OTQ0OTQsImV4cCI6MjA5MDI3MDQ5NH0.E1SIYG7bEjnBoZhb72QMC-B94e6pl-sGvqsvYgJu3eY";
 const IMGBB_KEY = "aa8867d9251f5b7d143686e13436c72d";
-const BOT = "fredpixou";
 const ADMINS = ["8649556290", "1072084263", "8704291005"];
 
 const tg = window.Telegram.WebApp;
@@ -188,8 +130,7 @@ tg.expand();
 
 let products = [];
 let cart = [];
-let currentCategory = 'Humains';
-let selectedVariants = {};
+let selectedSizes = {};
 
 window.onload = () => {
     setTimeout(() => document.getElementById('splash').classList.add('hidden-splash'), 2500);
@@ -205,93 +146,67 @@ async function load() {
     renderAdminList();
 }
 
-function setCategory(cat) {
-    currentCategory = cat;
-    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.innerText === cat));
-    render();
-}
-
 function render() {
     const grid = document.getElementById("catalog");
-    const filtered = products.filter(p => p.category === currentCategory);
-    
-    grid.innerHTML = filtered.map(p => {
-        const variant = selectedVariants[p.id] || "";
-        const variantsList = p.variants ? p.variants.split(',') : [];
-        const isOOS = !p.is_in_stock;
-
+    grid.innerHTML = products.map(p => {
+        const size = selectedSizes[p.id] || "";
         return `
-        <div class="card ${isOOS ? 'oos' : ''}">
-            ${isOOS ? '<div class="oos-badge">RUPTURE</div>' : ''}
+        <div class="card">
             <div class="cimg"><img src="${p.image_url}"></div>
             <div class="cbody">
                 <div class="cname">${p.name}</div>
-                <div class="cdesc">${p.description || ''}</div>
                 <div class="cprice">${parseFloat(p.price).toFixed(2)} €</div>
-                
-                ${variantsList.length > 0 && !isOOS ? `
-                    <div class="v-row">
-                        ${variantsList.map(v => `<div class="v-btn ${variant === v ? 'active' : ''}" onclick="selectVar('${p.id}', '${v}')">${v.trim()}</div>`).join('')}
-                    </div>
-                ` : ''}
-
-                <button class="add-btn" 
-                    ${isOOS || (variantsList.length > 0 && !variant) ? 'disabled' : ''} 
-                    onclick="addToCart('${p.id}')"
-                    style="width:100%; padding:12px; margin-top:10px; background:${isOOS ? '#111':'#fff'}; color:${isOOS ? '#444':'#000'}; border:none; font-weight:900; font-size:10px; text-transform:uppercase;">
-                    ${isOOS ? 'Indisponible' : (variantsList.length > 0 && !variant ? 'Choisir Option' : 'Ajouter')}
-                </button>
+                <div class="sz-row">
+                    ${['S','M','L','XL'].map(s => `<div class="sz-btn ${size===s?'active':''}" onclick="selectSize('${p.id}','${s}')">${s}</div>`).join('')}
+                </div>
+                <button class="add-btn" ${!size?'disabled':''} onclick="addToCart('${p.id}')">${size?'Ajouter':'Taille'}</button>
             </div>
         </div>`;
     }).join("");
 }
 
-function selectVar(pid, v) { selectedVariants[pid] = v; render(); tg.HapticFeedback.selectionChanged(); }
+function selectSize(pid, size) { selectedSizes[pid] = size; render(); }
 
 function addToCart(pid) {
     const p = products.find(x => x.id == pid);
-    cart.push({ ...p, cartId: Date.now(), selectedVar: selectedVariants[pid] || 'Unique' });
+    cart.push({ ...p, size: selectedSizes[pid], cartId: Date.now() });
     updateUI();
-    showToast(`AJOUTÉ ✓`);
-    tg.HapticFeedback.notificationOccurred('success');
+    showToast("AJOUTÉ ✓");
 }
 
 function updateUI() {
     const total = cart.reduce((acc, item) => acc + parseFloat(item.price), 0);
     document.getElementById("cbadge").textContent = cart.length;
     document.getElementById("cbadge").style.display = cart.length > 0 ? "flex" : "none";
-    document.getElementById("bar-qty").textContent = `${cart.length} ARTICLE${cart.length > 1 ? 'S' : ''}`;
+    document.getElementById("bar-qty").textContent = `${cart.length} ARTICLES`;
     document.getElementById("bar-total").textContent = `${total.toFixed(2)} €`;
     document.getElementById("cart-bar").classList.toggle("show", cart.length > 0);
-    document.getElementById("cart-total-val").textContent = `${total.toFixed(2)} €`;
+    document.getElementById("total-cart-val").textContent = `${total.toFixed(2)} €`;
 }
 
-function renderCartItems() {
-    document.getElementById("cart-items").innerHTML = cart.map(i => `
-        <div class="cart-item">
-            <div class="item-main">
-                <span class="item-n">${i.name}</span>
-                <span class="item-v">${i.category} • Option: ${i.selectedVar}</span>
-                <span class="item-p">${parseFloat(i.price).toFixed(2)}€</span>
-            </div>
-            <div class="btn-del" onclick="removeFromCart(${i.cartId})">✕</div>
-        </div>
-    `).join("");
+async function handleUpload(input) {
+    const file = input.files[0]; if(!file) return;
+    document.getElementById("up-status").textContent = "CHARGEMENT...";
+    const fd = new FormData(); fd.append("image", file);
+    const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, { method: "POST", body: fd });
+    const data = await res.json();
+    if(data.success) {
+        document.getElementById("a-img").value = data.data.url;
+        document.getElementById("up-status").textContent = "PHOTO OK ✓";
+    }
 }
 
-function removeFromCart(cartId) {
-    cart = cart.filter(item => item.cartId !== cartId);
-    updateUI(); renderCartItems();
-    tg.HapticFeedback.impactOccurred('medium');
-}
-
-async function toggleStock(id, currentStatus) {
-    await fetch(`${SUPA}/rest/v1/products?id=eq.${id}`, {
-        method: "PATCH",
+async function saveProduct() {
+    const name = document.getElementById("a-name").value;
+    const price = document.getElementById("a-price").value;
+    const img = document.getElementById("a-img").value;
+    if(!name || !price || !img) return alert("Remplis tout !");
+    await fetch(`${SUPA}/rest/v1/products`, {
+        method: "POST",
         headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ is_in_stock: !currentStatus })
+        body: JSON.stringify({ name, price: parseFloat(price), image_url: img })
     });
-    load();
+    location.reload();
 }
 
 async function deleteProduct(id) {
@@ -306,62 +221,20 @@ async function deleteProduct(id) {
 function renderAdminList() {
     document.getElementById("admin-list").innerHTML = products.map(p => `
         <div class="admin-item">
-            <img src="${p.image_url}">
-            <div class="admin-info">
-                <strong>${p.name}</strong><br>
-                ${p.category} • ${parseFloat(p.price).toFixed(2)}€
-            </div>
-            <div style="display:flex; align-items:center; gap:10px;">
-                <label class="switch">
-                    <input type="checkbox" ${p.is_in_stock ? 'checked' : ''} onchange="toggleStock('${p.id}', ${p.is_in_stock})">
-                    <span class="slider"></span>
-                </label>
-                <div style="color:var(--danger); font-weight:900; cursor:pointer;" onclick="deleteProduct('${p.id}')">✕</div>
-            </div>
-        </div>
-    `).join("");
-}
-
-async function handleUpload(input) {
-    const file = input.files[0]; if(!file) return;
-    document.getElementById("up-status").innerText = "CHARGEMENT...";
-    const fd = new FormData(); fd.append("image", file);
-    const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, { method: "POST", body: fd });
-    const data = await res.json();
-    if(data.success) {
-        document.getElementById("a-img").value = data.data.url;
-        document.getElementById("up-status").innerText = "PHOTO PRÊTE ✓";
-    }
-}
-
-async function saveProduct() {
-    const name = document.getElementById("a-name").value;
-    const desc = document.getElementById("a-desc").value;
-    const price = document.getElementById("a-price").value;
-    const img = document.getElementById("a-img").value;
-    const cat = document.getElementById("a-cat").value;
-    const vars = document.getElementById("a-vars").value;
-
-    if(!name || !price || !img) return alert("Nom, prix et photo obligatoires !");
-
-    await fetch(`${SUPA}/rest/v1/products`, {
-        method: "POST",
-        headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}`, "Content-Type": "application/json", "Prefer": "return=minimal" },
-        body: JSON.stringify({ name, description: desc, price: parseFloat(price), image_url: img, category: cat, variants: vars, is_in_stock: true })
-    });
-    location.reload();
+            <span>${p.name}</span>
+            <button onclick="deleteProduct('${p.id}')" style="color:var(--danger);background:none;border:none;font-weight:900;">SUPPR.</button>
+        </div>`).join("");
 }
 
 function sendOrder() {
-    const lines = cart.map(i => `• ${i.name} [${i.category}] (${i.selectedVar}) - ${parseFloat(i.price).toFixed(2)}€`).join("\n");
+    const lines = cart.map(i => `• ${i.name} (${i.size}) - ${i.price}€`).join("\n");
     const total = cart.reduce((acc, item) => acc + parseFloat(item.price), 0);
-    const msg = `🛒 COMMANDE DRIP SOCIETY\n-------------------------\n${lines}\n-------------------------\nTOTAL : ${total.toFixed(2)}€`;
+    const msg = `🛒 NOUVELLE COMMANDE\n\n${lines}\n\nTOTAL : ${total.toFixed(2)}€`;
     tg.openTelegramLink(`https://t.me/fredpixou?text=${encodeURIComponent(msg)}`);
 }
 
 function tryAdmin() {
-    const id = String(tg.initDataUnsafe?.user?.id);
-    if(ADMINS.includes(id) || prompt("CODE ACCÈS ?") === "dripsociety999") {
+    if(ADMINS.includes(String(tg.initDataUnsafe?.user?.id)) || prompt("CODE ?") === "dripsociety999") {
         document.getElementById("admin-dw").classList.add("show");
     }
 }
@@ -369,10 +242,18 @@ function tryAdmin() {
 function openCart() { document.getElementById("cart-dw").classList.add("show"); renderCartItems(); }
 function closeAll() { document.querySelectorAll(".dw").forEach(d => d.classList.remove("show")); }
 
+function renderCartItems() {
+    document.getElementById("cart-items").innerHTML = cart.map((i) => `
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);">
+            <span>${i.name} (${i.size})</span>
+            <span>${parseFloat(i.price).toFixed(2)}€</span>
+        </div>`).join("");
+}
+
 function showToast(m) {
     const t = document.getElementById("toast");
-    t.innerText = m; t.style.display = "block";
-    setTimeout(() => t.style.display = "none", 2500);
+    t.textContent = m; t.style.display = "block";
+    setTimeout(() => t.style.display = "none", 2000);
 }
 </script>
 </body>
