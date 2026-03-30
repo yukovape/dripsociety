@@ -20,13 +20,9 @@
 html,body{background:var(--black);color:var(--white);font-family:var(--font-h);font-size:14px;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 ::-webkit-scrollbar{width:0;height:0;}
 input,select,textarea,button{font-family:var(--font-h);}
-
-/* TOPBAR */
 #topbar{background:var(--white);color:var(--black);font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:6px 0;overflow:hidden;white-space:nowrap;}
 #topbar-inner{display:inline-block;animation:mq 22s linear infinite;}
 @keyframes mq{0%{transform:translateX(100vw)}100%{transform:translateX(-100%)}}
-
-/* HEADER */
 #header{display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:52px;background:var(--black);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:60;}
 .logo{font-size:15px;font-weight:900;letter-spacing:4px;text-transform:uppercase;}
 .logo em{font-style:normal;color:var(--gray);}
@@ -38,17 +34,8 @@ input,select,textarea,button{font-family:var(--font-h);}
 @keyframes pop{0%{transform:scale(0)}60%{transform:scale(1.35)}100%{transform:scale(1)}}
 #abtn{display:none;font-size:16px;}
 #abtn.on{display:flex;}
-
-/* DEBUG BANNER — visible uniquement si l'admin n'est pas reconnu */
-#debug-bar{
-  background:#1a1a00;border:1px solid var(--gold);
-  padding:8px 14px;font-size:10px;color:var(--gold);
-  letter-spacing:.5px;line-height:1.6;
-  display:none;
-}
+#debug-bar{background:#1a1a00;border:1px solid var(--gold);padding:8px 14px;font-size:10px;color:var(--gold);letter-spacing:.5px;line-height:1.6;display:none;}
 #debug-bar strong{font-weight:800;}
-
-/* HERO */
 #hero{padding:28px 16px 24px;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
 #hero::before{content:'DS';position:absolute;right:-8px;top:-12px;font-size:130px;font-weight:900;color:rgba(255,255,255,0.025);pointer-events:none;user-select:none;letter-spacing:-4px;line-height:1;}
 .hero-eye{font-size:9px;font-weight:700;letter-spacing:4px;color:var(--gray);text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
@@ -57,22 +44,14 @@ input,select,textarea,button{font-family:var(--font-h);}
 #hero h1 em{font-family:var(--font-s);font-style:italic;font-weight:400;color:var(--gold);font-size:36px;}
 .hero-sub{font-size:10px;color:var(--gray);letter-spacing:1.5px;text-transform:uppercase;}
 #hero-welcome{margin-top:14px;font-size:11px;color:var(--light);letter-spacing:.5px;display:none;}
-
-/* FILTER BAR */
 #fbar{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;background:var(--black);position:sticky;top:52px;z-index:50;}
 #fbar::-webkit-scrollbar{display:none;}
 .fb{flex-shrink:0;padding:11px 14px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gray);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all .2s;white-space:nowrap;}
 .fb.on{color:var(--white);border-bottom-color:var(--gold);}
-
-/* SECTION BAR */
 .secbar{display:flex;align-items:baseline;justify-content:space-between;padding:14px 16px 8px;}
 .secbar h2{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;}
 .secbar span{font-size:9px;color:var(--gray);letter-spacing:1px;}
-
-/* CATALOG */
 #catalog{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);padding-bottom:130px;}
-
-/* CARD */
 .card{background:var(--black);display:flex;flex-direction:column;position:relative;}
 .card.oos{opacity:.5;}
 .cimg{position:relative;aspect-ratio:2/3;background:var(--s2);overflow:hidden;}
@@ -87,69 +66,23 @@ input,select,textarea,button{font-family:var(--font-h);}
 .cprice{font-family:var(--font-s);font-size:17px;color:var(--gold);margin-bottom:8px;}
 .sz-label{font-size:8px;font-weight:700;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-bottom:5px;}
 .sz-row{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:9px;}
-/* ── SIZE BUTTON — touch-friendly ── */
-.sz{
-  font-size:9px;font-weight:700;
-  padding:6px 8px;min-width:32px;
-  border:1px solid var(--border);
-  background:var(--s1);
-  color:var(--gray);
-  cursor:pointer;
-  transition:all .15s;
-  text-transform:uppercase;letter-spacing:1px;
-  /* Augmente la zone de tap sans changer l'apparence */
-  -webkit-tap-highlight-color:transparent;
-  user-select:none;
-}
+.sz{font-size:9px;font-weight:700;padding:6px 8px;min-width:32px;border:1px solid var(--border);background:var(--s1);color:var(--gray);cursor:pointer;transition:all .15s;text-transform:uppercase;letter-spacing:1px;-webkit-tap-highlight-color:transparent;user-select:none;}
 .sz.on{border-color:var(--white);background:var(--white);color:var(--black);}
-/* ── ADD BUTTON — touch-friendly ── */
-.badd{
-  width:100%;padding:12px 0;
-  background:var(--white);color:var(--black);
-  font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
-  border:none;cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
-  user-select:none;
-  /* Evite que le bouton soit "absorbé" par un parent overflow:hidden */
-  position:relative;z-index:1;
-  transition:opacity .15s,background .15s;
-}
+.badd{width:100%;padding:12px 0;background:var(--white);color:var(--black);font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;position:relative;z-index:1;transition:opacity .15s,background .15s;}
 .badd:active,.badd:focus{opacity:.75;outline:none;}
-.badd:disabled{
-  background:transparent;color:var(--gray);
-  border:1px solid var(--border);cursor:not-allowed;opacity:1;
-}
-
-/* LOADER */
+.badd:disabled{background:transparent;color:var(--gray);border:1px solid var(--border);cursor:not-allowed;opacity:1;}
 #loader{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;gap:18px;}
 .spin{width:26px;height:26px;border:1px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:rot .7s linear infinite;}
 @keyframes rot{to{transform:rotate(360deg);}}
 #loader p{font-size:8px;letter-spacing:3px;color:var(--gray);text-transform:uppercase;}
 #ecat{display:none;text-align:center;padding:60px 20px;font-size:9px;letter-spacing:3px;color:var(--gray);text-transform:uppercase;}
-
-/* CART BAR */
-#cartbar{
-  position:fixed;bottom:0;left:0;right:0;z-index:55;
-  background:var(--black);border-top:1px solid var(--border);
-  padding:10px 16px;
-  transform:translateY(100%);
-  transition:transform .4s cubic-bezier(.16,1,.3,1);
-}
+#cartbar{position:fixed;bottom:0;left:0;right:0;z-index:55;background:var(--black);border-top:1px solid var(--border);padding:10px 16px;transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);}
 #cartbar.up{transform:translateY(0);}
-#cartbar-btn{
-  width:100%;padding:13px 18px;
-  background:var(--gold);color:var(--black);
-  font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
-  border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:space-between;
-  -webkit-tap-highlight-color:transparent;
-}
+#cartbar-btn{width:100%;padding:13px 18px;background:var(--gold);color:var(--black);font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;-webkit-tap-highlight-color:transparent;}
 .cb-l{display:flex;align-items:center;gap:10px;}
 .cb-n{background:var(--black);color:var(--gold);font-size:9px;font-weight:800;width:22px;height:22px;display:flex;align-items:center;justify-content:center;}
 @keyframes pulse-gold{0%{box-shadow:0 0 0 0 rgba(201,168,76,.6)}70%{box-shadow:0 0 0 14px rgba(201,168,76,0)}100%{box-shadow:0 0 0 0 rgba(201,168,76,0)}}
 .pulse{animation:pulse-gold .55s ease !important;}
-
-/* DRAWERS */
 .dw{position:fixed;inset:0;z-index:100;display:none;}
 .dw.open{display:block;}
 .dw-bg{position:absolute;inset:0;background:rgba(0,0,0,.85);}
@@ -160,8 +93,6 @@ input,select,textarea,button{font-family:var(--font-h);}
 .dtitle{font-size:10px;font-weight:800;letter-spacing:4px;text-transform:uppercase;}
 .dclose{width:32px;height:32px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;color:var(--gray);}
 .dclose:active{border-color:var(--white);}
-
-/* CART */
 #cart-items{flex:1;overflow-y:auto;padding:0 16px;}
 .ci-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 0;gap:10px;}
 .ci-empty p{font-size:9px;letter-spacing:3px;color:var(--gray);text-transform:uppercase;}
@@ -184,8 +115,6 @@ input,select,textarea,button{font-family:var(--font-h);}
 #btn-order{width:100%;padding:15px;background:var(--gold);color:var(--black);font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;transition:opacity .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
 #btn-order:active{opacity:.8;}
 #btn-order:disabled{background:var(--border);color:var(--gray);cursor:not-allowed;}
-
-/* ADMIN */
 #admin-dw{z-index:200;}
 #admin-dw .dw-panel{max-height:92vh;}
 .abody{flex:1;overflow-y:auto;padding:0 16px 32px;}
@@ -227,8 +156,6 @@ input,select,textarea,button{font-family:var(--font-h);}
 .btn-st:active{border-color:var(--white);color:var(--white);}
 .btn-dl{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 8px;border:1px solid rgba(229,57,53,.3);background:none;color:var(--danger);cursor:pointer;}
 .btn-dl:active{background:rgba(229,57,53,.15);}
-
-/* TOAST */
 #toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--white);color:var(--black);font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:9px 18px;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;z-index:999;white-space:nowrap;}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
 #toast.err{background:var(--danger);color:var(--white);}
@@ -237,8 +164,6 @@ input,select,textarea,button{font-family:var(--font-h);}
 <body>
 
 <div id="topbar"><span id="topbar-inner">✦ LIVRAISON OFFERTE · QUALITÉ SUPÉRIEURE À BAS PRIX ✦ DRIP SOCIETY — PIÈCES LIMITÉES ✦ LIVRAISON OFFERTE ✦</span></div>
-
-<!-- DEBUG BAR — s'affiche si admin non reconnu -->
 <div id="debug-bar"></div>
 
 <header id="header">
@@ -277,7 +202,6 @@ input,select,textarea,button{font-family:var(--font-h);}
 <div id="ecat">Aucun article dans cette catégorie</div>
 <div id="catalog" style="display:none;"></div>
 
-<!-- CART BAR -->
 <div id="cartbar">
   <button id="cartbar-btn" onclick="openCart()">
     <div class="cb-l"><span class="cb-n" id="cb-n">0</span><span>Voir mon panier</span></div>
@@ -285,7 +209,6 @@ input,select,textarea,button{font-family:var(--font-h);}
   </button>
 </div>
 
-<!-- CART DRAWER -->
 <div class="dw" id="cart-dw">
   <div class="dw-bg" onclick="closeCart()"></div>
   <div class="dw-panel">
@@ -307,7 +230,6 @@ input,select,textarea,button{font-family:var(--font-h);}
   </div>
 </div>
 
-<!-- ADMIN DRAWER -->
 <div class="dw" id="admin-dw">
   <div class="dw-bg" onclick="closeAdmin()"></div>
   <div class="dw-panel" style="max-height:92vh;">
@@ -371,17 +293,18 @@ input,select,textarea,button{font-family:var(--font-h);}
 <div id="toast"></div>
 
 <script>
-/* ══════════════════════════════
-   CONFIG
-══════════════════════════════ */
 const SUPA = "https://juescdtmfmiqyfqfrwnd.supabase.co";
 const KEY  = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp1ZXNjZHRtZm1pcXlmcWZyd25kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ2OTQ0OTQsImV4cCI6MjA5MDI3MDQ5NH0.E1SIYG7bEjnBoZhb72QMC-B94e6pl-sGvqsvYgJu3eY";
 const BOT  = "fredpixou";
-const ADMINS = ["8649556290","1072084263"];
 
-/* ══════════════════════════════
-   TELEGRAM INIT
-══════════════════════════════ */
+/* ─────────────────────────────────────────────
+   ADMINS — 3 IDs autorisés à voir le ⚙️
+   • 8649556290  → Toi (propriétaire)
+   • 1072084263  → Admin 2
+   • 8704291005  → Admin 3  ← NOUVEAU
+───────────────────────────────────────────── */
+const ADMINS = ["8649556290", "1072084263", "8704291005"];
+
 const tg   = window.Telegram?.WebApp;
 const user = tg?.initDataUnsafe?.user;
 if (tg) { tg.ready(); tg.expand(); }
@@ -389,28 +312,14 @@ if (tg) { tg.ready(); tg.expand(); }
 const userId  = String(user?.id || "");
 const isAdmin = ADMINS.includes(userId);
 
-/* ── DEBUG BAR ──────────────────────────────────
-   Affiche l'ID Telegram reçu pour que tu puisses
-   vérifier s'il correspond bien à ta liste ADMINS.
-   Masqué si admin reconnu.
-──────────────────────────────────────────────── */
 const debugBar = document.getElementById("debug-bar");
 if (isAdmin) {
-  // Admin reconnu → bouton engrenage visible, pas de debug
   document.getElementById("abtn").classList.add("on");
 } else {
-  // Pas reconnu → affiche le debug pour diagnostic
   debugBar.style.display = "block";
-  if (userId) {
-    debugBar.innerHTML =
-      `⚙️ <strong>Admin non reconnu.</strong> Ton ID Telegram détecté : <strong>${userId}</strong><br>` +
-      `Si c'est ton vrai ID, ajoute-le dans le tableau ADMINS du code et remets en ligne.`;
-  } else {
-    debugBar.innerHTML =
-      `⚙️ <strong>ID Telegram non détecté.</strong> ` +
-      `Assure-toi d'ouvrir l'app depuis le bot Telegram (pas depuis un navigateur seul). ` +
-      `L'ID n'est disponible que via le SDK Telegram.`;
-  }
+  debugBar.innerHTML = userId
+    ? `⚙️ <strong>Admin non reconnu.</strong> ID détecté : <strong>${userId}</strong> — si c'est le bon, ajoute-le dans ADMINS et remets en ligne.`
+    : `⚙️ <strong>ID non détecté.</strong> Ouvre l'app depuis le bot Telegram (pas depuis un navigateur seul).`;
 }
 
 if (user?.first_name) {
@@ -419,28 +328,15 @@ if (user?.first_name) {
   w.style.display = "block";
 }
 
-/* ══════════════════════════════
-   SUPABASE
-══════════════════════════════ */
 const api = (path, o={}) => fetch(`${SUPA}/rest/v1/${path}`, {
-  headers:{
-    "apikey":KEY,"Authorization":`Bearer ${KEY}`,
-    "Content-Type":"application/json","Prefer":"return=representation",
-    ...(o.headers||{})
-  }, ...o
+  headers:{"apikey":KEY,"Authorization":`Bearer ${KEY}`,"Content-Type":"application/json","Prefer":"return=representation",...(o.headers||{})}, ...o
 });
 
-/* ══════════════════════════════
-   STATE
-══════════════════════════════ */
 let products = [];
 let filter   = "Tous";
-const cart   = {};  // "pid_size" → {product, qty, size}
-const selSz  = {};  // pid → taille sélectionnée
+const cart   = {};
+const selSz  = {};
 
-/* ══════════════════════════════
-   LOAD
-══════════════════════════════ */
 async function load() {
   try {
     const r = await api("products?select=*&order=created_at.desc");
@@ -451,16 +347,10 @@ async function load() {
     renderAdminList();
   } catch(e) {
     document.getElementById("loader").innerHTML =
-      `<p style="color:var(--danger);font-size:10px;text-align:center;letter-spacing:1px;">
-        Erreur de chargement<br>
-        <small style="color:var(--gray);font-size:9px;">${e.message}</small>
-      </p>`;
+      `<p style="color:var(--danger);font-size:10px;text-align:center;letter-spacing:1px;">Erreur de chargement<br><small style="color:var(--gray);font-size:9px;">${e.message}</small></p>`;
   }
 }
 
-/* ══════════════════════════════
-   FILTER
-══════════════════════════════ */
 function setF(cat, btn) {
   filter = cat;
   document.querySelectorAll(".fb").forEach(b => b.classList.remove("on"));
@@ -470,203 +360,124 @@ function setF(cat, btn) {
 }
 const filtered = () => filter === "Tous" ? products : products.filter(p => p.category === filter);
 
-/* ══════════════════════════════
-   RENDER CATALOG
-══════════════════════════════ */
 function renderCatalog() {
   const grid = document.getElementById("catalog");
   const list = filtered();
   const ecat = document.getElementById("ecat");
   document.getElementById("sec-n").textContent = list.length + " pièce" + (list.length > 1 ? "s" : "");
-  if (!list.length) {
-    grid.style.display = "none"; ecat.style.display = "block"; return;
-  }
-  ecat.style.display = "none"; grid.style.display = "grid"; grid.innerHTML = "";
+  if (!list.length) { grid.style.display="none"; ecat.style.display="block"; return; }
+  ecat.style.display="none"; grid.style.display="grid"; grid.innerHTML="";
 
   list.forEach(p => {
     const inStock = p.in_stock !== false;
     const sizes   = (p.sizes || "S,M,L,XL").split(",").map(s => s.trim()).filter(Boolean);
     const pQty    = getPQty(p.id);
     const sel     = selSz[p.id];
+    const el      = document.createElement("div");
+    el.className  = "card" + (!inStock ? " oos" : "");
+    el.id         = `card-${p.id}`;
 
-    const el = document.createElement("div");
-    el.className = "card" + (!inStock ? " oos" : "");
-    el.id = `card-${p.id}`;
-
-    // ── Tailles HTML ──
     const sizesHtml = sizes.map(s =>
-      `<div class="sz${sel === s ? " on" : ""}" data-pid="${p.id}" data-sz="${s}">${s}</div>`
+      `<div class="sz${sel===s?" on":""}" data-pid="${p.id}" data-sz="${s}">${s}</div>`
     ).join("");
 
-    // ── Bouton ajouter ──
-    let ctaHtml;
-    if (!inStock) {
-      ctaHtml = `<button class="badd" disabled>Rupture de stock</button>`;
-    } else if (!sel) {
-      ctaHtml = `<button class="badd" disabled>Choisir une taille</button>`;
-    } else {
-      ctaHtml = `<button class="badd" data-pid="${p.id}">Ajouter au panier</button>`;
-    }
+    let ctaHtml = !inStock
+      ? `<button class="badd" disabled>Rupture de stock</button>`
+      : !sel
+        ? `<button class="badd" disabled>Choisir une taille</button>`
+        : `<button class="badd" data-pid="${p.id}">Ajouter au panier</button>`;
 
     el.innerHTML = `
       <div class="cimg">
-        <img src="${p.image_url || `https://picsum.photos/seed/${p.id}/400/600`}"
-             alt="${p.name}" loading="lazy"
-             onerror="this.src='https://picsum.photos/300/450?grayscale'"/>
-        ${!inStock ? `<div class="b-oos"><span>Rupture de stock</span></div>` : ""}
-        <div class="b-cat">${p.category || "Autres"}</div>
-        <div class="b-qty${pQty > 0 ? " on" : ""}" id="bq-${p.id}">${pQty || ""}</div>
+        <img src="${p.image_url||`https://picsum.photos/seed/${p.id}/400/600`}" alt="${p.name}" loading="lazy" onerror="this.src='https://picsum.photos/300/450?grayscale'"/>
+        ${!inStock?`<div class="b-oos"><span>Rupture de stock</span></div>`:""}
+        <div class="b-cat">${p.category||"Autres"}</div>
+        <div class="b-qty${pQty>0?" on":""}" id="bq-${p.id}">${pQty||""}</div>
       </div>
       <div class="cbody">
         <div class="cname">${p.name}</div>
         <div class="cprice">${fmt(p.price)}</div>
-        ${inStock ? `
-          <div class="sz-label">Taille</div>
-          <div class="sz-row" id="szr-${p.id}">${sizesHtml}</div>
-        ` : ""}
+        ${inStock?`<div class="sz-label">Taille</div><div class="sz-row" id="szr-${p.id}">${sizesHtml}</div>`:""}
         ${ctaHtml}
       </div>`;
-
     grid.appendChild(el);
   });
 
-  // ── Délégation d'événements sur la grille (FIX PRINCIPAL) ──
-  // On utilise un seul listener sur le parent pour éviter
-  // les problèmes de touch sur les boutons générés dynamiquement.
   grid.addEventListener("click", handleGridClick, { passive: false });
 }
 
-/* ══════════════════════════════
-   GESTION CLICS (délégation)
-   FIX : un seul listener parent
-   évite les bugs tactiles iOS
-══════════════════════════════ */
 function handleGridClick(e) {
-  // Clic sur une taille
   const szEl = e.target.closest(".sz");
-  if (szEl) {
-    const pid = szEl.dataset.pid;
-    const sz  = szEl.dataset.sz;
-    pickSz(pid, sz, szEl);
-    return;
-  }
-  // Clic sur "Ajouter au panier"
+  if (szEl) { pickSz(szEl.dataset.pid, szEl.dataset.sz, szEl); return; }
   const addEl = e.target.closest(".badd:not(:disabled)");
-  if (addEl) {
-    const pid = addEl.dataset.pid;
-    if (pid) addCart(pid);
-    return;
-  }
+  if (addEl && addEl.dataset.pid) { addCart(addEl.dataset.pid); }
 }
 
-/* ══════════════════════════════
-   TAILLE PICKER
-══════════════════════════════ */
 function pickSz(pid, sz, btn) {
-  // Désélectionner toutes les tailles du même produit
   const row = document.getElementById(`szr-${pid}`);
   if (row) row.querySelectorAll(".sz").forEach(b => b.classList.remove("on"));
   btn.classList.add("on");
   selSz[pid] = sz;
   tg?.HapticFeedback?.selectionChanged?.();
-
-  // Activer le bouton Ajouter du même produit
   const card = document.getElementById(`card-${pid}`);
   if (!card) return;
   const addBtn = card.querySelector(".badd");
-  if (addBtn) {
-    addBtn.disabled    = false;
-    addBtn.dataset.pid = pid;
-    addBtn.textContent = "Ajouter au panier";
-  }
+  if (addBtn) { addBtn.disabled=false; addBtn.dataset.pid=pid; addBtn.textContent="Ajouter au panier"; }
 }
 
-/* ══════════════════════════════
-   ADD TO CART
-══════════════════════════════ */
 function addCart(pid) {
-  const sz = selSz[pid];
-  if (!sz) { showToast("Choisis une taille", "err"); return; }
-  const p = products.find(x => x.id === pid);
-  if (!p) return;
-
-  const k = `${pid}_${sz}`;
-  if (!cart[k]) cart[k] = { product: p, qty: 0, size: sz };
+  const sz = selSz[pid]; if (!sz) { showToast("Choisis une taille","err"); return; }
+  const p  = products.find(x => x.id===pid); if (!p) return;
+  const k  = `${pid}_${sz}`;
+  if (!cart[k]) cart[k] = {product:p, qty:0, size:sz};
   cart[k].qty++;
   tg?.HapticFeedback?.impactOccurred("light");
-
-  // Reset sélection taille
   delete selSz[pid];
   const row = document.getElementById(`szr-${pid}`);
   if (row) row.querySelectorAll(".sz").forEach(b => b.classList.remove("on"));
   const card = document.getElementById(`card-${pid}`);
-  if (card) {
-    const addBtn = card.querySelector(".badd");
-    if (addBtn) { addBtn.disabled = true; addBtn.textContent = "Choisir une taille"; }
-  }
-
-  // Mise à jour badge carte
-  const pQty = getPQty(pid);
-  const bq = document.getElementById(`bq-${pid}`);
-  if (bq) { bq.textContent = pQty; bq.className = `b-qty${pQty > 0 ? " on" : ""}`; }
-
+  if (card) { const ab=card.querySelector(".badd"); if(ab){ab.disabled=true;ab.textContent="Choisir une taille";} }
+  const pQty=getPQty(pid);
+  const bq=document.getElementById(`bq-${pid}`);
+  if (bq) { bq.textContent=pQty; bq.className=`b-qty${pQty>0?" on":""}`; }
   showToast(`${p.name} · ${sz} ajouté`);
   updateUI();
-
-  // Pulse sur la barre panier
-  const cbBtn = document.getElementById("cartbar-btn");
-  cbBtn.classList.remove("pulse");
-  void cbBtn.offsetWidth; // force reflow
-  cbBtn.classList.add("pulse");
-  cbBtn.addEventListener("animationend", () => cbBtn.classList.remove("pulse"), { once: true });
+  const cbBtn=document.getElementById("cartbar-btn");
+  cbBtn.classList.remove("pulse"); void cbBtn.offsetWidth; cbBtn.classList.add("pulse");
+  cbBtn.addEventListener("animationend",()=>cbBtn.classList.remove("pulse"),{once:true});
 }
 
 function getPQty(pid) {
-  return Object.entries(cart)
-    .filter(([k]) => k.startsWith(pid + "_"))
-    .reduce((s, [, v]) => s + v.qty, 0);
+  return Object.entries(cart).filter(([k])=>k.startsWith(pid+"_")).reduce((s,[,v])=>s+v.qty,0);
 }
 
-/* ══════════════════════════════
-   UPDATE GLOBAL UI
-══════════════════════════════ */
 function updateUI() {
-  const vals  = Object.values(cart);
-  const count = vals.reduce((s, i) => s + i.qty, 0);
-  const total = vals.reduce((s, i) => s + i.qty * i.product.price, 0);
-
-  const badge = document.getElementById("cbadge");
-  badge.textContent = count;
-  badge.style.display = count ? "flex" : "none";
-
-  document.getElementById("cb-n").textContent    = count;
-  document.getElementById("cb-total").textContent = fmt(total);
-  document.getElementById("ctotal").textContent   = fmt(total);
-  document.getElementById("btn-order").disabled   = count === 0;
-  document.getElementById("cartbar").className    = count ? "up" : "";
+  const vals=Object.values(cart);
+  const count=vals.reduce((s,i)=>s+i.qty,0);
+  const total=vals.reduce((s,i)=>s+i.qty*i.product.price,0);
+  const badge=document.getElementById("cbadge");
+  badge.textContent=count; badge.style.display=count?"flex":"none";
+  document.getElementById("cb-n").textContent=count;
+  document.getElementById("cb-total").textContent=fmt(total);
+  document.getElementById("ctotal").textContent=fmt(total);
+  document.getElementById("btn-order").disabled=count===0;
+  document.getElementById("cartbar").className=count?"up":"";
 }
 
-/* ══════════════════════════════
-   CART DRAWER
-══════════════════════════════ */
 function openCart()  { renderCartItems(); openD("cart-dw"); }
 function closeCart() { closeD("cart-dw"); }
 
 function renderCartItems() {
-  const el = document.getElementById("cart-items");
-  const es = Object.entries(cart);
-  if (!es.length) {
-    el.innerHTML = `<div class="ci-empty"><p>Panier vide</p></div>`;
-    return;
-  }
-  el.innerHTML = es.map(([key, { product: p, qty, size }]) => `
+  const el=document.getElementById("cart-items");
+  const es=Object.entries(cart);
+  if (!es.length) { el.innerHTML=`<div class="ci-empty"><p>Panier vide</p></div>`; return; }
+  el.innerHTML=es.map(([key,{product:p,qty,size}])=>`
     <div class="ci">
-      <img src="${p.image_url || `https://picsum.photos/seed/${p.id}/100/130`}"
-           onerror="this.src='https://picsum.photos/80/100?grayscale'"/>
+      <img src="${p.image_url||`https://picsum.photos/seed/${p.id}/100/130`}" onerror="this.src='https://picsum.photos/80/100?grayscale'"/>
       <div class="ci-info">
         <div class="ci-name">${p.name}</div>
         <div class="ci-sz">Taille : ${size}</div>
-        <div class="ci-price">${fmt(p.price)} × ${qty} = ${fmt(p.price * qty)}</div>
+        <div class="ci-price">${fmt(p.price)} × ${qty} = ${fmt(p.price*qty)}</div>
       </div>
       <div class="ci-right">
         <span class="ci-del" onclick="rmItem('${key}')">✕ Retirer</span>
@@ -679,177 +490,128 @@ function renderCartItems() {
     </div>`).join("");
 }
 
-function chgQty(key, d) {
+function chgQty(key,d) {
   if (!cart[key]) return;
-  cart[key].qty += d;
-  tg?.HapticFeedback?.selectionChanged?.();
-  if (cart[key].qty <= 0) delete cart[key];
-  const pid  = key.split("_")[0];
-  const pQty = getPQty(pid);
-  const bq   = document.getElementById(`bq-${pid}`);
-  if (bq) { bq.textContent = pQty; bq.className = `b-qty${pQty > 0 ? " on" : ""}`; }
-  updateUI();
-  renderCartItems();
+  cart[key].qty+=d; tg?.HapticFeedback?.selectionChanged?.();
+  if (cart[key].qty<=0) delete cart[key];
+  const pid=key.split("_")[0]; const pQty=getPQty(pid);
+  const bq=document.getElementById(`bq-${pid}`);
+  if (bq) { bq.textContent=pQty; bq.className=`b-qty${pQty>0?" on":""}`; }
+  updateUI(); renderCartItems();
 }
 
 function rmItem(key) {
-  const pid = key.split("_")[0];
-  delete cart[key];
+  const pid=key.split("_")[0]; delete cart[key];
   tg?.HapticFeedback?.impactOccurred("medium");
-  const pQty = getPQty(pid);
-  const bq   = document.getElementById(`bq-${pid}`);
-  if (bq) { bq.textContent = pQty; bq.className = `b-qty${pQty > 0 ? " on" : ""}`; }
-  updateUI();
-  renderCartItems();
+  const pQty=getPQty(pid);
+  const bq=document.getElementById(`bq-${pid}`);
+  if (bq) { bq.textContent=pQty; bq.className=`b-qty${pQty>0?" on":""}`; }
+  updateUI(); renderCartItems();
 }
 
-/* ══════════════════════════════
-   COMMANDE
-══════════════════════════════ */
 function sendOrder() {
-  const items = Object.values(cart); if (!items.length) return;
-  const total = items.reduce((s, i) => s + i.qty * i.product.price, 0);
-  const lines = items.map(({ product: p, qty, size }) =>
-    `• ${p.name} (Taille ${size}) x${qty} : ${fmt(p.price * qty)}`
-  ).join("\n");
-  const msg =
-`🛒 NOUVELLE COMMANDE - DRIP SOCIETY
--------------------------
-${lines}
--------------------------
-Total : ${fmt(total)}`;
-  const url = `https://t.me/${BOT}?text=${encodeURIComponent(msg)}`;
-  if (tg?.openTelegramLink) tg.openTelegramLink(url);
-  else window.open(url, "_blank");
+  const items=Object.values(cart); if(!items.length) return;
+  const total=items.reduce((s,i)=>s+i.qty*i.product.price,0);
+  const lines=items.map(({product:p,qty,size})=>`• ${p.name} (Taille ${size}) x${qty} : ${fmt(p.price*qty)}`).join("\n");
+  const msg=`🛒 NOUVELLE COMMANDE - DRIP SOCIETY\n-------------------------\n${lines}\n-------------------------\nTotal : ${fmt(total)}`;
+  const url=`https://t.me/${BOT}?text=${encodeURIComponent(msg)}`;
+  if (tg?.openTelegramLink) tg.openTelegramLink(url); else window.open(url,"_blank");
   tg?.HapticFeedback?.notificationOccurred("success");
-  closeCart();
-  showToast("Redirection vers @" + BOT + " ✓");
+  closeCart(); showToast("Redirection vers @"+BOT+" ✓");
 }
 
-/* ══════════════════════════════
-   ADMIN
-══════════════════════════════ */
 function openAdmin()  { renderAdminList(); openD("admin-dw"); }
 function closeAdmin() { closeD("admin-dw"); }
 
 function renderAdminList() {
-  document.getElementById("pcnt").textContent = products.length;
-  const el = document.getElementById("alist");
-  if (!products.length) {
-    el.innerHTML = `<p style="font-size:11px;color:var(--gray);">Aucun produit.</p>`;
-    return;
-  }
-  el.innerHTML = products.map(p => `
+  document.getElementById("pcnt").textContent=products.length;
+  const el=document.getElementById("alist");
+  if (!products.length) { el.innerHTML=`<p style="font-size:11px;color:var(--gray);">Aucun produit.</p>`; return; }
+  el.innerHTML=products.map(p=>`
     <div class="ap" id="ap-${p.id}">
-      <img src="${p.image_url || `https://picsum.photos/seed/${p.id}/100`}"
-           onerror="this.src='https://picsum.photos/80/100?grayscale'"/>
+      <img src="${p.image_url||`https://picsum.photos/seed/${p.id}/100`}" onerror="this.src='https://picsum.photos/80/100?grayscale'"/>
       <div class="ap-info">
         <div class="ap-name">${p.name}</div>
-        <div class="ap-meta">${p.category || "Autres"} · ${p.in_stock === false ? "❌ Rupture" : "✅ En stock"}</div>
+        <div class="ap-meta">${p.category||"Autres"} · ${p.in_stock===false?"❌ Rupture":"✅ En stock"}</div>
         <div class="ap-pe">
           <input class="ap-pi" type="number" id="pi-${p.id}" value="${p.price}" step="0.01" min="0"/>
           <button class="btn-sp" onclick="savePrice('${p.id}')">Sauver prix</button>
         </div>
       </div>
       <div class="ap-acts">
-        <button class="btn-st" onclick="toggleStock('${p.id}',${p.in_stock !== false})">
-          ${p.in_stock === false ? "📦 Remettre" : "📦 Rupture"}
-        </button>
+        <button class="btn-st" onclick="toggleStock('${p.id}',${p.in_stock!==false})">${p.in_stock===false?"📦 Remettre":"📦 Rupture"}</button>
         <button class="btn-dl" onclick="delProd('${p.id}')">🗑 Suppr.</button>
       </div>
     </div>`).join("");
 }
 
 async function addProduct() {
-  const name  = document.getElementById("a-name").value.trim();
-  const price = parseFloat(document.getElementById("a-price").value);
-  const img   = document.getElementById("a-img").value.trim();
-  const cat   = document.getElementById("a-cat").value;
-  const sizes = document.getElementById("a-sizes").value;
-  const stock = document.getElementById("a-stock").checked;
-  const desc  = document.getElementById("a-desc").value.trim();
-  if (!name || isNaN(price) || price <= 0) { showToast("Nom et prix requis", "err"); return; }
-  const btn = document.getElementById("btn-add");
-  btn.disabled = true; btn.textContent = "Ajout…";
+  const name=document.getElementById("a-name").value.trim();
+  const price=parseFloat(document.getElementById("a-price").value);
+  const img=document.getElementById("a-img").value.trim();
+  const cat=document.getElementById("a-cat").value;
+  const sizes=document.getElementById("a-sizes").value;
+  const stock=document.getElementById("a-stock").checked;
+  const desc=document.getElementById("a-desc").value.trim();
+  if (!name||isNaN(price)||price<=0) { showToast("Nom et prix requis","err"); return; }
+  const btn=document.getElementById("btn-add"); btn.disabled=true; btn.textContent="Ajout…";
   try {
-    const r = await api("products", {
-      method: "POST",
-      body: JSON.stringify({ name, price, image_url: img || null, description: desc || null, category: cat, sizes, in_stock: stock })
-    });
+    const r=await api("products",{method:"POST",body:JSON.stringify({name,price,image_url:img||null,description:desc||null,category:cat,sizes,in_stock:stock})});
     if (!r.ok) throw new Error(await r.text());
-    const [np] = await r.json();
-    products.unshift(np);
+    const [np]=await r.json(); products.unshift(np);
     renderCatalog(); renderAdminList();
-    ["a-name","a-price","a-img","a-desc"].forEach(id => document.getElementById(id).value = "");
-    document.getElementById("a-stock").checked = true;
-    showToast("Produit ajouté ✓");
-    tg?.HapticFeedback?.notificationOccurred("success");
-  } catch(e) { showToast("Erreur : " + e.message, "err"); }
-  finally { btn.disabled = false; btn.textContent = "Ajouter au catalogue"; }
+    ["a-name","a-price","a-img","a-desc"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("a-stock").checked=true;
+    showToast("Produit ajouté ✓"); tg?.HapticFeedback?.notificationOccurred("success");
+  } catch(e) { showToast("Erreur : "+e.message,"err"); }
+  finally { btn.disabled=false; btn.textContent="Ajouter au catalogue"; }
 }
 
 async function savePrice(id) {
-  const val = parseFloat(document.getElementById(`pi-${id}`).value);
-  if (isNaN(val) || val <= 0) { showToast("Prix invalide", "err"); return; }
+  const val=parseFloat(document.getElementById(`pi-${id}`).value);
+  if (isNaN(val)||val<=0) { showToast("Prix invalide","err"); return; }
   try {
-    const r = await api(`products?id=eq.${id}`, {
-      method: "PATCH", headers: { "Prefer": "return=minimal" },
-      body: JSON.stringify({ price: val })
-    });
+    const r=await api(`products?id=eq.${id}`,{method:"PATCH",headers:{"Prefer":"return=minimal"},body:JSON.stringify({price:val})});
     if (!r.ok) throw new Error(r.status);
-    const p = products.find(x => x.id === id); if (p) p.price = val;
-    renderCatalog(); renderAdminList();
-    showToast("Prix mis à jour ✓");
+    const p=products.find(x=>x.id===id); if(p) p.price=val;
+    renderCatalog(); renderAdminList(); showToast("Prix mis à jour ✓");
     tg?.HapticFeedback?.impactOccurred("medium");
-  } catch(e) { showToast("Erreur prix", "err"); }
+  } catch(e) { showToast("Erreur prix","err"); }
 }
 
-async function toggleStock(id, cur) {
-  const nw = !cur;
+async function toggleStock(id,cur) {
+  const nw=!cur;
   try {
-    const r = await api(`products?id=eq.${id}`, {
-      method: "PATCH", headers: { "Prefer": "return=minimal" },
-      body: JSON.stringify({ in_stock: nw })
-    });
+    const r=await api(`products?id=eq.${id}`,{method:"PATCH",headers:{"Prefer":"return=minimal"},body:JSON.stringify({in_stock:nw})});
     if (!r.ok) throw new Error(r.status);
-    const p = products.find(x => x.id === id); if (p) p.in_stock = nw;
+    const p=products.find(x=>x.id===id); if(p) p.in_stock=nw;
     renderCatalog(); renderAdminList();
-    showToast(nw ? "Remis en stock ✓" : "Marqué en rupture");
+    showToast(nw?"Remis en stock ✓":"Marqué en rupture");
     tg?.HapticFeedback?.impactOccurred("medium");
-  } catch(e) { showToast("Erreur stock", "err"); }
+  } catch(e) { showToast("Erreur stock","err"); }
 }
 
 async function delProd(id) {
   if (!confirm("Supprimer définitivement ce produit ?")) return;
   try {
-    const r = await api(`products?id=eq.${id}`, { method: "DELETE" });
+    const r=await api(`products?id=eq.${id}`,{method:"DELETE"});
     if (!r.ok) throw new Error(r.status);
-    products = products.filter(p => p.id !== id);
-    renderCatalog(); renderAdminList();
-    showToast("Produit supprimé");
+    products=products.filter(p=>p.id!==id);
+    renderCatalog(); renderAdminList(); showToast("Produit supprimé");
     tg?.HapticFeedback?.notificationOccurred("warning");
-  } catch(e) { showToast("Erreur suppression", "err"); }
+  } catch(e) { showToast("Erreur suppression","err"); }
 }
 
-/* ══════════════════════════════
-   DRAWER HELPERS
-══════════════════════════════ */
-function openD(id)  { document.getElementById(id).classList.add("open"); document.body.style.overflow = "hidden"; }
-function closeD(id) { document.getElementById(id).classList.remove("open"); document.body.style.overflow = ""; }
+function openD(id)  { document.getElementById(id).classList.add("open"); document.body.style.overflow="hidden"; }
+function closeD(id) { document.getElementById(id).classList.remove("open"); document.body.style.overflow=""; }
 
-/* ══════════════════════════════
-   TOAST
-══════════════════════════════ */
 let tT;
-function showToast(msg, type = "") {
-  const el = document.getElementById("toast");
-  el.textContent = msg; el.className = `on${type ? " " + type : ""}`;
-  clearTimeout(tT); tT = setTimeout(() => { el.className = ""; }, 2500);
+function showToast(msg,type="") {
+  const el=document.getElementById("toast"); el.textContent=msg; el.className=`on${type?" "+type:""}`;
+  clearTimeout(tT); tT=setTimeout(()=>{el.className="";},2500);
 }
 
-function fmt(n) {
-  return Number(n).toLocaleString("fr-FR", { style: "currency", currency: "EUR" });
-}
+function fmt(n) { return Number(n).toLocaleString("fr-FR",{style:"currency",currency:"EUR"}); }
 
 load();
 </script>
