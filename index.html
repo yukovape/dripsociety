@@ -16,7 +16,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 html,body{background:var(--black);color:var(--white);font-family:var(--font-h);font-size:14px;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
-/* ── SPLASH SCREEN ── */
+/* ── SPLASH SCREEN (LOGO FIXÉ) ── */
 #splash {
   position: fixed; inset: 0; background: var(--black); z-index: 1000;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -25,7 +25,8 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
 #splash img { 
   width: 160px; height: 160px; margin-bottom: 30px; 
   animation: pulseLogo 2s infinite ease-in-out; border-radius: 50%;
-  box-shadow: 0 0 30px rgba(201, 168, 76, 0.2);
+  object-fit: cover;
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
 }
 .loader-bar { width: 100px; height: 2px; background: var(--border); position: relative; overflow: hidden; }
 .loader-progress { position: absolute; height: 100%; width: 50%; background: var(--gold); animation: loadAnim 1.5s infinite linear; }
@@ -60,7 +61,7 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
 .add-btn{ width:100%;padding:14px;background:var(--white);color:var(--black); border:none;font-weight:900;font-size:10px;text-transform:uppercase; letter-spacing:2px;}
 .add-btn:disabled{background:var(--s1);color:var(--border);cursor:not-allowed;}
 
-/* ── PANIER & DRAWERS (DESIGN AMELIORE) ── */
+/* ── PANIER (DRAWER LUXE) ── */
 #cart-bar{ position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,0.95); backdrop-filter: blur(10px); border-top:1px solid var(--border);padding:20px;z-index:90; transform:translateY(100%);transition:0.4s;}
 #cart-bar.show{transform:translateY(0);}
 #bar-btn{ width:100%;padding:16px;background:var(--gold);color:var(--black); font-weight:900;text-transform:uppercase;border:none;display:flex; justify-content:space-between;}
@@ -76,10 +77,10 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
   display: flex; justify-content: space-between; align-items: center; 
   padding: 15px 0; border-bottom: 1px solid var(--border);
 }
+.btn-rm-cart { color: var(--danger); font-size: 10px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
 
-/* ── ADMIN SPECIFIQUE ── */
+/* ── ADMIN ── */
 .admin-item img { width: 40px; height: 50px; object-fit: cover; border-radius: 4px; margin-right: 10px; }
-.admin-actions { display: flex; gap: 10px; }
 .btn-delete { background: var(--danger); color: white; border: none; padding: 8px 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; }
 .btn-edit { background: var(--gray); color: white; border: none; padding: 8px 12px; font-size: 10px; font-weight: 700; text-transform: uppercase; cursor: pointer; }
 
@@ -94,7 +95,7 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
 <body>
 
 <div id="splash">
-  <img src="https://i.ibb.co/XkyV7PzB/Gemini-Generated-Image-f1kqnhf1kqnhf1kq.jpg" alt="Logo">
+  <img src="https://i.ibb.co/XkyV7PzB/Gemini-Generated-Image-f1kqnhf1kqnhf1kq.jpg" alt="Drip Society Logo">
   <div class="loader-bar"><div class="loader-progress"></div></div>
 </div>
 
@@ -129,15 +130,15 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
   <div class="dw-content">
     <div style="display:flex; justify-content:space-between; margin-bottom:25px;">
         <h2 style="text-transform:uppercase;letter-spacing:3px;font-size:18px;">Mon Panier</h2>
-        <span onclick="closeAll()" style="color:var(--gray); font-size:11px; cursor:pointer;">FERMER</span>
+        <span onclick="closeAll()" style="color:var(--gray); font-size:11px; cursor:pointer; letter-spacing: 1px;">FERMER</span>
     </div>
     <div id="cart-items"></div>
     <div style="margin-top:30px; border-top:1px solid var(--border); padding-top:20px;">
       <div style="display:flex;justify-content:space-between;margin-bottom:25px;">
-          <span style="font-size:11px;color:var(--gray);">TOTAL</span>
-          <span id="cart-total-val" style="color:var(--gold);font-weight:900;font-size:24px;">0.00 €</span>
+          <span style="font-size:11px;color:var(--gray); letter-spacing: 1px;">TOTAL ESTIMÉ</span>
+          <span id="cart-total-val" style="color:var(--gold);font-weight:900;font-size:24px; font-family:'Cormorant Garamond', serif;">0.00 €</span>
       </div>
-      <button onclick="sendOrder()" style="width:100%;padding:18px;background:var(--gold);border:none;font-weight:900;text-transform:uppercase;">Finaliser sur Telegram</button>
+      <button onclick="sendOrder()" style="width:100%;padding:18px;background:var(--gold);border:none;font-weight:900;text-transform:uppercase; letter-spacing: 1px;">Commander sur Telegram</button>
     </div>
   </div>
 </div>
@@ -159,9 +160,9 @@ html,body{background:var(--black);color:var(--white);font-family:var(--font-h);f
     </div>
     <div class="fg"><label>Nom de l'article</label><input type="text" id="a-name"></div>
     <div class="fg"><label>Prix (€)</label><input type="number" id="a-price" step="0.01"></div>
-    <button onclick="saveProduct()" style="width:100%;padding:18px;background:var(--white);color:var(--black);font-weight:900;text-transform:uppercase;">Publier l'article</button>
+    <button onclick="saveProduct()" style="width:100%;padding:18px;background:var(--white);color:var(--black);font-weight:900;text-transform:uppercase; letter-spacing: 1px;">Publier l'article</button>
     
-    <h3 style="text-transform:uppercase; font-size:12px; letter-spacing:2px; margin: 40px 0 20px 0; color:var(--gold);">Inventaire actuel</h3>
+    <h3 style="text-transform:uppercase; font-size:12px; letter-spacing:2px; margin: 40px 0 20px 0; color:var(--gold);">Inventaire</h3>
     <div id="admin-list"></div>
   </div>
 </div>
@@ -179,8 +180,11 @@ let products = [];
 let cart = [];
 let selectedSizes = {};
 
+// GESTION DU CHARGEMENT
 window.onload = () => {
-    setTimeout(() => document.getElementById('splash').classList.add('hidden-splash'), 2500);
+    setTimeout(() => {
+        document.getElementById('splash').classList.add('hidden-splash');
+    }, 2800);
     load();
 };
 
@@ -214,10 +218,17 @@ function selectSize(pid, size) { selectedSizes[pid] = size; render(); tg.HapticF
 
 function addToCart(pid) {
     const p = products.find(x => x.id == pid);
-    cart.push({ ...p, size: selectedSizes[pid] });
+    cart.push({ ...p, cartId: Date.now(), size: selectedSizes[pid] });
     updateUI();
     showToast(`AJOUTÉ ✓`);
     tg.HapticFeedback.notificationOccurred('success');
+}
+
+function removeFromCart(cartId) {
+    cart = cart.filter(item => item.cartId !== cartId);
+    updateUI();
+    renderCartItems();
+    tg.HapticFeedback.impactOccurred('medium');
 }
 
 function updateUI() {
@@ -230,7 +241,6 @@ function updateUI() {
     document.getElementById("cart-total-val").textContent = `${total.toFixed(2)} €`;
 }
 
-// ADMIN LIST & DELETE
 function renderAdminList() {
     const el = document.getElementById("admin-list");
     el.innerHTML = products.map(p => `
@@ -251,7 +261,7 @@ function renderAdminList() {
 }
 
 async function deleteProduct(id) {
-    if(!confirm("Supprimer définitivement cet article ?")) return;
+    if(!confirm("Supprimer cet article ?")) return;
     await fetch(`${SUPA}/rest/v1/products?id=eq.${id}`, {
         method: "DELETE",
         headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}` }
@@ -288,7 +298,7 @@ async function saveProduct() {
     const name = document.getElementById("a-name").value;
     const price = document.getElementById("a-price").value;
     const img = document.getElementById("a-img").value;
-    if(!name || !price || !img) return alert("Complète tous les champs !");
+    if(!name || !price || !img) return alert("Complète tout !");
     await fetch(`${SUPA}/rest/v1/products`, {
         method: "POST",
         headers: { "apikey": SUPA_KEY, "Authorization": `Bearer ${SUPA_KEY}`, "Content-Type": "application/json", "Prefer": "return=minimal" },
@@ -315,8 +325,11 @@ function closeAll() { document.querySelectorAll(".dw").forEach(d => d.classList.
 function renderCartItems() {
     document.getElementById("cart-items").innerHTML = cart.map(i => `
         <div class="cart-item">
-            <span style="font-size:11px; font-weight:700; text-transform:uppercase;">${i.name} (${i.size})</span>
-            <span style="color:var(--gold); font-weight:700;">${i.price.toFixed(2)}€</span>
+            <div style="display:flex; flex-direction:column;">
+                <span style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px;">${i.name} (${i.size})</span>
+                <span onclick="removeFromCart(${i.cartId})" class="btn-rm-cart">✕ Supprimer</span>
+            </div>
+            <span style="color:var(--gold); font-weight:700; font-family:'Cormorant Garamond', serif; font-size:16px;">${i.price.toFixed(2)}€</span>
         </div>
     `).join("");
 }
