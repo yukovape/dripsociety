@@ -7,7 +7,7 @@
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet"/>
 <style>
 /* ═══════════════════════════════════════
    TOKENS
@@ -31,8 +31,8 @@
   --shadow-md:0 6px 32px rgba(0,0,0,.10);
   --shadow-lg:0 14px 55px rgba(0,0,0,.13);
   --r-xs:4px;--r-sm:8px;--r-md:14px;--r-lg:20px;--r-xl:28px;
-  --fh:'Barlow',sans-serif;
-  --fs:'Playfair Display',serif;
+  --fh:'Archivo',sans-serif;
+  --fb:'Archivo Black',sans-serif;
 }
 
 /* ═══════════════════════════════════════
@@ -144,8 +144,8 @@ button,input,select,textarea{font-family:var(--fh);}
 }
 #splash-tag{
   margin-top:7px;
-  font-family:var(--fs);font-style:italic;font-size:16px;
-  color:var(--wine);letter-spacing:1.5px;
+  font-family:var(--fh);font-style:normal;font-size:14px;
+  color:var(--wine);letter-spacing:2px;
   animation:splashFadeUp .9s .5s cubic-bezier(.16,1,.3,1) both;
 }
 @keyframes splashFadeUp{
@@ -267,22 +267,22 @@ button,input,select,textarea{font-family:var(--fh);}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
 .hero-kicker::after{content:'';flex:1;height:1px;background:var(--border2);}
 
-/* Lignes hero */
+/* Lignes hero — Archivo Black, ligne-hauteur serrée, compact */
 .hero-line-1{
-  font-size:38px;font-weight:900;line-height:.87;
-  letter-spacing:-2.5px;text-transform:uppercase;
+  font-family:var(--fb);font-size:68px;font-weight:900;
+  line-height:.82;letter-spacing:-3px;text-transform:uppercase;
   color:var(--text-1);display:block;
 }
 .hero-line-2{
-  font-family:var(--fs);font-style:italic;font-weight:300;
-  font-size:40px;line-height:1.05;letter-spacing:-.5px;
-  color:var(--wine);display:block;margin-top:1px;
+  font-family:var(--fb);font-style:normal;font-weight:900;
+  font-size:60px;line-height:.82;letter-spacing:-3px;
+  text-transform:uppercase;color:var(--wine);display:block;
 }
-/* ── TEXTE MÉTALLIQUE ANIMÉ ── */
+/* ── TEXTE MÉTALLIQUE ANIMÉ (Archivo Black) ── */
 .hero-metallic{
   display:block;
-  font-size:30px;font-weight:900;letter-spacing:-1.5px;
-  text-transform:uppercase;margin-top:1px;
+  font-family:var(--fb);font-size:38px;font-weight:900;
+  line-height:.83;letter-spacing:-2px;text-transform:uppercase;
   /* Dégradé bordeaux avec reflet lumineux qui défile */
   background:linear-gradient(
     108deg,
@@ -307,16 +307,16 @@ button,input,select,textarea{font-family:var(--fh);}
   100%{background-position:-60% center;}
 }
 .hero-line-4{
-  display:block;font-size:30px;font-weight:900;
-  line-height:.9;letter-spacing:-1.5px;text-transform:uppercase;
-  color:var(--text-1);margin-top:1px;
+  display:block;font-family:var(--fb);font-size:60px;font-weight:900;
+  line-height:.82;letter-spacing:-3px;text-transform:uppercase;
+  color:var(--text-1);
 }
 .hero-sub{
-  margin-top:14px;font-size:9px;font-weight:500;
-  letter-spacing:2.5px;color:var(--text-3);text-transform:uppercase;
+  margin-top:16px;font-size:9px;font-weight:600;
+  letter-spacing:3px;color:var(--text-3);text-transform:uppercase;
 }
 #hero-welcome{
-  margin-top:10px;font-family:var(--fs);font-style:italic;
+  margin-top:10px;font-family:var(--fh);font-style:italic;
   font-size:13px;color:var(--text-2);display:none;
 }
 
